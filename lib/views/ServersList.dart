@@ -4,7 +4,7 @@ import 'package:activator/items/ServerItem.dart';
 import 'package:activator/models/ServerModel.dart';
 import 'package:activator/database/DB.dart';
 import 'package:activator/views/PluginsList.dart';
-import 'package:http/http.dart';
+import 'package:activator/views/EditServer.dart';
 
 class ServersList extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _ServersListState extends State<ServersList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("ToDo List"),
+          title: Text("Compoza.net"),
         ),
         body: StreamBuilder(
             stream: helper.servers,
@@ -31,8 +31,68 @@ class _ServersListState extends State<ServersList> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       ServerModel model = snapshot.data[index];
+                      return Dismissible(
+                        direction: DismissDirection.startToEnd,
+                        onDismissed: (direction) {
+                          // helper.deleteServer(model.id);
+                          print(model.id);
+                        },
+                        background: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.red[400],
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(10.0)),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 35, 0, 8),
+                            child: //Icon(Icons.delete)
+                                Text(
+                              "DELETE",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        child: Card(
+                          elevation: 5.0,
+                          child: ListTile(
+                            title: Text(model.title),
+                            // leading: Checkbox(
+                            //   value: model.isDone,
+                            //   activeColor: Colors.red,
+                            //   onChanged: (bool value) {
+                            //     bloc.updateTodo(model.id);
+                            //   },
+                            // ),
+                            subtitle: Text(model.url),
+                            isThreeLine: true,
+                          ),
+                        ),
+                        key: UniqueKey(),
+                      );
                     });
+              } else {
+                return Center(
+                  child: Text(
+                    "Empty list",
+                    textAlign: TextAlign.center,
+                  ),
+                );
               }
-            }));
+            }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EditServer(
+                    helper: helper,
+                  )));
+        },
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }

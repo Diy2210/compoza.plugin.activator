@@ -6,19 +6,19 @@ class ServerItem extends ServerModel {
 
   int id;
   String title;
-  // String url;
-  // String token;
+  String url;
+  String token;
   bool complete;
 
-  ServerItem({ this.id, this.title, this.complete });
+  ServerItem({ this.id, this.title, this.url, this.token, this.complete });
 
   Map<String, dynamic> toMap() {
 
     Map<String, dynamic> map = {
       'id' : id,
       'title': title,
-      // 'url': url,
-      // 'token': token,
+      'url': url,
+      'token': token,
       'complete': complete
     };
 
@@ -34,8 +34,8 @@ class ServerItem extends ServerModel {
     return ServerItem(
         id: map['id'],
         title: map['title'],
-        // url: map['url'],
-        // token: map['token'],
+        url: map['url'],
+        token: map['token'],
         complete: map['complete'] == 1
     );
   }
