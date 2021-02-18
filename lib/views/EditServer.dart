@@ -14,13 +14,12 @@ class EditServer extends StatefulWidget {
 }
 
 class _EditServerState extends State<EditServer> {
+
   final title = TextEditingController();
   final url = TextEditingController();
   final token = TextEditingController();
 
-  String _title;
-  String _url;
-  String _token;
+  String _title, _url, _token;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +44,10 @@ class _EditServerState extends State<EditServer> {
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Title',
+                suffixIcon: IconButton(
+                  onPressed: () => title.clear(),
+                  icon: Icon(Icons.clear),
+                )
               ),
               onChanged: (value) {
                 _title = value;
@@ -59,6 +62,10 @@ class _EditServerState extends State<EditServer> {
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Url',
+                  suffixIcon: IconButton(
+                    onPressed: () => url.clear(),
+                    icon: Icon(Icons.clear),
+                  )
               ),
               onChanged: (value) {
                 _url = value;
@@ -72,6 +79,10 @@ class _EditServerState extends State<EditServer> {
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Token',
+                  suffixIcon: IconButton(
+                    onPressed: () => token.clear(),
+                    icon: Icon(Icons.clear),
+                  )
               ),
               onChanged: (value) {
                 _token = value;

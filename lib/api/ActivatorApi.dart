@@ -29,14 +29,16 @@ class ActivatorApi {
     //#3
     try {
       client.get('$url/wp-json/deactivator/v1/list?token=$token');
-    } catch(error) {
+    } catch (error) {
       print(error);
     }
 
-  updatePluginStatus(String token, int id, bool status) {
-    try {
-      // client.post(url)
-    } catch(error) {
-      print(error);
+    updatePluginStatus(String token, int id, bool status) {
+      try {
+        // client.post(url)
+      } catch (error) {
+        print(error);
+      }
     }
+  }
 }
