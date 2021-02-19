@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:activator/views/ServersList.dart';
+import 'package:activator/database/DB.dart';
 
-void main() => runApp(MaterialApp(home: MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DataBase.init();
+  runApp(MaterialApp(home: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   @override

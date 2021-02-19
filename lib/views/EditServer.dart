@@ -6,12 +6,9 @@ import 'package:activator/models/ServerModel.dart';
 import 'package:activator/database/DB.dart';
 
 class EditServer extends StatefulWidget {
-  // final DataBase db;
-
   final DBHelper helper;
 
   EditServer({this.helper});
-  // EditServer({this.db, this.helper});
 
   @override
   _EditServerState createState() => _EditServerState();
@@ -19,27 +16,34 @@ class EditServer extends StatefulWidget {
 
 class _EditServerState extends State<EditServer> {
 
-  // ServerItem item = ServerItem();
+  String title, url, token;
 
-  final title = TextEditingController();
-  final url = TextEditingController();
-  final token = TextEditingController();
+  final _title = TextEditingController();
+  final _url = TextEditingController();
+  final _token = TextEditingController();
 
-  String _title, _url, _token;
+  // checkTextFieldEmptyOrNot() {
+  //   title = _title.text;
+  //   url = _url.text;
+  //   token = _token.text;
+  //   if(title == '' || url == '' || token == '') {
+  //     print("All fields are required");
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
 
-    title.addListener(() {
+    _title.addListener(() {
       setState(() { });
     });
 
-    url.addListener(() {
+    _url.addListener(() {
       setState(() { });
     });
 
-    token.addListener(() {
+    _token.addListener(() {
       setState(() { });
     });
   }
@@ -52,16 +56,14 @@ class _EditServerState extends State<EditServer> {
         actions: <Widget>[
           new IconButton(
               icon: const Icon(Icons.save),
-              // onPressed: () => _save())
               onPressed: () {
-                Navigator.pop(context);
-                ServerItem item = ServerItem(title: _title, url: _url, token: _token, complete: false);
-                // print(item.title + "" + item.url + "" + item.token);
-                widget.helper.saveServer(ServerItem.table, item);
-                setState(() => _title = '');
-                setState(() => _url = '');
-                setState(() => _token = '');
-                // DataBase.insert(ServerItem.table, item);
+                  Navigator.pop(context);
+                  ServerItem item = ServerItem(title: title, url: url, token: token);
+                  // DataBase.insert(ServerItem.table, item);
+                  widget.helper.saveServer(ServerItem.table, item);
+                  setState(() => title = '');
+                  setState(() => url = '');
+                  setState(() => token = '');
               })
         ],
       ),
@@ -69,55 +71,54 @@ class _EditServerState extends State<EditServer> {
         children: <Widget>[
           new ListTile(
             title: new TextField(
-              controller: title,
+              controller: _title,
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Title',
-                suffixIcon: title.text.isNotEmpty
+                suffixIcon: _title.text.isNotEmpty
                   ? IconButton(
-                  onPressed: () => title.clear(),
+                  onPressed: () => _title.clear(),
                   icon: Icon(Icons.clear),
                 ): null,
               ),
               onChanged: (value) {
-                _title = value;
+                title = value;
               },
               keyboardType: TextInputType.text,
             ),
           ),
           new ListTile(
-            // leading: Icon(Icons.view_headline),
             title: new TextField(
-              controller: url,
+              controller: _url,
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Url',
-                  suffixIcon: url.text.isNotEmpty
+                  suffixIcon: _url.text.isNotEmpty
                       ? IconButton(
-                    onPressed: () => url.clear(),
+                    onPressed: () => _url.clear(),
                     icon: Icon(Icons.clear),
                   ): null,
               ),
               onChanged: (value) {
-                _url = value;
+                url = value;
               },
               keyboardType: TextInputType.text,
             ),
           ),
           new ListTile(
             title: new TextField(
-              controller: token,
+              controller: _token,
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Token',
-                  suffixIcon: token.text.isNotEmpty
+                  suffixIcon: _token.text.isNotEmpty
                       ? IconButton(
-                    onPressed: () => token.clear(),
+                    onPressed: () => _token.clear(),
                     icon: Icon(Icons.clear),
                   ): null,
               ),
               onChanged: (value) {
-                _token = value;
+                token = value;
               },
               keyboardType: TextInputType.text,
             ),
@@ -126,14 +127,4 @@ class _EditServerState extends State<EditServer> {
       ),
     );
   }
-
-  // void _save() async {
-  //   Navigator.of(context).pop();
-  //   ServerItem item = ServerItem(title: _title, complete: false);
-  //
-  //   await widget.helper.saveServer(ServerItem.table, item);
-  //   setState(() => _title = '');
-  //   setState(() => _url = '');
-  //   setState(() => _token = '');
-  // }
 }

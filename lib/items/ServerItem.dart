@@ -8,9 +8,8 @@ class ServerItem extends ServerModel {
   String title;
   String url;
   String token;
-  bool complete;
 
-  ServerItem({ this.id, this.title, this.url, this.token, this.complete });
+  ServerItem({ this.id, this.title, this.url, this.token });
 
   Map<String, dynamic> toMap() {
 
@@ -19,13 +18,9 @@ class ServerItem extends ServerModel {
       'title': title,
       'url': url,
       'token': token,
-      'complete': complete
     };
 
     if (id != null) { map['id'] = id; }
-    // if (title != null) { map['title'] = title; }
-    // if (url != null) { map['url'] = url; }
-    // if (token != null) { map['token'] = token; }
     return map;
   }
 
@@ -36,7 +31,6 @@ class ServerItem extends ServerModel {
         title: map['title'],
         url: map['url'],
         token: map['token'],
-        complete: map['complete'] == 1
     );
   }
 }

@@ -11,7 +11,7 @@ class DataBase {
       return _db;
     }
     try {
-      String _path = await getDatabasesPath() + 'example';
+      String _path = await getDatabasesPath() + 'db';
       _db = await openDatabase(_path, version: _version, onCreate: onCreate);
     } catch (ex) {
       print(ex);
@@ -19,7 +19,7 @@ class DataBase {
   }
 
   static void onCreate(Database db, int version) async => await db.execute(
-      'CREATE TABLE server_items (id INTEGER PRIMARY KEY AUTOINCREMENT, title STRING, url STRING, token STRING, complete BOOLEAN)');
+      'CREATE TABLE server_items (id INTEGER PRIMARY KEY AUTOINCREMENT, title STRING, url STRING, token STRING)');
 
   static Future<List<Map<String, dynamic>>> query(String table) async =>
       _db.query(table);
