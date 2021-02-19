@@ -1,3 +1,4 @@
+import 'package:activator/items/ServerItem.dart';
 import 'package:flutter/material.dart';
 import 'package:activator/helper/DBHelper.dart';
 import 'package:activator/items/ServerItem.dart';
@@ -5,9 +6,12 @@ import 'package:activator/models/ServerModel.dart';
 import 'package:activator/database/DB.dart';
 
 class EditServer extends StatefulWidget {
+  // final DataBase db;
+
   final DBHelper helper;
 
   EditServer({this.helper});
+  // EditServer({this.db, this.helper});
 
   @override
   _EditServerState createState() => _EditServerState();
@@ -32,7 +36,9 @@ class _EditServerState extends State<EditServer> {
               onPressed: () {
                 Navigator.pop(context);
                 ServerItem item = ServerItem(title: _title, url: _url, token: _token, complete: false);
+                print(item.title + "" + item.url + "" + item.token);
                 widget.helper.saveServer(ServerItem.table, item);
+                // DataBase.insert(ServerItem.table, item);
               })
         ],
       ),
