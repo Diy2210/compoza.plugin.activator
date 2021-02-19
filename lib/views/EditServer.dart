@@ -19,11 +19,30 @@ class EditServer extends StatefulWidget {
 
 class _EditServerState extends State<EditServer> {
 
+  // ServerItem item = ServerItem();
+
   final title = TextEditingController();
   final url = TextEditingController();
   final token = TextEditingController();
 
   String _title, _url, _token;
+
+  @override
+  void initState() {
+    super.initState();
+
+    title.addListener(() {
+      setState(() { });
+    });
+
+    url.addListener(() {
+      setState(() { });
+    });
+
+    token.addListener(() {
+      setState(() { });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +52,15 @@ class _EditServerState extends State<EditServer> {
         actions: <Widget>[
           new IconButton(
               icon: const Icon(Icons.save),
+              // onPressed: () => _save())
               onPressed: () {
                 Navigator.pop(context);
                 ServerItem item = ServerItem(title: _title, url: _url, token: _token, complete: false);
-                print(item.title + "" + item.url + "" + item.token);
+                // print(item.title + "" + item.url + "" + item.token);
                 widget.helper.saveServer(ServerItem.table, item);
+                setState(() => _title = '');
+                setState(() => _url = '');
+                setState(() => _token = '');
                 // DataBase.insert(ServerItem.table, item);
               })
         ],
@@ -50,10 +73,11 @@ class _EditServerState extends State<EditServer> {
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Title',
-                suffixIcon: IconButton(
+                suffixIcon: title.text.isNotEmpty
+                  ? IconButton(
                   onPressed: () => title.clear(),
                   icon: Icon(Icons.clear),
-                )
+                ): null,
               ),
               onChanged: (value) {
                 _title = value;
@@ -68,10 +92,11 @@ class _EditServerState extends State<EditServer> {
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Url',
-                  suffixIcon: IconButton(
+                  suffixIcon: url.text.isNotEmpty
+                      ? IconButton(
                     onPressed: () => url.clear(),
                     icon: Icon(Icons.clear),
-                  )
+                  ): null,
               ),
               onChanged: (value) {
                 _url = value;
@@ -85,10 +110,11 @@ class _EditServerState extends State<EditServer> {
               decoration: new InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Token',
-                  suffixIcon: IconButton(
+                  suffixIcon: token.text.isNotEmpty
+                      ? IconButton(
                     onPressed: () => token.clear(),
                     icon: Icon(Icons.clear),
-                  )
+                  ): null,
               ),
               onChanged: (value) {
                 _token = value;
@@ -100,4 +126,14 @@ class _EditServerState extends State<EditServer> {
       ),
     );
   }
+
+  // void _save() async {
+  //   Navigator.of(context).pop();
+  //   ServerItem item = ServerItem(title: _title, complete: false);
+  //
+  //   await widget.helper.saveServer(ServerItem.table, item);
+  //   setState(() => _title = '');
+  //   setState(() => _url = '');
+  //   setState(() => _token = '');
+  // }
 }
