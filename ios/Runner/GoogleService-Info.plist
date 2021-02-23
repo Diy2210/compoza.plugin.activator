@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>758937833580-v7qg1c4bn0a58tpenqnmjm038o7o2nsp.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.758937833580-v7qg1c4bn0a58tpenqnmjm038o7o2nsp</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>758937833580-bdakn6hfjng03pnjajlani39kte1sc8d.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCATPPaikMm_BtWcE4pqjZvezq1mA6h138</string>
+	<key>GCM_SENDER_ID</key>
+	<string>758937833580</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rompos.activator.activator</string>
+	<key>PROJECT_ID</key>
+	<string>activator-a6838</string>
+	<key>STORAGE_BUCKET</key>
+	<string>activator-a6838.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:758937833580:ios:607eac11da1ce64ada4849</string>
+</dict>
+</plist>

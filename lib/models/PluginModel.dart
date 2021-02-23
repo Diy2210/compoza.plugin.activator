@@ -1,5 +1,4 @@
-abstract class PluginModel {
-
+class PluginModel {
   int id;
   String title;
   String plugin;

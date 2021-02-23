@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "758937833580",
+    "project_id": "activator-a6838",
+    "storage_bucket": "activator-a6838.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758937833580:android:3da66b4bf5f6f98eda4849",
+        "android_client_info": {
+          "package_name": "com.rompos.activator.activator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758937833580-bdakn6hfjng03pnjajlani39kte1sc8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rompos.activator.activator",
+            "certificate_hash": "9ce7664979bd135b069e724036666c0d986b74a0"
+          }
+        },
+        {
+          "client_id": "758937833580-c16ue3flq22d2cqtaddbph2eoenfrfbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXQkUP1X5tft3BKpnw3oXDjv4pYmURqqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758937833580-c16ue3flq22d2cqtaddbph2eoenfrfbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

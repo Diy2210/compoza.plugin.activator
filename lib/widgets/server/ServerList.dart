@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:activator/helper/FirestoreHelper.dart';
-import 'package:activator/widgets/server/ServerItem.dart';
 import 'package:activator/models/Server.dart';
+import 'package:activator/widgets/server/ServerItem.dart';
 
 class ServersList extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirestoreHelper().getServers(),
-      builder: (ctx, AsyncSnapshot<QuerySnapshot> snapshot) {
+      builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(),
@@ -19,7 +18,7 @@ class ServersList extends StatelessWidget {
         }
         if (snapshot.data.docs.length <= 0) {
           return Center(
-            child: const Text("Empty list"),
+            child: const Text("No items"),
           );
         }
         return ListView.builder(
@@ -31,7 +30,8 @@ class ServersList extends StatelessWidget {
                 title: doc['title'],
                 url: doc['url'],
                 token: doc['token'],
-                serverID: doc['serverID'],
+                userId: doc['userId'],
+                serverID: doc.id,
               ),
             );
           },
