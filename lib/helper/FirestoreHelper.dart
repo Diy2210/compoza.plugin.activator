@@ -4,8 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreHelper {
 
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
-
   Future<DocumentSnapshot> getUserData(String userId) async {
     return await FirebaseFirestore.instance
         .collection('users')
@@ -27,9 +25,9 @@ class FirestoreHelper {
   }
 
   Stream<QuerySnapshot> getServers() {
-    return firestore
+    return FirebaseFirestore.instance
         .collection('servers')
-        .where('userId', isEqualTo: FirebaseAuth.instance.currentUser.uid)
+        .where('userID', isEqualTo: FirebaseAuth.instance.currentUser.uid)
         .snapshots();
   }
 
@@ -38,7 +36,8 @@ class FirestoreHelper {
       'title': server.title,
       'url': server.url,
       'token': server.token,
-      'serverID': server.serverID,
+      'userID': FirebaseAuth.instance.currentUser.uid,
+      'createdAt': DateTime.now().toIso8601String(),
     });
   }
 

@@ -7,7 +7,7 @@ class EditServerForm extends StatefulWidget {
   final Key _formKey;
   final Server _server;
 
-  EditServerForm(this._formKey, this._server,);
+  EditServerForm(this._formKey, this._server);
 
   @override
   _EditServerFormState createState() => _EditServerFormState();

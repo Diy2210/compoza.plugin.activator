@@ -42,7 +42,7 @@ class _UserInfoState extends State<CurrentUserInfo> {
             CircleAvatar(
               backgroundImage:
               widget.user.method.isEmpty || widget.user.avatar.isEmpty
-                  ? const AssetImage('assets/images/user_unknown.png')
+                  ? const AssetImage('assets/user_unknown.png')
                   : NetworkImage(widget.user.avatar),
               backgroundColor: Colors.grey[300],
               foregroundColor: Theme.of(context).primaryColor,

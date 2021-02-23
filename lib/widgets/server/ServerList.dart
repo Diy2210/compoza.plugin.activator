@@ -18,7 +18,7 @@ class ServersList extends StatelessWidget {
         }
         if (snapshot.data.docs.length <= 0) {
           return Center(
-            child: const Text("No items"),
+            child: const Text("Empty list"),
           );
         }
         return ListView.builder(
@@ -30,7 +30,7 @@ class ServersList extends StatelessWidget {
                 title: doc['title'],
                 url: doc['url'],
                 token: doc['token'],
-                userId: doc['userId'],
+                userID: doc['userID'],
                 serverID: doc.id,
               ),
             );
