@@ -41,10 +41,10 @@ class _EditServerScreenState extends State<EditServerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: _server.serverID.isEmpty
-            ? const Text('Add Server')
+            ? const Text('Add New Server')
             : const Text('Edit Server'),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: const Color(0xff446179),
+        backgroundColor: const Color(0xff008080),
         actions: [
           IconButton(
             icon: Icon(Icons.save),

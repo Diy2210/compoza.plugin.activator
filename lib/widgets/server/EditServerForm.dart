@@ -14,19 +14,25 @@ class EditServerForm extends StatefulWidget {
 }
 
 class _EditServerFormState extends State<EditServerForm> {
-  final _titleController = TextEditingController();
-  final _urlController = TextEditingController();
-  final _tokenController = TextEditingController();
+  TextEditingController _titleController;
+  TextEditingController _urlController;
+  TextEditingController _tokenController;
 
   @override
   void initState() {
     super.initState();
+    _titleController = TextEditingController(text: widget._server.title);
+    _urlController = TextEditingController(text: widget._server.url);
+    _tokenController = TextEditingController(text: widget._server.token);
+
     _titleController.addListener(() {
       setState(() {});
     });
+
     _urlController.addListener(() {
       setState(() {});
     });
+
     _tokenController.addListener(() {
       setState(() {});
     });
@@ -48,20 +54,20 @@ class _EditServerFormState extends State<EditServerForm> {
         child: ListView(
           children: [
             TextFormField(
-              initialValue: widget._server.title,
               autocorrect: true,
               enableSuggestions: true,
               textInputAction: TextInputAction.next,
               textCapitalization: TextCapitalization.sentences,
-              // controller: _titleController,
+              controller: _titleController,
               decoration: InputDecoration(
-                labelText: 'Title',
-                // suffixIcon: _titleController.text.length > 0
-                //     ? IconButton(
-                //         onPressed: () => _titleController.clear(),
-                //         icon: Icon(Icons.clear, color: Colors.grey),
-                //       )
-                //     : null,
+                border: OutlineInputBorder(),
+                labelText: 'Server Title',
+                suffixIcon: _titleController.text.length > 0
+                    ? IconButton(
+                        onPressed: () => _titleController.clear(),
+                        icon: Icon(Icons.clear, color: Colors.grey),
+                      )
+                    : null,
               ),
               validator: (value) {
                 if (value.isEmpty) {
@@ -73,17 +79,18 @@ class _EditServerFormState extends State<EditServerForm> {
                 widget._server.title = value.trim();
               },
             ),
+            Divider(),
             TextFormField(
-              initialValue: widget._server.url,
-              //controller: _urlController,
+              controller: _urlController,
               decoration: InputDecoration(
-                labelText: 'URL',
-                // suffixIcon: _urlController.text.length > 0
-                //     ? IconButton(
-                //         onPressed: () => _urlController.clear(),
-                //         icon: Icon(Icons.clear, color: Colors.grey),
-                //       )
-                //     : null,
+                border: OutlineInputBorder(),
+                labelText: 'Server URL',
+                suffixIcon: _urlController.text.length > 0
+                    ? IconButton(
+                        onPressed: () => _urlController.clear(),
+                        icon: Icon(Icons.clear, color: Colors.grey),
+                      )
+                    : null,
               ),
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.url,
@@ -97,19 +104,20 @@ class _EditServerFormState extends State<EditServerForm> {
                 widget._server.url = value.trim();
               },
             ),
+            Divider(),
             TextFormField(
-              initialValue: widget._server.token,
-              //controller: _tokenController,
+              controller: _tokenController,
               decoration: InputDecoration(
-                labelText: 'Token',
-                // suffixIcon: _tokenController.text.length > 0
-                //     ? IconButton(
-                //         onPressed: () => _tokenController.clear(),
-                //         icon: Icon(Icons.clear, color: Colors.grey),
-                //       )
-                //     : null,
+                border: OutlineInputBorder(),
+                labelText: 'Authorization Token',
+                suffixIcon: _tokenController.text.length > 0
+                    ? IconButton(
+                        onPressed: () => _tokenController.clear(),
+                        icon: Icon(Icons.clear, color: Colors.grey),
+                      )
+                    : null,
               ),
-              maxLines: 5,
+              maxLines: 3,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Please enter the token';

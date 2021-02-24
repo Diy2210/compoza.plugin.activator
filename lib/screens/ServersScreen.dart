@@ -13,27 +13,26 @@ class ServersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Servers'),
+        title: const Text('Compoza.NET Activator'),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: const Color(0xff446179),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                EditServerScreen.routeName,
-                arguments: EditScreenArguments(
-                  server: Server(),
-                  saveHandler: ServerMenu().addNewServer,
-                ),
-              );
-            },
-          )
-        ],
+        backgroundColor: const Color(0xff008080),
       ),
       body: ServersList(),
       drawer: AppDrawer(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              EditServerScreen.routeName,
+              arguments: EditScreenArguments(
+                server: Server(),
+                saveHandler: ServerMenu().addNewServer,
+              ),
+            );
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Color(0xff008080),
+        )
     );
   }
 }

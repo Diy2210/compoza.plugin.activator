@@ -18,6 +18,9 @@ class ServerItem extends StatelessWidget {
         // );
         print(server.title);
       },
+      onLongPress: () {
+
+      },
       child: Card(
         elevation: 5,
         child: ListTile(
@@ -26,7 +29,7 @@ class ServerItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).accentColor,
+              // color: Theme.of(context).accentColor,
             ),
           ),
           subtitle: Text(

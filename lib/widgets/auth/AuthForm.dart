@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class AuthForm extends StatefulWidget {
   final bool isLoading;
   final void Function(
-      BuildContext ctx,
-      String email,
-      String password,
-      String userName,
-      bool isLogin,
-      ) submitFn;
+    BuildContext ctx,
+    String email,
+    String password,
+    String userName,
+    bool isLogin,
+  ) submitFn;
 
   AuthForm(
-      this.submitFn,
-      this.isLoading,
-      );
+    this.submitFn,
+    this.isLoading,
+  );
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -76,18 +76,16 @@ class _AuthFormState extends State<AuthForm> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 10,
-            //   ),
-            //   width: double.infinity,
-            //   child: Image.asset(
-            //     'assets/compoza_info.png',
-            //     fit: BoxFit.fill,
-            //   ),
-            // ),
+            Container(
+                padding: EdgeInsets.only(
+                  left: 90,
+                  right: 90,
+                  bottom: 10,
+                ),
+                width: double.infinity,
+                child: Text("Compoza.NET Activator",
+                    style: TextStyle(
+                        fontSize: 22.0, fontWeight: FontWeight.normal))),
             Card(
               margin: EdgeInsets.symmetric(horizontal: 20),
               elevation: 10,
@@ -113,18 +111,20 @@ class _AuthFormState extends State<AuthForm> {
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(),
                           labelText: 'Email address',
                           suffixIcon: _emailController.text.length > 0
                               ? IconButton(
-                            onPressed: () => _emailController.clear(),
-                            icon: Icon(Icons.clear, color: Colors.grey),
-                          )
+                                  onPressed: () => _emailController.clear(),
+                                  icon: Icon(Icons.clear, color: Colors.grey),
+                                )
                               : null,
                         ),
                         onSaved: (value) {
                           _userEmail = value;
                         },
                       ),
+                      Divider(),
                       if (!_isLogin)
                         TextFormField(
                           key: const ValueKey('username'),
@@ -139,19 +139,21 @@ class _AuthFormState extends State<AuthForm> {
                           },
                           controller: _usernameController,
                           decoration: InputDecoration(
+                            border: OutlineInputBorder(),
                             labelText: 'Username',
                             suffixIcon: _usernameController.text.length > 0
                                 ? IconButton(
-                              onPressed: () =>
-                                  _usernameController.clear(),
-                              icon: Icon(Icons.clear, color: Colors.grey),
-                            )
+                                    onPressed: () =>
+                                        _usernameController.clear(),
+                                    icon: Icon(Icons.clear, color: Colors.grey),
+                                  )
                                 : null,
                           ),
                           onSaved: (value) {
                             _userName = value;
                           },
                         ),
+                      Divider(),
                       TextFormField(
                         key: const ValueKey('password'),
                         validator: (value) {
@@ -162,17 +164,19 @@ class _AuthFormState extends State<AuthForm> {
                         },
                         controller: _passwordController,
                         decoration: InputDecoration(
+                          border: OutlineInputBorder(),
                           labelText: 'Password',
                           suffixIcon: _passwordController.text.length > 0
                               ? IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _isPasswordVisible = !_isPasswordVisible;
-                              });
-                            },
-                            icon: Icon(Icons.remove_red_eye,
-                                color: Colors.grey),
-                          )
+                                  onPressed: () {
+                                    setState(() {
+                                      _isPasswordVisible = !_isPasswordVisible;
+                                    });
+                                  },
+                                  icon: Icon(
+                                      Icons.remove_red_eye,
+                                      color: Colors.grey),
+                                )
                               : null,
                         ),
                         obscureText: !_isPasswordVisible,
@@ -199,9 +203,11 @@ class _AuthFormState extends State<AuthForm> {
                       if (!widget.isLoading)
                         FlatButton(
                           textColor: Theme.of(context).primaryColor,
-                          child: Text(_isLogin
-                              ? 'Create new account'
-                              : 'I already have an account'),
+                          child: Text(
+                              _isLogin
+                                  ? 'Create new account'
+                                  : 'I already have an account',
+                              style: TextStyle(color: Color(0xff008080))),
                           onPressed: () {
                             setState(() {
                               _isLogin = !_isLogin;

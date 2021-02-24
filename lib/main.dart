@@ -24,9 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Compoza.NET Activator',
       theme: ThemeData(
-        //primarySwatch: Colors.lightBlue,
-        //primaryColorDark: Colors.lightBlue[800],
-        accentColor: const Color(0xFF447179),
+        accentColor: const Color(0xff008080),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryTextTheme: Theme.of(context).primaryTextTheme.apply(
           bodyColor: Colors.white,

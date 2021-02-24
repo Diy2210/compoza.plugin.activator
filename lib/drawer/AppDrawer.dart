@@ -30,16 +30,15 @@ class _AppDrawerState extends State<AppDrawer> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Color(0xff008080),
               image: DecorationImage(
-                image: const AssetImage('assets/images/drawer_background.png'),
+                image: const AssetImage('assets/drawer_background.png'),
                 fit: BoxFit.fill,
               ),
             ),
-            // color: const Color(0xff446179),
             height: 220,
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 65, vertical: 5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +68,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.list_alt_outlined),
+            leading: Icon(Icons.list),
             title: const Text('Servers'),
             onTap: () {
               Navigator.of(context)
@@ -77,23 +76,47 @@ class _AppDrawerState extends State<AppDrawer> {
             },
           ),
           Divider(),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: const Text(
-              'Notifications',
-              style: TextStyle(color: Colors.grey),
-            ),
-            onTap: () {
-              Navigator.of(context)
-                  .pushReplacementNamed(ServersScreen.routeName);
-            },
-          ),
-          Divider(),
+          // ListTile(
+          //   leading: Icon(Icons.notifications),
+          //   title: const Text(
+          //     'Notifications',
+          //     style: TextStyle(color: Colors.grey),
+          //   ),
+          //   onTap: () {
+          //     Navigator.of(context)
+          //         .pushReplacementNamed(ServersScreen.routeName);
+          //   },
+          // ),
+          // Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: const Text('Logout'),
             onTap: () {
-              FirebaseAuth.instance.signOut();
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text("Logout"),
+                      content: Text("Do you want logout?"),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text("Cancel"),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        FlatButton(
+                          child: Text("Ok"),
+                          onPressed: () {
+                            // Navigator.of(context).pop();
+                            FirebaseAuth.instance.signOut();
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pushReplacementNamed('/');
+                          },
+                        )
+                      ],
+                    );
+                  });
             },
           ),
         ],
