@@ -47,6 +47,10 @@ class _AuthFormState extends State<AuthForm> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  FocusNode emailFocus = new FocusNode();
+  FocusNode usernameFocus = new FocusNode();
+  FocusNode passwordFocus = new FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -98,6 +102,8 @@ class _AuthFormState extends State<AuthForm> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       TextFormField(
+                        focusNode: emailFocus,
+                        cursorColor: Color(0xff008080),
                         key: const ValueKey('email'),
                         autocorrect: false,
                         textCapitalization: TextCapitalization.none,
@@ -112,7 +118,13 @@ class _AuthFormState extends State<AuthForm> {
                         controller: _emailController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
+                          focusedBorder:OutlineInputBorder(
+                            borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                          ),
                           labelText: 'Email address',
+                          labelStyle: TextStyle(
+                              color: emailFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                          ),
                           suffixIcon: _emailController.text.length > 0
                               ? IconButton(
                                   onPressed: () => _emailController.clear(),
@@ -127,6 +139,8 @@ class _AuthFormState extends State<AuthForm> {
                       Divider(),
                       if (!_isLogin)
                         TextFormField(
+                          focusNode: usernameFocus,
+                          cursorColor: Color(0xff008080),
                           key: const ValueKey('username'),
                           autocorrect: true,
                           textCapitalization: TextCapitalization.words,
@@ -140,7 +154,13 @@ class _AuthFormState extends State<AuthForm> {
                           controller: _usernameController,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
+                            focusedBorder:OutlineInputBorder(
+                              borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                            ),
                             labelText: 'Username',
+                            labelStyle: TextStyle(
+                                color: usernameFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                            ),
                             suffixIcon: _usernameController.text.length > 0
                                 ? IconButton(
                                     onPressed: () =>
@@ -155,6 +175,8 @@ class _AuthFormState extends State<AuthForm> {
                         ),
                       Divider(),
                       TextFormField(
+                        focusNode: passwordFocus,
+                        cursorColor: Color(0xff008080),
                         key: const ValueKey('password'),
                         validator: (value) {
                           if (value.isEmpty || value.length < 7) {
@@ -165,7 +187,13 @@ class _AuthFormState extends State<AuthForm> {
                         controller: _passwordController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
+                          focusedBorder:OutlineInputBorder(
+                            borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                          ),
                           labelText: 'Password',
+                          labelStyle: TextStyle(
+                              color: passwordFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                          ),
                           suffixIcon: _passwordController.text.length > 0
                               ? IconButton(
                                   onPressed: () {

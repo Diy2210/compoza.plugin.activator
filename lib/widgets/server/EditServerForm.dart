@@ -18,6 +18,10 @@ class _EditServerFormState extends State<EditServerForm> {
   TextEditingController _urlController;
   TextEditingController _tokenController;
 
+  FocusNode titleFocus = new FocusNode();
+  FocusNode urlFocus = new FocusNode();
+  FocusNode tokenFocus = new FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -54,6 +58,7 @@ class _EditServerFormState extends State<EditServerForm> {
         child: ListView(
           children: [
             TextFormField(
+              focusNode: titleFocus,
               autocorrect: true,
               enableSuggestions: true,
               textInputAction: TextInputAction.next,
@@ -61,7 +66,13 @@ class _EditServerFormState extends State<EditServerForm> {
               controller: _titleController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                focusedBorder:OutlineInputBorder(
+                  borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                ),
                 labelText: 'Server Title',
+                labelStyle: TextStyle(
+                    color: titleFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                ),
                 suffixIcon: _titleController.text.length > 0
                     ? IconButton(
                         onPressed: () => _titleController.clear(),
@@ -81,10 +92,18 @@ class _EditServerFormState extends State<EditServerForm> {
             ),
             Divider(),
             TextFormField(
+              focusNode: urlFocus,
               controller: _urlController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                focusedBorder:OutlineInputBorder(
+                  borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                ),
                 labelText: 'Server URL',
+                labelStyle: TextStyle(
+                    color: urlFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                ),
+
                 suffixIcon: _urlController.text.length > 0
                     ? IconButton(
                         onPressed: () => _urlController.clear(),
@@ -106,10 +125,17 @@ class _EditServerFormState extends State<EditServerForm> {
             ),
             Divider(),
             TextFormField(
+              focusNode: tokenFocus,
               controller: _tokenController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
+                focusedBorder:OutlineInputBorder(
+                  borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                ),
                 labelText: 'Authorization Token',
+                labelStyle: TextStyle(
+                    color: tokenFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                ),
                 suffixIcon: _tokenController.text.length > 0
                     ? IconButton(
                         onPressed: () => _tokenController.clear(),
