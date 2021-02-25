@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:activator/helper/FirestoreHelper.dart';
-import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/models/Server.dart';
+import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/screens/EditServerScreen.dart';
 
 

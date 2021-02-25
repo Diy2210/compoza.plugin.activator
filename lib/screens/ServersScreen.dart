@@ -21,8 +21,7 @@ class ServersScreen extends StatelessWidget {
       drawer: AppDrawer(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pushNamed(
-              context,
+            Navigator.pushNamed(context,
               EditServerScreen.routeName,
               arguments: EditScreenArguments(
                 server: Server(),

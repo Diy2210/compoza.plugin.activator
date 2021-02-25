@@ -31,10 +31,10 @@ class _AppDrawerState extends State<AppDrawer> {
           Container(
             decoration: BoxDecoration(
               color: Color(0xff008080),
-              image: DecorationImage(
-                image: const AssetImage('assets/drawer_background.png'),
-                fit: BoxFit.fill,
-              ),
+              // image: DecorationImage(
+              //   image: const AssetImage('assets/images/drawer_background.png'),
+              //   fit: BoxFit.fill,
+              // ),
             ),
             height: 220,
             width: double.infinity,
