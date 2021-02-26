@@ -4,6 +4,7 @@ import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/screens/EditServerScreen.dart';
+import 'package:activator/screens/PluginListScreen.dart';
 
 class ServerItem extends StatelessWidget {
   final Server server;
@@ -14,12 +15,10 @@ class ServerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.pushNamed(
-        //   context,
-        //   ServerDetailScreen.routeName,
-        //   arguments: server,
-        // );
+        // Navigator.pushNamed(context, PluginListScreen.routeName);
         print(server.title);
+        Navigator.of(context).pop();
+        Navigator.pushReplacementNamed(context, PluginListScreen.routeName);
       },
       onLongPress: () {
         showModalBottomSheet(

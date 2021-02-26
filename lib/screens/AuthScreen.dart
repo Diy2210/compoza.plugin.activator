@@ -7,6 +7,8 @@ import 'package:activator/models/CurrentUser.dart';
 import 'package:activator/widgets/auth/AuthForm.dart';
 
 class AuthScreen extends StatefulWidget {
+  static const routeName = '/auth';
+
   @override
   _AuthScreenState createState() => _AuthScreenState();
 }

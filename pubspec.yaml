@@ -1,5 +1,5 @@
 name: activator
-description: A new Flutter application.
+description: Compoza.NET Activator. This app allows to control Wordpress plugins.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -12,16 +12,15 @@ dependencies:
     sdk: flutter
   sqflite:
   path_provider:
-  http:
+  provider: ^4.3.3
+  http: ^0.12.2
+  get_it: ^5.0.6
 
   shared_preferences: ^0.5.12+4
-
   validators: ^2.0.0
-
   firebase_core: ^0.7.0
   firebase_auth: ^0.20.1
   cloud_firestore: ^0.16.0+1
-
   cupertino_icons: ^1.0.0
 
 dev_dependencies:

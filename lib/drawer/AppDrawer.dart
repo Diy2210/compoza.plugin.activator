@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'CurrentUserInfo.dart';
 import 'package:activator/models/CurrentUser.dart';
 import 'package:activator/screens/ServersScreen.dart';
+import 'package:activator/screens/AuthScreen.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -31,10 +32,6 @@ class _AppDrawerState extends State<AppDrawer> {
           Container(
             decoration: BoxDecoration(
               color: Color(0xff008080),
-              // image: DecorationImage(
-              //   image: const AssetImage('assets/images/drawer_background.png'),
-              //   fit: BoxFit.fill,
-              // ),
             ),
             height: 220,
             width: double.infinity,
@@ -76,18 +73,6 @@ class _AppDrawerState extends State<AppDrawer> {
             },
           ),
           Divider(),
-          // ListTile(
-          //   leading: Icon(Icons.notifications),
-          //   title: const Text(
-          //     'Notifications',
-          //     style: TextStyle(color: Colors.grey),
-          //   ),
-          //   onTap: () {
-          //     Navigator.of(context)
-          //         .pushReplacementNamed(ServersScreen.routeName);
-          //   },
-          // ),
-          // Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: const Text('Logout'),
@@ -108,10 +93,10 @@ class _AppDrawerState extends State<AppDrawer> {
                         FlatButton(
                           child: Text("Ok"),
                           onPressed: () {
-                            // Navigator.of(context).pop();
                             FirebaseAuth.instance.signOut();
                             Navigator.of(context).pop();
-                            Navigator.of(context).pushReplacementNamed('/');
+                            Navigator.pushReplacementNamed(
+                                context, AuthScreen.routeName);
                           },
                         )
                       ],
