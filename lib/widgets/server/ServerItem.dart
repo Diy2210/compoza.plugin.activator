@@ -15,10 +15,7 @@ class ServerItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.pushNamed(context, PluginListScreen.routeName);
-        print(server.title);
-        Navigator.of(context).pop();
-        Navigator.pushReplacementNamed(context, PluginListScreen.routeName);
+        Navigator.pushNamed(context, PluginListScreen.routeName, arguments: server);
       },
       onLongPress: () {
         showModalBottomSheet(

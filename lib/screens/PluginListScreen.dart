@@ -1,7 +1,9 @@
+import 'package:activator/api/ActivatorApi.dart';
 import 'package:flutter/material.dart';
 
 import 'package:activator/models/Server.dart';
 import 'package:activator/widgets/plugin/PluginList.dart';
+import 'package:activator/api/ActivatorApi.dart';
 
 class PluginListScreen extends StatelessWidget {
   static const routeName = '/plugin_list';
@@ -15,8 +17,8 @@ class PluginListScreen extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xff008080),
       ),
-      // body: PluginList(server)
-      body: PluginList()
+      // body: PluginList()
+      body: PluginList(server)
     );
   }
 }

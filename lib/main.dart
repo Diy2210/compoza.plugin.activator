@@ -7,7 +7,7 @@ import 'package:activator/screens/SplashScreen.dart';
 import 'package:activator/screens/AuthScreen.dart';
 import 'package:activator/screens/ServersScreen.dart';
 import 'package:activator/screens/EditServerScreen.dart';
-// import 'package:activator/screens/ServerDetailScreen.dart';
+import 'package:activator/screens/PluginListScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       routes: {
         ServersScreen.routeName: (ctx) => ServersScreen(),
         EditServerScreen.routeName: (ctx) => EditServerScreen(),
-        // ServerDetailScreen.routeName: (ctx) => ServerDetailScreen(),
+        PluginListScreen.routeName: (ctx) => PluginListScreen(),
       },
     );
   }

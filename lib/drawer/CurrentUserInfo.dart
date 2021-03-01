@@ -48,23 +48,23 @@ class _UserInfoState extends State<CurrentUserInfo> {
               foregroundColor: Theme.of(context).primaryColor,
               radius: 60,
             ),
-            Positioned(
-              right: -5,
-              top: -5,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(40),
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  color: Colors.white,
-                  child: Icon(
-                    _methodIcon,
-                    size: 28,
-                    color: Theme.of(context).accentColor,
-                  ),
-                ),
-              ),
-            ),
+            // Positioned(
+            //   right: -5,
+            //   top: -5,
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(40),
+            //     child: Container(
+            //       width: 40,
+            //       height: 40,
+            //       color: Colors.white,
+            //       child: Icon(
+            //         _methodIcon,
+            //         size: 28,
+            //         color: Theme.of(context).accentColor,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         SizedBox(
