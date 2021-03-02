@@ -1,9 +1,7 @@
-import 'package:activator/api/ActivatorApi.dart';
 import 'package:flutter/material.dart';
 
 import 'package:activator/models/Server.dart';
 import 'package:activator/widgets/plugin/PluginList.dart';
-import 'package:activator/api/ActivatorApi.dart';
 
 class PluginListScreen extends StatelessWidget {
   static const routeName = '/plugin_list';

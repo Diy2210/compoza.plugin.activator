@@ -14,7 +14,6 @@ dependencies:
   path_provider:
   provider: ^4.3.3
   http: ^0.12.2
-  get_it: ^5.0.6
 
   shared_preferences: ^0.5.12+4
   validators: ^2.0.0

@@ -7,18 +7,16 @@ import 'package:activator/models/Server.dart';
 class ActivatorApi {
 
   static Future<List<Plugin>> getPluginList(Server server) async{
-    var client = http.Client();
     var url = server.url;
     var token = server.token;
 
     try {
-      var resp = await client.get('$url/wp-json/deactivator/v1/list?token=$token');
+      var resp = await http.Client().get('$url/wp-json/deactivator/v1/list?token=$token');
       if (resp.statusCode < 400) {
         var jsonResponse = convert.jsonDecode(resp.body);
-        print(jsonResponse);
         if (jsonResponse['success']) {
           final List<Plugin> plugins = [];
-          for (int i =0; i<jsonResponse['data'].length; i++) {
+          for (int i = 0; i < jsonResponse['data'].length; i++) {
             final item = jsonResponse['data'][i];
             plugins.add(Plugin(
               plugin: item['plugin'],
@@ -36,9 +34,20 @@ class ActivatorApi {
     return null;
   }
 
-  updatePluginStatus(String token, int id, bool status) {
+  static Future updatePluginStatus(Server server, Plugin plugin, bool state) async {
+    var status = 'deactivate';
+
+    if (state) {
+      status = 'activate';
+    }
+
+    var params = new Map<String, dynamic>();
+    params['token'] = server.token;
+    params['id'] = plugin.plugin;
+    params['status'] = status;
+
     try {
-      // client.post(url)
+      await http.Client().post("${server.url}/wp-json/deactivator/v1/update", body: params);
     } catch (error) {
       print(error);
     }
