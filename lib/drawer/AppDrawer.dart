@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'CurrentUserInfo.dart';
@@ -14,6 +16,7 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  // var _box = Hive.openBox('user') as Future<String>;
   Future<String> _userData;
 
   @override
@@ -22,6 +25,7 @@ class _AppDrawerState extends State<AppDrawer> {
     _userData = _prefs.then((SharedPreferences prefs) {
       return prefs.getString('user') ?? '';
     });
+    // _userData = _box.get('user');
   }
 
   @override

@@ -3,28 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:activator/models/Plugin.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/api/ActivatorApi.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class PluginItem extends StatelessWidget {
+class PluginItem extends StatefulWidget {
   final Plugin plugin;
   final Server server;
 
   PluginItem(this.plugin, this.server);
 
   @override
+  _PluginItemState createState() => _PluginItemState();
+}
+
+class _PluginItemState extends State<PluginItem> {
+
+  Plugin plugin;
+  Server server;
+
+  @override
   Widget build(BuildContext context) {
     return  SwitchListTile.adaptive(
       title: Text(
-        plugin.title,
+        widget.plugin.title,
       ),
-      value: plugin.status,
+      value: widget.plugin.status,
       onChanged: (bool value) {
-        // plugin.status = value;
-        plugin.status = value;
-        ActivatorApi.updatePluginStatus(server, plugin, value);
+        ActivatorApi.updatePluginStatus(widget.server, widget.plugin, value);
 
-        // SharedPreferences prefs = SharedPreferences.getInstance() as SharedPreferences;
-        // prefs.setBool('switch', true);
+        setState(() {
+          widget.plugin.status = value;
+        });
       },
     );
   }

@@ -6,12 +6,9 @@ import 'package:activator/models/Server.dart';
 
 class ActivatorApi {
 
-  static Future<List<Plugin>> getPluginList(Server server) async{
-    var url = server.url;
-    var token = server.token;
-
+  static Future<List<Plugin>> getPluginList(Server server) async {
     try {
-      var resp = await http.Client().get('$url/wp-json/deactivator/v1/list?token=$token');
+      var resp = await http.Client().get('${server.url}/wp-json/deactivator/v1/list?token=${server.token}');
       if (resp.statusCode < 400) {
         var jsonResponse = convert.jsonDecode(resp.body);
         if (jsonResponse['success']) {

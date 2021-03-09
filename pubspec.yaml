@@ -10,21 +10,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqflite:
   path_provider:
   provider: ^4.3.3
   http: ^0.12.2
 
-  shared_preferences: ^0.5.12+4
   validators: ^2.0.0
   firebase_core: ^0.7.0
   firebase_auth: ^0.20.1
   cloud_firestore: ^0.16.0+1
-  cupertino_icons: ^1.0.0
+
+  hive:
+  hive_flutter:
+
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  hive_generator:
+  build_runner:
 
 flutter:
   uses-material-design: true
@@ -32,4 +37,3 @@ flutter:
   assets:
     - assets/images/activator_logo.png
     - assets/images/user_unknown.png
-    - assets/images/drawer_background.png

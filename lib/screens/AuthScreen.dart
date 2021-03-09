@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/CurrentUser.dart';
 import 'package:activator/widgets/auth/AuthForm.dart';
+
+import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -18,12 +20,12 @@ class _AuthScreenState extends State<AuthScreen> {
   var _isLoading = false;
 
   void _submitAuthForm(
-      BuildContext ctx,
-      String email,
-      String password,
-      String username,
-      bool isLogin,
-      ) async {
+    BuildContext ctx,
+    String email,
+    String password,
+    String username,
+    bool isLogin,
+  ) async {
     UserCredential authResult;
 
     try {
@@ -37,8 +39,20 @@ class _AuthScreenState extends State<AuthScreen> {
         );
 
         final userDetails =
-        await FirestoreHelper().getUserData(authResult.user.uid);
+            await FirestoreHelper().getUserData(authResult.user.uid);
 
+        //Hive
+        var box = await Hive.openBox('user');
+        box.put(
+            'user',
+            CurrentUser(
+              name: userDetails.data()['username'] ?? 'Anonimous',
+              email: authResult.user.email,
+              avatar: authResult.user.photoURL,
+            ).toString());
+        print(box);
+
+        //SharedPref
         final prefs = await SharedPreferences.getInstance();
         prefs.setString(
           'user',
@@ -48,6 +62,7 @@ class _AuthScreenState extends State<AuthScreen> {
             avatar: authResult.user.photoURL,
           ).toString(),
         );
+
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
           email: email,
