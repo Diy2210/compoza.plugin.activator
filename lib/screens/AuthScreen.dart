@@ -42,15 +42,19 @@ class _AuthScreenState extends State<AuthScreen> {
             await FirestoreHelper().getUserData(authResult.user.uid);
 
         //Hive
-        var box = await Hive.openBox('user');
-        box.put(
-            'user',
-            CurrentUser(
-              name: userDetails.data()['username'] ?? 'Anonimous',
-              email: authResult.user.email,
-              avatar: authResult.user.photoURL,
-            ).toString());
-        print(box);
+        // var box = await Hive.openBox<CurrentUser>('user_db');
+        // box.put(
+        //     'user',
+        //     CurrentUser(
+        //       name: FirestoreHelper().getUserData(authResult.user.uid).toString(),
+        //       email: authResult.user.email,
+        //       avatar: authResult.user.photoURL,
+        //     ),
+        // );
+        // box.put('username', userDetails.data()['username'] ?? 'Anonimous');
+        // box.put('email', authResult.user.email);
+        // print(box.get('user').name);
+        // print(box.get('user').email);
 
         //SharedPref
         final prefs = await SharedPreferences.getInstance();
@@ -62,6 +66,7 @@ class _AuthScreenState extends State<AuthScreen> {
             avatar: authResult.user.photoURL,
           ).toString(),
         );
+        // print(prefs.get('user'));
 
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(

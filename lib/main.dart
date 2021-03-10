@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:activator/models/CurrentUser.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hive/hive.dart';
@@ -8,7 +9,6 @@ import 'package:path_provider/path_provider.dart' as pathProvider;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:activator/screens/SplashScreen.dart';
 import 'package:activator/screens/AuthScreen.dart';
 import 'package:activator/screens/ServersScreen.dart';
 import 'package:activator/screens/EditServerScreen.dart';
@@ -17,8 +17,9 @@ import 'package:activator/screens/PluginListScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  Directory directory = await pathProvider.getApplicationDocumentsDirectory();
-  Hive.init(directory.path);
+  // Directory directory = await pathProvider.getApplicationDocumentsDirectory();
+  // Hive.init(directory.path);
+  // Hive.openBox<CurrentUser>('user_db');
   return runApp(MyApp());
 }
 
@@ -41,9 +42,6 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
           stream: _authStateChanged,
           builder: (ctx, userSnapshot) {
-            if (userSnapshot.connectionState == ConnectionState.waiting) {
-              return SplashScreen();
-            }
             if (userSnapshot.hasData) {
               return ServersScreen();
             }
