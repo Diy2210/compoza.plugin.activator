@@ -26,7 +26,6 @@ class _AppDrawerState extends State<AppDrawer> {
     _userData = _prefs.then((SharedPreferences prefs) {
       return prefs.getString('user') ?? '';
     });
-    // _userData = _box.get('user');
   }
 
   @override
