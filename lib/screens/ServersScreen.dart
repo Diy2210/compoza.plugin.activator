@@ -19,7 +19,7 @@ class ServersScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Compoza.NET Activator'),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: const Color(0xff008080),
+        backgroundColor: const Color(0xff008000),
       ),
       body: ServersList(),
       drawer: AppDrawer(),
@@ -34,7 +34,7 @@ class ServersScreen extends StatelessWidget {
             );
           },
           child: Icon(Icons.add),
-          backgroundColor: Color(0xff008080),
+          backgroundColor: Color(0xff008000),
         )
     );
   }

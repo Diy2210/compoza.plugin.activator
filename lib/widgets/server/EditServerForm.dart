@@ -67,11 +67,11 @@ class _EditServerFormState extends State<EditServerForm> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 focusedBorder:OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                  borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                 ),
                 labelText: 'Server Title',
                 labelStyle: TextStyle(
-                    color: titleFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                    color: titleFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
                 suffixIcon: _titleController.text.length > 0
                     ? IconButton(
@@ -97,11 +97,11 @@ class _EditServerFormState extends State<EditServerForm> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 focusedBorder:OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                  borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                 ),
                 labelText: 'Server URL',
                 labelStyle: TextStyle(
-                    color: urlFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                    color: urlFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
 
                 suffixIcon: _urlController.text.length > 0
@@ -130,11 +130,11 @@ class _EditServerFormState extends State<EditServerForm> {
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 focusedBorder:OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                  borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                 ),
                 labelText: 'Authorization Token',
                 labelStyle: TextStyle(
-                    color: tokenFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                    color: tokenFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
                 suffixIcon: _tokenController.text.length > 0
                     ? IconButton(

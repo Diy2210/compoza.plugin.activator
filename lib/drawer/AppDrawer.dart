@@ -35,7 +35,7 @@ class _AppDrawerState extends State<AppDrawer> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-              color: Color(0xff008080),
+              color: Color(0xff008000),
             ),
             height: 220,
             width: double.infinity,
@@ -97,7 +97,7 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
+            leading: Icon(Icons.exit_to_app_outlined),
             title: const Text('Logout'),
             onTap: () {
               showDialog(
@@ -107,14 +107,14 @@ class _AppDrawerState extends State<AppDrawer> {
                       title: Text("Logout"),
                       content: Text("Do you want logout?"),
                       actions: <Widget>[
-                        FlatButton(
-                          child: Text("Cancel"),
+                        TextButton(
+                          child: Text("Cancel", style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
                         ),
-                        FlatButton(
-                          child: Text("OK"),
+                        TextButton(
+                          child: Text("OK", style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
                             Navigator.of(context).pop();

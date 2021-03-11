@@ -91,12 +91,12 @@ class ServerItem extends StatelessWidget {
         ],
       ),
       actions: [
-        FlatButton(
-          child: const Text('Cancel'),
+        TextButton(
+          child: const Text('Cancel', style: TextStyle(color: Color(0xff008000))),
           onPressed: () => Navigator.of(ctx).pop(),
         ),
-        FlatButton(
-          child: const Text('OK'),
+        TextButton(
+          child: const Text('OK', style: TextStyle(color: Color(0xff008000))),
           onPressed: () {
             _deleteServer(server);
             Navigator.of(ctx).pop();

@@ -103,7 +103,7 @@ class _AuthFormState extends State<AuthForm> {
                     children: <Widget>[
                       TextFormField(
                         focusNode: emailFocus,
-                        cursorColor: Color(0xff008080),
+                        cursorColor: Color(0xff008000),
                         key: const ValueKey('email'),
                         autocorrect: false,
                         textCapitalization: TextCapitalization.none,
@@ -119,11 +119,11 @@ class _AuthFormState extends State<AuthForm> {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           focusedBorder:OutlineInputBorder(
-                            borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                            borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                           ),
                           labelText: 'Email address',
                           labelStyle: TextStyle(
-                              color: emailFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                              color: emailFocus.hasFocus ? Color(0xff008000) : Colors.grey
                           ),
                           suffixIcon: _emailController.text.length > 0
                               ? IconButton(
@@ -140,7 +140,7 @@ class _AuthFormState extends State<AuthForm> {
                       if (!_isLogin)
                         TextFormField(
                           focusNode: usernameFocus,
-                          cursorColor: Color(0xff008080),
+                          cursorColor: Color(0xff008000),
                           key: const ValueKey('username'),
                           autocorrect: true,
                           textCapitalization: TextCapitalization.words,
@@ -155,11 +155,11 @@ class _AuthFormState extends State<AuthForm> {
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             focusedBorder:OutlineInputBorder(
-                              borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                              borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                             ),
                             labelText: 'Username',
                             labelStyle: TextStyle(
-                                color: usernameFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                                color: usernameFocus.hasFocus ? Color(0xff008000) : Colors.grey
                             ),
                             suffixIcon: _usernameController.text.length > 0
                                 ? IconButton(
@@ -176,7 +176,7 @@ class _AuthFormState extends State<AuthForm> {
                       Divider(),
                       TextFormField(
                         focusNode: passwordFocus,
-                        cursorColor: Color(0xff008080),
+                        cursorColor: Color(0xff008000),
                         key: const ValueKey('password'),
                         validator: (value) {
                           if (value.isEmpty || value.length < 7) {
@@ -188,11 +188,11 @@ class _AuthFormState extends State<AuthForm> {
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
                           focusedBorder:OutlineInputBorder(
-                            borderSide: const BorderSide(color: Color(0xff008080), width: 2.0),
+                            borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                           ),
                           labelText: 'Password',
                           labelStyle: TextStyle(
-                              color: passwordFocus.hasFocus ? Color(0xff008080) : Colors.grey
+                              color: passwordFocus.hasFocus ? Color(0xff008000) : Colors.grey
                           ),
                           suffixIcon: _passwordController.text.length > 0
                               ? IconButton(
@@ -215,11 +215,11 @@ class _AuthFormState extends State<AuthForm> {
                       SizedBox(height: 12),
                       if (widget.isLoading) CircularProgressIndicator(),
                       if (!widget.isLoading)
-                        RaisedButton(
+                        MaterialButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
-                          color: Theme.of(context).accentColor,
+                          color: Color(0xff008000),
                           child: Text(
                             _isLogin ? 'Login' : 'Signup',
                             style: TextStyle(
@@ -229,13 +229,12 @@ class _AuthFormState extends State<AuthForm> {
                           onPressed: _trySubmit,
                         ),
                       if (!widget.isLoading)
-                        FlatButton(
-                          textColor: Theme.of(context).primaryColor,
+                        TextButton(
                           child: Text(
                               _isLogin
                                   ? 'Create new account'
                                   : 'I already have an account',
-                              style: TextStyle(color: Color(0xff008080))),
+                              style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             setState(() {
                               _isLogin = !_isLogin;

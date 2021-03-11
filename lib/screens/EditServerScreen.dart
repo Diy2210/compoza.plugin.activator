@@ -44,7 +44,7 @@ class _EditServerScreenState extends State<EditServerScreen> {
             ? const Text('Add New Server')
             : const Text('Edit Server'),
         iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: const Color(0xff008080),
+        backgroundColor: const Color(0xff008000),
         actions: [
           IconButton(
             icon: Icon(Icons.save),
