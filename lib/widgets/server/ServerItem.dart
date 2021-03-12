@@ -54,6 +54,7 @@ class ServerItem extends StatelessWidget {
       child: Card(
         elevation: 5,
         child: ListTile(
+          trailing: new Icon(Icons.arrow_forward_ios),
           title: Text(
             server.title,
             style: TextStyle(

@@ -37,6 +37,57 @@
             {
               "client_id": "758937833580-c16ue3flq22d2cqtaddbph2eoenfrfbk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "758937833580-v7qg1c4bn0a58tpenqnmjm038o7o2nsp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rompos.activator.activator"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758937833580:android:ed347d37c70eefe5da4849",
+        "android_client_info": {
+          "package_name": "net.compoza.activator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758937833580-fgjhtvib0t9q8rkmqrjg545209qvi7eq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.compoza.activator",
+            "certificate_hash": "9ce7664979bd135b069e724036666c0d986b74a0"
+          }
+        },
+        {
+          "client_id": "758937833580-c16ue3flq22d2cqtaddbph2eoenfrfbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXQkUP1X5tft3BKpnw3oXDjv4pYmURqqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758937833580-c16ue3flq22d2cqtaddbph2eoenfrfbk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "758937833580-v7qg1c4bn0a58tpenqnmjm038o7o2nsp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rompos.activator.activator"
+              }
             }
           ]
         }
