@@ -21,9 +21,7 @@ class _UserInfoState extends State<CurrentUserInfo> {
         break;
       case 'facebook':
         icon = ActivatorApp.facebook;
-        break;
-      case 'github':
-        icon = ActivatorApp.github;
+        // Image.asset('assets/images/facebook.png');
         break;
       case 'google':
         icon = ActivatorApp.google;
@@ -37,8 +35,8 @@ class _UserInfoState extends State<CurrentUserInfo> {
     return Column(
       children: [
         Stack(
-          overflow: Overflow.visible,
-          children: [
+          clipBehavior: Clip.none
+          , children: [
             CircleAvatar(
               backgroundImage:
               widget.user.method.isEmpty || widget.user.avatar.isEmpty
@@ -70,17 +68,27 @@ class _UserInfoState extends State<CurrentUserInfo> {
         SizedBox(
           height: 10,
         ),
-        Text(
-          widget.user.name,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        Text(
-          widget.user.email,
-          style: TextStyle(
-            color: Colors.white,
+        Container(
+          constraints: BoxConstraints(maxWidth: 200),
+          child: Column(
+            children: [
+              Text(
+                widget.user.name,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                widget.user.email,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ),
       ],

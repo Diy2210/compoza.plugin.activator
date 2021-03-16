@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class AuthForm extends StatefulWidget {
   final bool isLoading;
@@ -89,7 +92,7 @@ class _AuthFormState extends State<AuthForm> {
                 width: double.infinity,
                 child: Text("Compoza.NET Activator",
                     style: TextStyle(
-                        fontSize: 22.0, fontWeight: FontWeight.normal))),
+                        fontSize: 20.0, fontWeight: FontWeight.normal))),
             Card(
               margin: EdgeInsets.symmetric(horizontal: 20),
               elevation: 10,
@@ -240,7 +243,30 @@ class _AuthFormState extends State<AuthForm> {
                               _isLogin = !_isLogin;
                             });
                           },
-                        )
+                        ),
+                      Row(mainAxisAlignment: MainAxisAlignment.center,
+                        children:<Widget>[
+                          Container(
+                              child: IconButton(
+                                icon: Image.asset('assets/images/google.png'),
+                                onPressed: () {
+                                  setState(() {
+                                    signInWithGoogle();
+                                    _isLogin = !_isLogin;
+                                  });
+                                },
+                              )),
+                          Container(
+                              child: IconButton(
+                                icon: Image.asset('assets/images/facebook.png'),
+                                onPressed: () {
+                                  setState(() {
+                                    signInWithFacebook();
+                                    _isLogin = !_isLogin;
+                                  });
+                                },
+                              )),
+                      ]),
                     ],
                   ),
                 ),
@@ -250,5 +276,24 @@ class _AuthFormState extends State<AuthForm> {
         ),
       ),
     );
+  }
+
+    Future<UserCredential> signInWithGoogle() async {
+      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    }
+
+    Future<UserCredential> signInWithFacebook() async {
+      final AccessToken accessToken = await FacebookAuth.instance.login();
+      final FacebookAuthCredential facebookAuthCredential =
+      FacebookAuthProvider.credential(accessToken.token);
+
+      return await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 }

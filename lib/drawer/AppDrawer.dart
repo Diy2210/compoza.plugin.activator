@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'CurrentUserInfo.dart';
@@ -16,8 +15,6 @@ class AppDrawer extends StatefulWidget {
 
 class _AppDrawerState extends State<AppDrawer> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  // var _box = Hive.openBox('user');
-  // var box = Hive.openBox('user');
   Future<String> _userData;
 
   @override
@@ -46,7 +43,6 @@ class _AppDrawerState extends State<AppDrawer> {
               children: [
                 Container(
                   width: 150,
-                  // child: CurrentUserInfo(CurrentUser()),
                   child: FutureBuilder<String>(
                     future: _userData,
                     builder:
@@ -64,24 +60,6 @@ class _AppDrawerState extends State<AppDrawer> {
                       }
                     },
                   ),
-
-                  // child: FutureBuilder<String>(
-                  //   future: _userData,
-                  //   builder:
-                  //       (BuildContext context, AsyncSnapshot<String> snapshot) {
-                  //     switch (snapshot.connectionState) {
-                  //       case ConnectionState.waiting:
-                  //         return const CircularProgressIndicator();
-                  //       default:
-                  //         if (snapshot.hasError || snapshot.data.isEmpty) {
-                  //           return CurrentUserInfo(CurrentUser());
-                  //         } else {
-                  //           return CurrentUserInfo(
-                  //               CurrentUser.fromString(snapshot.data));
-                  //         }
-                  //     }
-                  //   },
-                  // ),
                 ),
               ],
             ),

@@ -5,7 +5,6 @@ import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/CurrentUser.dart';
 import 'package:activator/widgets/auth/AuthForm.dart';
 
-import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -41,21 +40,6 @@ class _AuthScreenState extends State<AuthScreen> {
         final userDetails =
             await FirestoreHelper().getUserData(authResult.user.uid);
 
-        //Hive
-        // var box = await Hive.openBox<CurrentUser>('user_db');
-        // box.put(
-        //     'user',
-        //     CurrentUser(
-        //       name: FirestoreHelper().getUserData(authResult.user.uid).toString(),
-        //       email: authResult.user.email,
-        //       avatar: authResult.user.photoURL,
-        //     ),
-        // );
-        // box.put('username', userDetails.data()['username'] ?? 'Anonimous');
-        // box.put('email', authResult.user.email);
-        // print(box.get('user').name);
-        // print(box.get('user').email);
-
         //SharedPref
         final prefs = await SharedPreferences.getInstance();
         prefs.setString(
@@ -66,7 +50,6 @@ class _AuthScreenState extends State<AuthScreen> {
             avatar: authResult.user.photoURL,
           ).toString(),
         );
-        // print(prefs.get('user'));
 
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
@@ -80,7 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
     } on FirebaseAuthException catch (error) {
       final message = error.message ?? 'Pelase check your credentials';
 
-      Scaffold.of(ctx).showSnackBar(
+      ScaffoldMessenger.of(ctx).showSnackBar(
         SnackBar(
           content: Text(message),
         ),

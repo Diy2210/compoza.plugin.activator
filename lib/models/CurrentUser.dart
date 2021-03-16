@@ -2,13 +2,9 @@ import 'dart:convert';
 import 'package:hive/hive.dart';
 
 class CurrentUser {
-  @HiveType(typeId: 0)
   final String name;
-  @HiveType(typeId: 1)
   final String email;
-  @HiveType(typeId: 2)
   final String avatar;
-  @HiveType(typeId: 3)
   final String method;
 
   CurrentUser({

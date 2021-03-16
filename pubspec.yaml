@@ -10,18 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  path_provider:
-  provider: ^4.3.3
-  http: ^0.12.2
-
-  validators: ^2.0.0
-  firebase_core: ^0.7.0
-  firebase_auth: ^0.20.1
-  cloud_firestore: ^0.16.0+1
-
-  hive:
-  hive_flutter:
-
+  provider:
+  http:
+  validators:
+  firebase_core:
+  cloud_firestore:
+  firebase_auth:
+  google_sign_in:
+  flutter_facebook_auth:
   shared_preferences:
 
 dev_dependencies:
@@ -37,3 +33,5 @@ flutter:
   assets:
     - assets/images/activator_logo.png
     - assets/images/user_unknown.png
+    - assets/images/google.png
+    - assets/images/facebook.png

@@ -1,10 +1,4 @@
-import 'dart:io';
-
-import 'package:activator/models/CurrentUser.dart';
 import 'package:flutter/material.dart';
-
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart' as pathProvider;
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,9 +11,6 @@ import 'package:activator/screens/PluginListScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // Directory directory = await pathProvider.getApplicationDocumentsDirectory();
-  // Hive.init(directory.path);
-  // Hive.openBox<CurrentUser>('user_db');
   return runApp(MyApp());
 }
 
