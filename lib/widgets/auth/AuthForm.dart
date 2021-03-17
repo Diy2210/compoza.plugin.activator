@@ -249,6 +249,7 @@ class _AuthFormState extends State<AuthForm> {
                           Container(
                               child: IconButton(
                                 icon: Image.asset('assets/images/google.png'),
+                                iconSize: 55.0,
                                 onPressed: () {
                                   setState(() {
                                     signInWithGoogle();
@@ -259,6 +260,7 @@ class _AuthFormState extends State<AuthForm> {
                           Container(
                               child: IconButton(
                                 icon: Image.asset('assets/images/facebook.png'),
+                                iconSize: 55.0,
                                 onPressed: () {
                                   setState(() {
                                     signInWithFacebook();

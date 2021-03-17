@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>758937833580-4p6qt2nker17itg5iuarbp7ff408tnm4.apps.googleusercontent.com</string>
+	<string>586934695423-vl249okhrk8kfr5efeb5i9510umua7oi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.758937833580-4p6qt2nker17itg5iuarbp7ff408tnm4</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>758937833580-bdakn6hfjng03pnjajlani39kte1sc8d.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.586934695423-vl249okhrk8kfr5efeb5i9510umua7oi</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCATPPaikMm_BtWcE4pqjZvezq1mA6h138</string>
+	<string>AIzaSyD2WjH_QHsnQchXZoZjQtslrGKVDLmg-yk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>758937833580</string>
+	<string>586934695423</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>net.compoza.activator</string>
 	<key>PROJECT_ID</key>
-	<string>activator-a6838</string>
+	<string>compozanet-activator</string>
 	<key>STORAGE_BUCKET</key>
-	<string>activator-a6838.appspot.com</string>
+	<string>compozanet-activator.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:758937833580:ios:47938cd198bbd747da4849</string>
+	<string>1:586934695423:ios:74459053d863dea7ebe3ca</string>
 </dict>
 </plist>
