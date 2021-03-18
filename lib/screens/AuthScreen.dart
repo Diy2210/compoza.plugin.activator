@@ -1,9 +1,12 @@
+import 'package:activator/widgets/auth/AuthList.dart';
 import 'package:flutter/material.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:activator/helper/FirebaseAuthHelper.dart';
+import 'package:activator/models/SignInMethod.dart';
 
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/CurrentUser.dart';
-import 'package:activator/widgets/auth/AuthForm.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,30 +18,59 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _auth = FirebaseAuth.instance;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   var _isLoading = false;
 
-  void _submitAuthForm(
-    BuildContext ctx,
-    String email,
-    String password,
-    String username,
-    bool isLogin,
-  ) async {
-    UserCredential authResult;
-
+  Future<void> _tryToSignIn(
+      BuildContext context,
+      String method, [
+        String email = '',
+        String password = '',
+        String username = '',
+        bool isLogin,
+      ]) async {
+    String message;
+    UserCredential userCredential;
+    // final authService = _auth;
+    final authService = FirebaseAuthHelper();
     try {
       setState(() {
         _isLoading = true;
       });
-      if (isLogin) {
-        authResult = await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password,
+      if (method == SignInMethod.email) {
+        userCredential = await authService.signInWithEmail(email, password);
+      } else if (method == SignInMethod.google) {
+        userCredential = await authService.signInWithGoogle();
+      } else if (method == SignInMethod.apple) {
+        // userCredential = await authService.signInWithApple();
+      } else if (method == SignInMethod.facebook) {
+        userCredential = await authService.signInWithFacebook();
+      } else {
+        message = 'Sign in method $method is not implemented';
+      }
+    } catch (error) {
+      if (error.code == 'account-exists-with-different-credential') {
+        // try to link with other account
+        userCredential = await authService.tryToLink(
+          context,
+          error.email,
+          // we need it in case email/password provider is used
+          password,
+          error.credential,
         );
+      } else if (error.message != null) {
+        message = error.message;
+      }
+    } finally {
+      if (userCredential != null) {
+        authService.signInMethod = method;
+        // await _cacheUserData(
+        //   method,
+        //   authService.currentUser,
+        // );
 
         final userDetails =
-            await FirestoreHelper().getUserData(authResult.user.uid);
+        await FirestoreHelper().getUserData(userCredential.user.uid);
 
         //SharedPref
         final prefs = await SharedPreferences.getInstance();
@@ -46,43 +78,53 @@ class _AuthScreenState extends State<AuthScreen> {
           'user',
           CurrentUser(
             name: userDetails.data()['username'] ?? 'Anonimous',
-            email: authResult.user.email,
-            avatar: authResult.user.photoURL,
+            email: userCredential.user.email,
+            avatar: userCredential.user.photoURL,
           ).toString(),
         );
 
-      } else {
-        authResult = await _auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-
-        await FirestoreHelper()
-            .setUserData(authResult.user.uid, username, email);
       }
-    } on FirebaseAuthException catch (error) {
-      final message = error.message ?? 'Pelase check your credentials';
-
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          content: Text(message),
-        ),
-      );
-      setState(() {
-        _isLoading = false;
-      });
-    } catch (error) {
-      print(error);
+      if (message != null) {
+        ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(
+          SnackBar(
+            content: Text(message),
+          ),
+        );
+      }
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
-      body: AuthForm(
-        _submitAuthForm,
-        _isLoading,
+      backgroundColor: const Color(0xfffafafa),
+      key: _scaffoldKey,
+      body: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            AuthList(_tryToSignIn),
+            _isLoading
+                ? Container(
+              color: Colors.black45,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: CircularProgressIndicator(
+                      valueColor:
+                      AlwaysStoppedAnimation<Color>(Color(0xff008000)),
+                    ),
+                  ),
+                ],
+              ),
+            ) : Container()
+          ],
+        ),
       ),
     );
   }
