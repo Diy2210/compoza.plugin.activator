@@ -4,6 +4,7 @@ import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:platform/platform.dart';
 import 'package:activator/models/SignInMethod.dart';
 import 'AuthEmailForm.dart';
+import 'SignUpEmailForm.dart';
 
 class AuthList extends StatefulWidget {
   final void Function(
@@ -13,16 +14,13 @@ class AuthList extends StatefulWidget {
       String password,
       ]) submitFn;
 
-  AuthList(
-      this.submitFn,
-      );
+  AuthList(this.submitFn,);
 
   @override
   _AuthListState createState() => _AuthListState();
 }
 
 class _AuthListState extends State<AuthList> {
-  // final authEmailForm = AuthEmailForm();
   @override
   Widget build(BuildContext context) {
     final borderShape = RoundedRectangleBorder(
@@ -69,6 +67,7 @@ class _AuthListState extends State<AuthList> {
                       onPressed: () =>
                           widget.submitFn(context, SignInMethod.apple),
                     ),
+                  SignUpEmailForm(widget.submitFn)
                 ],
               ),
             ),

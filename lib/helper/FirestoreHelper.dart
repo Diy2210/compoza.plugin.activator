@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreHelper {
 
+  //Get user
   Future<DocumentSnapshot> getUserData(String userId) async {
     return await FirebaseFirestore.instance
         .collection('users')
@@ -11,10 +12,9 @@ class FirestoreHelper {
         .get();
   }
 
+  //Save user to db
   Future<void> setUserData(
-      String userId,
-      String username,
-      String email,
+      String userId, username, email,
       ) async {
     return await FirebaseFirestore.instance.collection('users').doc(userId).set(
       {
@@ -24,6 +24,17 @@ class FirestoreHelper {
     );
   }
 
+  //Register new user
+  Future<void> createNewUser(
+      String email, password,
+      ) async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password
+    );
+  }
+
+  //Get all servers
   Stream<QuerySnapshot> getServers() {
     return FirebaseFirestore.instance
         .collection('servers')
@@ -31,6 +42,7 @@ class FirestoreHelper {
         .snapshots();
   }
 
+  //Add new server
   static void addServer(Server server) {
     FirebaseFirestore.instance.collection('servers').add({
       'title': server.title,
@@ -41,6 +53,7 @@ class FirestoreHelper {
     });
   }
 
+  //Edit server
   static void editServer(Server server) {
     FirebaseFirestore.instance
         .collection('servers')
@@ -52,6 +65,7 @@ class FirestoreHelper {
     });
   }
 
+  //Delete server
   static void deleteServer(Server server) {
     FirebaseFirestore.instance
         .collection('servers')

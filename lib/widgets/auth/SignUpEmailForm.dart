@@ -1,42 +1,66 @@
+import 'package:activator/helper/FirestoreHelper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:activator/models/SignInMethod.dart';
 
-class AuthEmailForm extends StatefulWidget {
+class SignUpEmailForm extends StatefulWidget {
   final Function submitFn;
 
-  AuthEmailForm(this.submitFn);
+  SignUpEmailForm(this.submitFn);
 
   @override
-  _AuthEmailFormState createState() => _AuthEmailFormState();
+  _SignUpEmailFormState createState() => _SignUpEmailFormState();
 }
 
-class _AuthEmailFormState extends State<AuthEmailForm> {
+class _SignUpEmailFormState extends State<SignUpEmailForm> {
   final _formKey = GlobalKey<FormState>();
   var _isPasswordVisible = false;
+
   var _userEmail = '';
+  var _userName = '';
   var _userPassword = '';
+
   bool _showEmailClear = false;
+  bool _showUserNameClear = false;
   bool _showPasswordView = false;
 
-  void _trySubmit(BuildContext context) {
+  // void _trySignIn(BuildContext context) {
+  //   final isValid = _formKey.currentState.validate();
+  //   FocusScope.of(context).unfocus();
+  //
+  //   if (isValid) {
+  //     _formKey.currentState.save();
+  //     widget.submitFn(
+  //       context,
+  //         FirestoreHelper().setUserData(_userPassword, _userName, _userEmail)
+  //     );
+  //     Navigator.of(context).pop();
+  //   }
+  // }
+  //
+  // void signUp(BuildContext context) {
+  //   FirestoreHelper().setUserData(FirebaseAuth.instance.currentUser.uid, _userName, _userEmail);
+  //   Navigator.of(context).pop();
+  // }
+
+  void createNewUser(BuildContext context) {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
 
     if (isValid) {
       _formKey.currentState.save();
       widget.submitFn(
-        context,
-        SignInMethod.email,
-        _userEmail,
-        _userPassword,
+          context,
+          FirestoreHelper().createNewUser(_userEmail, _userPassword)
       );
       Navigator.of(context).pop();
     }
   }
 
   final _emailController = TextEditingController();
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   FocusNode emailFocus = new FocusNode();
@@ -47,6 +71,9 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
   void initState() {
     super.initState();
     _emailController.addListener(() {
+      setState(() {});
+    });
+    _usernameController.addListener(() {
       setState(() {});
     });
     _passwordController.addListener(() {
@@ -121,6 +148,42 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
                       },
                     ),
                     Divider(),
+                      TextFormField(
+                        focusNode: usernameFocus,
+                        cursorColor: Color(0xff008000),
+                        key: const ValueKey('username'),
+                        autocorrect: true,
+                        textCapitalization: TextCapitalization.words,
+                        enableSuggestions: false,
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 4) {
+                            return 'Please enter at least 4 characters';
+                          }
+                          return null;
+                        },
+                        controller: _usernameController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          focusedBorder:OutlineInputBorder(
+                            borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
+                          ),
+                          labelText: 'Username',
+                          labelStyle: TextStyle(
+                              color: usernameFocus.hasFocus ? Color(0xff008000) : Colors.grey
+                          ),
+                          suffixIcon: _usernameController.text.length > 0
+                              ? IconButton(
+                            onPressed: () =>
+                                _usernameController.clear(),
+                            icon: Icon(Icons.clear, color: Colors.grey),
+                          )
+                              : null,
+                        ),
+                        onSaved: (value) {
+                          _userName = value;
+                        },
+                      ),
+                    Divider(),
                     TextFormField(
                       focusNode: passwordFocus,
                       cursorColor: Color(0xff008000),
@@ -152,12 +215,12 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
                           Icon(
                               Icons.visibility_off_rounded,
                               color: Colors.grey)
-                         : Icon(
-                          Icons.visibility_rounded,
-                          color: Colors.grey,
-                        ),
+                              : Icon(
+                            Icons.visibility_rounded,
+                            color: Colors.grey,
+                          ),
                         )
-                        : null,
+                            : null,
                       ),
                       obscureText: !_isPasswordVisible,
                       onSaved: (value) {
@@ -178,9 +241,9 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
                   onPressed: () => Navigator.of(context).pop(),
                 ),
                 TextButton(
-                    child: const Text('Sign In', style: TextStyle(color: Color(0xff008000))),
+                    child: const Text('Sign Up', style: TextStyle(color: Color(0xff008000))),
                     onPressed: () {
-                      _trySubmit(context);
+                      createNewUser(context);
                     }),
               ],
             );
@@ -192,17 +255,11 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
 
   @override
   Widget build(BuildContext context) {
-    return SignInButtonBuilder(
-      text: 'Sign in with Email',
-      icon: Icons.email,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ),
-      ),
-      onPressed: () => _showLoginForm(context),
-      backgroundColor: const Color(0xff008000),
-      width: 220.0,
+    return TextButton(
+      child: Text(
+          'Create new account',
+          style: TextStyle(color: Color(0xff008000))),
+      onPressed: () => _showLoginForm(context)
     );
   }
 }

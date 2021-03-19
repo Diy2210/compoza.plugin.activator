@@ -64,10 +64,6 @@ class _AuthScreenState extends State<AuthScreen> {
     } finally {
       if (userCredential != null) {
         authService.signInMethod = method;
-        // await _cacheUserData(
-        //   method,
-        //   authService.currentUser,
-        // );
 
         final userDetails =
         await FirestoreHelper().getUserData(userCredential.user.uid);
@@ -82,8 +78,8 @@ class _AuthScreenState extends State<AuthScreen> {
             avatar: userCredential.user.photoURL,
           ).toString(),
         );
-
       }
+
       if (message != null) {
         ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(
           SnackBar(
