@@ -1,34 +1,27 @@
 import 'package:flutter/material.dart';
 
 import 'package:activator/models/CurrentUser.dart';
-import 'package:activator/icons/ActivatorApp.dart';
 
-class CurrentUserInfo extends StatefulWidget {
+class CurrentUserInfo extends StatelessWidget {
   final CurrentUser user;
 
   CurrentUserInfo(this.user);
 
-  @override
-  _UserInfoState createState() => _UserInfoState();
-}
-
-class _UserInfoState extends State<CurrentUserInfo> {
-  IconData get _methodIcon {
-    IconData icon = ActivatorApp.compoza;
-    switch (widget.user.method) {
-      case 'apple':
-        icon = ActivatorApp.apple;
-        break;
-      case 'facebook':
-        icon = ActivatorApp.facebook;
-        // Image.asset('assets/images/facebook.png');
-        break;
-      case 'google':
-        icon = ActivatorApp.google;
-        break;
+    String setIcon() {
+      String image = 'assets/images/activator_logo.png';
+      switch (user.method) {
+        case 'apple':
+          image = 'assets/images/apple_logo.png';
+          break;
+        case 'facebook':
+          image = 'assets/images/facebook.png';
+          break;
+        case 'google':
+          image = 'assets/images/google_logo.png';
+          break;
+      }
+      return image;
     }
-    return icon;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,30 +32,34 @@ class _UserInfoState extends State<CurrentUserInfo> {
           , children: [
             CircleAvatar(
               backgroundImage:
-              widget.user.method.isEmpty || widget.user.avatar.isEmpty
+              user.method.isEmpty || user.avatar == null
                   ? const AssetImage('assets/images/user_unknown.png')
-                  : NetworkImage(widget.user.avatar),
+                  : NetworkImage(user.avatar),
               backgroundColor: Colors.grey[300],
               foregroundColor: Theme.of(context).primaryColor,
               radius: 60,
             ),
-            // Positioned(
-            //   right: -5,
-            //   top: -5,
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(40),
-            //     child: Container(
-            //       width: 40,
-            //       height: 40,
-            //       color: Colors.white,
-            //       child: Icon(
-            //         _methodIcon,
-            //         size: 28,
-            //         color: Theme.of(context).accentColor,
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            Positioned(
+              right: -5,
+              top: -5,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(40),
+                child: Container(
+                  width: 35,
+                  height: 35,
+                  color: Colors.white,
+                  // child: Icon(
+                  //   _methodIcon,
+                  //   size: 28,
+                  //   color: Theme.of(context).accentColor,
+                  // ),
+                  // child: new AssetImage(setIcon()),
+                  // child: new Image.asset('assets/images/activator_logo.png')
+                  // child: new Image(image: AssetImage(image))
+                  child: Image(image: AssetImage(setIcon()))
+                ),
+              ),
+            ),
           ],
         ),
         SizedBox(
@@ -73,7 +70,7 @@ class _UserInfoState extends State<CurrentUserInfo> {
           child: Column(
             children: [
               Text(
-                widget.user.name,
+                user.name,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
@@ -82,7 +79,7 @@ class _UserInfoState extends State<CurrentUserInfo> {
                 ),
               ),
               Text(
-                widget.user.email,
+                user.email,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Colors.white,

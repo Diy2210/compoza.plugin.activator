@@ -13,12 +13,14 @@ dependencies:
   provider:
   http:
   validators:
-  firebase_core: ^0.7.0
-  cloud_firestore: ^0.16.0+1
-  firebase_auth: ^0.20.1
-  google_sign_in: ^4.5.1
-  flutter_facebook_auth: ^2.0.2+1
-  flutter_signin_button: ^1.1.0
+  firebase_core:
+  cloud_firestore:
+  firebase_auth:
+  google_sign_in:
+  flutter_facebook_auth:
+  flutter_signin_button:
+  hive:
+  hive_flutter:
   shared_preferences:
 
 dev_dependencies:
@@ -35,4 +37,7 @@ flutter:
     - assets/images/activator_logo.png
     - assets/images/user_unknown.png
     - assets/images/google.png
+    - assets/images/google_logo.png
+    - assets/images/apple_logo.png
     - assets/images/facebook.png
+    - assets/images/compoza_logo.png

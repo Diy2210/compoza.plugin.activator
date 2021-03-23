@@ -1,30 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:activator/helper/UserDataHelper.dart';
 
 import 'CurrentUserInfo.dart';
-import 'package:activator/models/CurrentUser.dart';
 import 'package:activator/screens/ServersScreen.dart';
 import 'package:activator/screens/AuthScreen.dart';
 
-class AppDrawer extends StatefulWidget {
-  @override
-  _AppDrawerState createState() => _AppDrawerState();
-}
-
-class _AppDrawerState extends State<AppDrawer> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  Future<String> _userData;
-
-  @override
-  void initState() {
-    super.initState();
-    _userData = _prefs.then((SharedPreferences prefs) {
-      return prefs.getString('user') ?? '';
-    });
-  }
-
+class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -43,23 +26,7 @@ class _AppDrawerState extends State<AppDrawer> {
               children: [
                 Container(
                   width: 150,
-                  child: FutureBuilder<String>(
-                    future: _userData,
-                    builder:
-                        (BuildContext context, AsyncSnapshot<String> snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.waiting:
-                          return const CircularProgressIndicator();
-                        default:
-                          if (snapshot.hasError || snapshot.data.isEmpty) {
-                            return CurrentUserInfo(CurrentUser());
-                          } else {
-                            return CurrentUserInfo(
-                                CurrentUser.fromString(snapshot.data));
-                          }
-                      }
-                    },
-                  ),
+                  child: CurrentUserInfo(UserDataHelper().getUser()),
                 ),
               ],
             ),
@@ -92,7 +59,7 @@ class _AppDrawerState extends State<AppDrawer> {
                           },
                         ),
                         TextButton(
-                          child: Text("OK", style: TextStyle(color: Color(0xff008000))),
+                          child: Text("Logout", style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
                             Navigator.of(context).pop();
@@ -105,6 +72,12 @@ class _AppDrawerState extends State<AppDrawer> {
                   });
             },
           ),
+          Divider(),
+          Container(
+              padding: EdgeInsets.all(10),
+              height: 100,
+              child: Text("V1.0.0")
+          )
         ],
       ),
     );

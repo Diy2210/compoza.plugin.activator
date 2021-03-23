@@ -41,12 +41,13 @@ class _AuthListState extends State<AuthList> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("Compoza.NET Activator",
-                          style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.normal))),
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Image.asset(
+                      'assets/images/compoza_logo.png',
+                      width: 300,
+                    ),
+                  ),
                   AuthEmailForm(widget.submitFn),
                   SignInButton(
                     Buttons.Google,

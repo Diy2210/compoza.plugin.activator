@@ -1,14 +1,14 @@
-import 'package:activator/widgets/auth/AuthList.dart';
 import 'package:flutter/material.dart';
+import 'package:activator/widgets/auth/AuthList.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:activator/helper/FirebaseAuthHelper.dart';
-import 'package:activator/models/SignInMethod.dart';
 
-import 'package:activator/helper/FirestoreHelper.dart';
+import 'package:activator/models/SignInMethod.dart';
 import 'package:activator/models/CurrentUser.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:activator/helper/UserDataHelper.dart';
+import 'package:activator/helper/FirebaseAuthHelper.dart';
+import 'package:activator/helper/FirestoreHelper.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -21,8 +21,7 @@ class _AuthScreenState extends State<AuthScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var _isLoading = false;
 
-  Future<void> _tryToSignIn(
-      BuildContext context,
+  Future<void> _tryToSignIn(BuildContext context,
       String method, [
         String email = '',
         String password = '',
@@ -31,7 +30,6 @@ class _AuthScreenState extends State<AuthScreen> {
       ]) async {
     String message;
     UserCredential userCredential;
-    // final authService = _auth;
     final authService = FirebaseAuthHelper();
     try {
       setState(() {
@@ -64,19 +62,9 @@ class _AuthScreenState extends State<AuthScreen> {
     } finally {
       if (userCredential != null) {
         authService.signInMethod = method;
-
-        final userDetails =
-        await FirestoreHelper().getUserData(userCredential.user.uid);
-
-        //SharedPref
-        final prefs = await SharedPreferences.getInstance();
-        prefs.setString(
-          'user',
-          CurrentUser(
-            name: userDetails.data()['username'] ?? 'Anonimous',
-            email: userCredential.user.email,
-            avatar: userCredential.user.photoURL,
-          ).toString(),
+        await _cacheUserData(
+          method,
+          authService.currentUser,
         );
       }
 
@@ -93,6 +81,27 @@ class _AuthScreenState extends State<AuthScreen> {
         });
       }
     }
+  }
+
+  Future<void> _cacheUserData(String method, User signedInUser) async {
+    CurrentUser currentUser;
+    final firestoreHelper = FirestoreHelper();
+    final user = await firestoreHelper.getUserData(signedInUser.uid);
+    if (!user.exists) {
+      firestoreHelper.setUserData(
+          signedInUser.uid,
+          signedInUser.displayName,
+          signedInUser.email);
+    } else {
+      currentUser = CurrentUser(
+        userId: signedInUser.uid,
+        name: user.data()['username'],
+        email: signedInUser.email,
+        avatar: signedInUser.photoURL,
+        method: method,
+      );
+    }
+    UserDataHelper().saveUser(currentUser);
   }
 
   @override

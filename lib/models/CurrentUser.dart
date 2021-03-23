@@ -1,36 +1,28 @@
 import 'dart:convert';
 import 'package:hive/hive.dart';
 
+import 'SignInMethod.dart';
+
+part 'CurrentUser.g.dart';
+
+@HiveType(typeId: 0)
 class CurrentUser {
+  @HiveField(0)
+  final String userId;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String email;
+  @HiveField(3)
   final String avatar;
+  @HiveField(4)
   final String method;
 
   CurrentUser({
-    this.name = 'Anonimous',
+    this.userId = '',
+    this.name = 'Anonymous',
     this.email = '',
     this.avatar = '',
-    this.method = '',
+    this.method = SignInMethod.email,
   });
-
-  static CurrentUser fromString(String userData) {
-    final Map<String, dynamic> _user = json.decode(userData);
-    return CurrentUser(
-      name: _user['name'] ?? 'Anonimous',
-      email: _user['email'] ?? '',
-      avatar: _user['avatar'] ?? '',
-      method: _user['method'] ?? '',
-    );
-  }
-
-  @override
-  String toString() {
-    return json.encode({
-      'name': name,
-      'email': email,
-      'avatar': avatar,
-      'method': method,
-    });
-  }
 }
