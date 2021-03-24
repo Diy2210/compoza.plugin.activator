@@ -61,13 +61,13 @@ class _AuthListState extends State<AuthList> {
                     onPressed: () =>
                         widget.submitFn(context, SignInMethod.facebook),
                   ),
-                  if (LocalPlatform().isIOS)
-                    SignInButton(
-                      Buttons.AppleDark,
-                      shape: borderShape,
-                      onPressed: () =>
-                          widget.submitFn(context, SignInMethod.apple),
-                    ),
+                  // if (LocalPlatform().isIOS)
+                  //   SignInButton(
+                  //     Buttons.AppleDark,
+                  //     shape: borderShape,
+                  //     onPressed: () =>
+                  //         widget.submitFn(context, SignInMethod.apple),
+                  //   ),
                   SignUpEmailForm(widget.submitFn)
                 ],
               ),

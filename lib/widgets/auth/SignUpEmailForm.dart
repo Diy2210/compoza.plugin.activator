@@ -1,9 +1,7 @@
-import 'package:activator/helper/FirestoreHelper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:activator/models/SignInMethod.dart';
+import 'package:flutter/cupertino.dart';
+
+import 'package:activator/helper/FirestoreHelper.dart';
 
 class SignUpEmailForm extends StatefulWidget {
   final Function submitFn;
@@ -18,32 +16,8 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
   final _formKey = GlobalKey<FormState>();
   var _isPasswordVisible = false;
 
-  var _userEmail = '';
-  var _userName = '';
-  var _userPassword = '';
-
-  bool _showEmailClear = false;
-  bool _showUserNameClear = false;
-  bool _showPasswordView = false;
-
-  // void _trySignIn(BuildContext context) {
-  //   final isValid = _formKey.currentState.validate();
-  //   FocusScope.of(context).unfocus();
-  //
-  //   if (isValid) {
-  //     _formKey.currentState.save();
-  //     widget.submitFn(
-  //       context,
-  //         FirestoreHelper().setUserData(_userPassword, _userName, _userEmail)
-  //     );
-  //     Navigator.of(context).pop();
-  //   }
-  // }
-  //
-  // void signUp(BuildContext context) {
-  //   FirestoreHelper().setUserData(FirebaseAuth.instance.currentUser.uid, _userName, _userEmail);
-  //   Navigator.of(context).pop();
-  // }
+  var _userEmail, _userName, _userPassword = '';
+  bool _showEmailClear, _showUserNameClear, _showPasswordView = false;
 
   void createNewUser(BuildContext context) {
     final isValid = _formKey.currentState.validate();
@@ -53,9 +27,10 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
       _formKey.currentState.save();
       widget.submitFn(
           context,
-          FirestoreHelper().createNewUser(_userEmail, _userPassword)
+          FirestoreHelper().createNewUser(_userEmail, _userName, _userPassword)
       );
-      Navigator.of(context).pop();
+      // Navigator.of(context).pop();
+      Navigator.pop(context);
     }
   }
 
@@ -180,7 +155,7 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
                               : null,
                         ),
                         onSaved: (value) {
-                          _userName = value;
+                          _userName = value.trim();
                         },
                       ),
                     Divider(),

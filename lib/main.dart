@@ -21,7 +21,7 @@ void main() async {
   Directory directory = await pathProvider.getApplicationDocumentsDirectory();
   Hive.init(directory.path);
   Hive.registerAdapter<CurrentUser>(CurrentUserAdapter());
-  Hive.openBox<CurrentUser>('user_db');
+  await Hive.openBox<CurrentUser>('user_db');
   return runApp(MyApp());
 }
 

@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreHelper {
 
+  UserCredential userCredential;
+
   //Get user
   Future<DocumentSnapshot> getUserData(String userId) async {
     return await FirebaseFirestore.instance
@@ -13,25 +15,22 @@ class FirestoreHelper {
   }
 
   //Save user to db
-  Future<void> setUserData(
-      String userId, username, email,
-      ) async {
-    return await FirebaseFirestore.instance.collection('users').doc(userId).set(
+  Future<void> setUserData(String userID, username, email) async {
+    return await FirebaseFirestore.instance.collection('users').doc(userID).set(
       {
         'username': username,
-        'email': email,
-      },
+        'email': email
+      }
     );
   }
 
   //Register new user
-  Future<void> createNewUser(
-      String email, password,
-      ) async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  Future<void> createNewUser(String email, username, password) async {
+    userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password
     );
+    setUserData(userCredential.user.uid, username, email);
   }
 
   //Get all servers

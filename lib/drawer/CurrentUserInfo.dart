@@ -9,16 +9,12 @@ class CurrentUserInfo extends StatelessWidget {
 
     String setIcon() {
       String image = 'assets/images/activator_logo.png';
-      switch (user.method) {
-        case 'apple':
-          image = 'assets/images/apple_logo.png';
-          break;
-        case 'facebook':
-          image = 'assets/images/facebook.png';
-          break;
-        case 'google':
-          image = 'assets/images/google_logo.png';
-          break;
+      if(user.method == 'Apple') {
+        image = 'assets/images/apple_logo.png';
+      } else if (user.method == 'Facebook') {
+        image = 'assets/images/facebook.png';
+      } else {
+        image = 'assets/images/google_logo.png';
       }
       return image;
     }
@@ -48,14 +44,6 @@ class CurrentUserInfo extends StatelessWidget {
                   width: 35,
                   height: 35,
                   color: Colors.white,
-                  // child: Icon(
-                  //   _methodIcon,
-                  //   size: 28,
-                  //   color: Theme.of(context).accentColor,
-                  // ),
-                  // child: new AssetImage(setIcon()),
-                  // child: new Image.asset('assets/images/activator_logo.png')
-                  // child: new Image(image: AssetImage(image))
                   child: Image(image: AssetImage(setIcon()))
                 ),
               ),

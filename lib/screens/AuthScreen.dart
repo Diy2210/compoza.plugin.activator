@@ -4,11 +4,9 @@ import 'package:activator/widgets/auth/AuthList.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:activator/models/SignInMethod.dart';
-import 'package:activator/models/CurrentUser.dart';
 
 import 'package:activator/helper/UserDataHelper.dart';
 import 'package:activator/helper/FirebaseAuthHelper.dart';
-import 'package:activator/helper/FirestoreHelper.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -39,7 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await authService.signInWithEmail(email, password);
       } else if (method == SignInMethod.google) {
         userCredential = await authService.signInWithGoogle();
-      } else if (method == SignInMethod.apple) {
+      // } else if (method == SignInMethod.apple) {
         // userCredential = await authService.signInWithApple();
       } else if (method == SignInMethod.facebook) {
         userCredential = await authService.signInWithFacebook();
@@ -62,10 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
     } finally {
       if (userCredential != null) {
         authService.signInMethod = method;
-        await _cacheUserData(
-          method,
-          authService.currentUser,
-        );
+        await UserDataHelper().cacheUserData(method, authService.currentUser);
       }
 
       if (message != null) {
@@ -81,27 +76,6 @@ class _AuthScreenState extends State<AuthScreen> {
         });
       }
     }
-  }
-
-  Future<void> _cacheUserData(String method, User signedInUser) async {
-    CurrentUser currentUser;
-    final firestoreHelper = FirestoreHelper();
-    final user = await firestoreHelper.getUserData(signedInUser.uid);
-    if (!user.exists) {
-      firestoreHelper.setUserData(
-          signedInUser.uid,
-          signedInUser.displayName,
-          signedInUser.email);
-    } else {
-      currentUser = CurrentUser(
-        userId: signedInUser.uid,
-        name: user.data()['username'],
-        email: signedInUser.email,
-        avatar: signedInUser.photoURL,
-        method: method,
-      );
-    }
-    UserDataHelper().saveUser(currentUser);
   }
 
   @override
