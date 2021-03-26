@@ -1,3 +1,4 @@
+import 'package:activator/helper/FirebaseAuthHelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -39,9 +40,7 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  FocusNode emailFocus = new FocusNode();
-  FocusNode usernameFocus = new FocusNode();
-  FocusNode passwordFocus = new FocusNode();
+  FocusNode emailFocus, usernameFocus, passwordFocus = new FocusNode();
 
   @override
   void initState() {
