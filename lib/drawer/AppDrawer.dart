@@ -62,6 +62,7 @@ class AppDrawer extends StatelessWidget {
                           child: Text("Logout", style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
+                            UserDataHelper().exit();
                             Navigator.of(context).pop();
                             Navigator.pushReplacementNamed(
                                 context, AuthScreen.routeName);

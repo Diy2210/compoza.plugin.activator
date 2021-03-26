@@ -39,4 +39,8 @@ class UserDataHelper {
     }
     saveUser(currentUser);
   }
+
+  Future<void> exit() async {
+    await Hive.box<CurrentUser>('user_db').clear();
+  }
 }

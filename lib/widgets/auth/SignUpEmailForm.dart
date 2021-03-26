@@ -30,7 +30,6 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
           FirestoreHelper().createNewUser(_userEmail, _userName, _userPassword)
       );
       // Navigator.of(context).pop();
-      Navigator.pop(context);
     }
   }
 
@@ -218,6 +217,7 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
                 TextButton(
                     child: const Text('Sign Up', style: TextStyle(color: Color(0xff008000))),
                     onPressed: () {
+                      Navigator.of(context).pop();
                       createNewUser(context);
                     }),
               ],
