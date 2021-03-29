@@ -40,7 +40,9 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  FocusNode emailFocus, usernameFocus, passwordFocus = new FocusNode();
+  FocusNode emailFocus = new FocusNode();
+  FocusNode usernameFocus = new FocusNode();
+  FocusNode passwordFocus = new FocusNode();
 
   @override
   void initState() {
