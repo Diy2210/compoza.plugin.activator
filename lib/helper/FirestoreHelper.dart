@@ -17,33 +17,14 @@ class FirestoreHelper {
   }
 
   //Save user to db
-  Future<void> setUserData(String userID, username, email, emailVerified) async {
+  Future<void> setUserData(String userID, username, email) async {
     return await _firebaseFirestore.collection('users').doc(userID).set(
       {
         'username': username,
         'email': email,
-        'emailVerified': emailVerified
       },
     );
   }
-
-  // //Register new user
-  // Future<void> createNewUser(String email, username, password) async {
-  //   userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-  //       email: email,
-  //       password: password
-  //   );
-  //   setUserData(userCredential.user.uid, username, email);
-  // }
-  //
-  // //Check email
-  //
-  //
-  // //Reset password
-  // @override
-  // Future<void> resetPassword(String email) async {
-  //   await _firebaseAuth.sendPasswordResetEmail(email: email);
-  // }
 
   //Get all servers
   Stream<QuerySnapshot> getServers() {

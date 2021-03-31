@@ -22,14 +22,13 @@ class CurrentUserAdapter extends TypeAdapter<CurrentUser> {
       email: fields[2] as String,
       avatar: fields[3] as String,
       method: fields[4] as String,
-      emailVerified: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, CurrentUser obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.userId)
       ..writeByte(1)
@@ -39,9 +38,7 @@ class CurrentUserAdapter extends TypeAdapter<CurrentUser> {
       ..writeByte(3)
       ..write(obj.avatar)
       ..writeByte(4)
-      ..write(obj.method)
-      ..writeByte(5)
-      ..write(obj.emailVerified);
+      ..write(obj.method);
   }
 
   @override

@@ -77,7 +77,7 @@ class AppDrawer extends StatelessWidget {
           Container(
               padding: EdgeInsets.all(10),
               height: 100,
-              child: Text("V1.0.0")
+              child: Text("ver 1.0.0")
           )
         ],
       ),

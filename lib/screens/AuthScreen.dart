@@ -33,16 +33,10 @@ class _AuthScreenState extends State<AuthScreen> {
       setState(() {
         _isLoading = true;
       });
-      if (method == SignInMethod.email) {
-        userCredential = await authService.signInWithEmail(email, password);
-      } else if (method == SignInMethod.google) {
+      if (method == SignInMethod.google) {
         userCredential = await authService.signInWithGoogle();
-      // } else if (method == SignInMethod.apple) {
-        // userCredential = await authService.signInWithApple();
       } else if (method == SignInMethod.facebook) {
         userCredential = await authService.signInWithFacebook();
-      } else if(method == SignInMethod.twitter) {
-        userCredential = await authService.signInWithTwitter();
       } else {
         message = 'Sign in method $method is not implemented';
       }

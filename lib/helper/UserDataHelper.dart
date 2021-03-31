@@ -27,8 +27,8 @@ class UserDataHelper {
       firestoreHelper.setUserData(
           signedInUser.uid,
           signedInUser.displayName,
-          signedInUser.email,
-          signedInUser.emailVerified);
+          signedInUser.email
+      );
     } else {
       currentUser = CurrentUser(
         userId: signedInUser.uid,
@@ -36,7 +36,6 @@ class UserDataHelper {
         email: signedInUser.email,
         avatar: signedInUser.photoURL,
         method: method,
-        emailVerified: signedInUser.emailVerified.toString()
       );
     }
     saveUser(currentUser);

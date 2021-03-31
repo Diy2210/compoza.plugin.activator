@@ -1,7 +1,4 @@
-import 'dart:convert';
 import 'package:hive/hive.dart';
-
-import 'SignInMethod.dart';
 
 part 'CurrentUser.g.dart';
 
@@ -17,15 +14,12 @@ class CurrentUser {
   final String avatar;
   @HiveField(4)
   final String method;
-  @HiveField(5)
-  final String emailVerified;
 
   CurrentUser({
     this.userId = '',
     this.name = 'Anonymous',
     this.email = '',
     this.avatar = '',
-    this.method = SignInMethod.email,
-    this.emailVerified = ''
+    this.method = '',
   });
 }

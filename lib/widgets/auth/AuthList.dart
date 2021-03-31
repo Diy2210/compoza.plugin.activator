@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:activator/models/SignInMethod.dart';
-import 'AuthEmailForm.dart';
-import 'SignUpEmailForm.dart';
 
 class AuthList extends StatefulWidget {
   final void Function(
@@ -47,7 +45,6 @@ class _AuthListState extends State<AuthList> {
                       width: 300,
                     ),
                   ),
-                  AuthEmailForm(widget.submitFn),
                   SignInButton(
                     Buttons.Google,
                     shape: borderShape,
@@ -60,22 +57,10 @@ class _AuthListState extends State<AuthList> {
                     onPressed: () =>
                         widget.submitFn(context, SignInMethod.facebook),
                   ),
-                  // if (LocalPlatform().isIOS)
-                  //   SignInButton(
-                  //     Buttons.AppleDark,
-                  //     shape: borderShape,
-                  //     onPressed: () =>
-                  //         widget.submitFn(context, SignInMethod.apple),
-                  //   ),
-                  SignInButton(
-                    Buttons.Twitter,
-                    onPressed: () =>
-                        widget.submitFn(context, SignInMethod.twitter),
-                  ),
-                  SignUpEmailForm(widget.submitFn)
                 ],
               ),
             ),
+            Text('ver 1.0.0')
           ],
         ),
       ),
