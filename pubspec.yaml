@@ -19,6 +19,7 @@ dependencies:
   google_sign_in:
   flutter_facebook_auth:
   flutter_signin_button:
+  flutter_twitter_login:
   hive:
   hive_flutter:
   shared_preferences:

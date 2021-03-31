@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:activator/models/SignInMethod.dart';
 
 import 'package:activator/helper/UserDataHelper.dart';
-import 'package:activator/helper/FirebaseAuthHelper.dart';
+import 'package:activator/helper/FirebaseHelper.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -28,7 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
       ]) async {
     String message;
     UserCredential userCredential;
-    final authService = FirebaseAuthHelper();
+    final authService = FirebaseHelper();
     try {
       setState(() {
         _isLoading = true;
@@ -41,6 +41,8 @@ class _AuthScreenState extends State<AuthScreen> {
         // userCredential = await authService.signInWithApple();
       } else if (method == SignInMethod.facebook) {
         userCredential = await authService.signInWithFacebook();
+      } else if(method == SignInMethod.twitter) {
+        userCredential = await authService.signInWithTwitter();
       } else {
         message = 'Sign in method $method is not implemented';
       }

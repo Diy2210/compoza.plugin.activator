@@ -44,7 +44,10 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
           stream: _authStateChanged,
           builder: (ctx, userSnapshot) {
+            // u.reload();
             if (userSnapshot.hasData) {
+            // FirebaseHelper().resetUserData(userSnapshot.data.id);
+            // if (user.emailVerified == 'true') {
               return ServersScreen();
             }
             return AuthScreen();

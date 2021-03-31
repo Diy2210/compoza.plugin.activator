@@ -1,7 +1,6 @@
+import 'package:activator/helper/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'package:activator/helper/FirestoreHelper.dart';
 
 class SignUpEmailForm extends StatefulWidget {
   final Function submitFn;
@@ -16,22 +15,8 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
   final _formKey = GlobalKey<FormState>();
   var _isPasswordVisible = false;
 
-  var _userEmail, _userName, _userPassword = '';
+  // var _userEmail, _userName, _userPassword = '';
   bool _showEmailClear, _showUserNameClear, _showPasswordView = false;
-
-  void createNewUser(BuildContext context) {
-    final isValid = _formKey.currentState.validate();
-    FocusScope.of(context).unfocus();
-
-    if (isValid) {
-      _formKey.currentState.save();
-      widget.submitFn(
-          context,
-          FirestoreHelper().createNewUser(_userEmail, _userName, _userPassword)
-      );
-      // Navigator.of(context).pop();
-    }
-  }
 
   final _emailController = TextEditingController();
   final _usernameController = TextEditingController();
@@ -58,8 +43,39 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
   @override
   void dispose() {
     _emailController.dispose();
+    _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
+  }
+
+  // void createNewUser(BuildContext context) {
+  //   final isValid = _formKey.currentState.validate();
+  //   FocusScope.of(context).unfocus();
+  //
+  //   if (isValid) {
+  //     showAlert(context);
+  //     // _formKey.currentState.save();
+  //     widget.submitFn(
+  //         context,
+  //         FirebaseHelper().createNewUser(_emailController.toString(), _usernameController, _passwordController)
+  //     );
+  //   }
+  // }
+
+  void showAlert(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+            title: Text("Verification email"),
+            content: Text("Check and verification your email."),
+            actions: [
+              TextButton(
+                child: const Text('OK', style: TextStyle(color: Color(0xff008000))),
+                onPressed: () => Navigator.of(context).pop()
+              ),
+            ]
+        )
+    );
   }
 
   Future<void> _showLoginForm(BuildContext context) async {
@@ -112,9 +128,9 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
                         )
                             : null,
                       ),
-                      onSaved: (value) {
-                        _userEmail = value.trim();
-                      },
+                      // onSaved: (value) {
+                      //   _userEmail = value.trim();
+                      // },
                       onChanged: (value) {
                         setState(() {
                           _showEmailClear = value.length > 0;
@@ -153,9 +169,9 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
                           )
                               : null,
                         ),
-                        onSaved: (value) {
-                          _userName = value.trim();
-                        },
+                        // onSaved: (value) {
+                        //   _userName = value.trim();
+                        // },
                       ),
                     Divider(),
                     TextFormField(
@@ -197,9 +213,9 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
                             : null,
                       ),
                       obscureText: !_isPasswordVisible,
-                      onSaved: (value) {
-                        _userPassword = value.trim();
-                      },
+                      // onSaved: (value) {
+                      //   _userPassword = value.trim();
+                      // },
                       onChanged: (value) {
                         setState(() {
                           _showPasswordView = value.length > 0;
@@ -218,7 +234,9 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
                     child: const Text('Sign Up', style: TextStyle(color: Color(0xff008000))),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      createNewUser(context);
+                      // createNewUser(context);
+                      FirebaseHelper().createNewUser(_emailController.text, _usernameController.text, _passwordController.text, 'false');
+                      showAlert(context);
                     }),
               ],
             );
@@ -228,13 +246,14 @@ class _SignUpEmailFormState extends State<SignUpEmailForm> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: Text(
-          'Create new account',
+      child: Text('Create new account',
           style: TextStyle(color: Color(0xff008000))),
-      onPressed: () => _showLoginForm(context)
+          onPressed: () => _showLoginForm(context)
     );
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:platform/platform.dart';
 import 'package:activator/models/SignInMethod.dart';
 import 'AuthEmailForm.dart';
 import 'SignUpEmailForm.dart';
@@ -14,7 +13,7 @@ class AuthList extends StatefulWidget {
       String password,
       ]) submitFn;
 
-  AuthList(this.submitFn,);
+  AuthList(this.submitFn);
 
   @override
   _AuthListState createState() => _AuthListState();
@@ -68,6 +67,11 @@ class _AuthListState extends State<AuthList> {
                   //     onPressed: () =>
                   //         widget.submitFn(context, SignInMethod.apple),
                   //   ),
+                  SignInButton(
+                    Buttons.Twitter,
+                    onPressed: () =>
+                        widget.submitFn(context, SignInMethod.twitter),
+                  ),
                   SignUpEmailForm(widget.submitFn)
                 ],
               ),

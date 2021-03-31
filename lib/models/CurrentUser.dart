@@ -17,6 +17,8 @@ class CurrentUser {
   final String avatar;
   @HiveField(4)
   final String method;
+  @HiveField(5)
+  final String emailVerified;
 
   CurrentUser({
     this.userId = '',
@@ -24,5 +26,6 @@ class CurrentUser {
     this.email = '',
     this.avatar = '',
     this.method = SignInMethod.email,
+    this.emailVerified = ''
   });
 }

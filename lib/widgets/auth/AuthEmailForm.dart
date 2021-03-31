@@ -1,4 +1,4 @@
-import 'package:activator/helper/FirebaseAuthHelper.dart';
+import 'package:activator/screens/ServersScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -34,6 +34,7 @@ class _AuthEmailFormState extends State<AuthEmailForm> {
         _userPassword,
       );
       Navigator.of(context).pop();
+      // Navigator.pushNamed(context, ServersScreen.routeName);
     }
   }
 
