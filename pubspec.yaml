@@ -37,8 +37,6 @@ flutter:
   assets:
     - assets/images/activator_logo.png
     - assets/images/user_unknown.png
-    - assets/images/google.png
     - assets/images/google_logo.png
-    - assets/images/apple_logo.png
     - assets/images/facebook.png
     - assets/images/compoza_logo.png
