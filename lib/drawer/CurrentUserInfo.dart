@@ -11,7 +11,9 @@ class CurrentUserInfo extends StatelessWidget {
       String image = 'assets/images/activator_logo.png';
        if(user.method == 'Facebook') {
         image = 'assets/images/facebook.png';
-      } else if(user.method == 'Google'){
+      } else if (user.method == 'Twitter') {
+         image = 'assets/images/twitter.png';
+      } else if (user.method == 'Google') {
         image = 'assets/images/google_logo.png';
       }
       return image;
@@ -22,16 +24,28 @@ class CurrentUserInfo extends StatelessWidget {
     return Column(
       children: [
         Stack(
-          clipBehavior: Clip.none
-          , children: [
-            CircleAvatar(
+          clipBehavior: Clip.none,
+          children: [
+            user.method.isEmpty || user.avatar == null
+                ? CircleAvatar(
               backgroundImage:
-              user.method.isEmpty || user.avatar == null
-                  ? const AssetImage('assets/images/user_unknown.png')
-                  : NetworkImage(user.avatar),
+              AssetImage('assets/images/user_unknown.png'),
               backgroundColor: Colors.grey[300],
               foregroundColor: Theme.of(context).primaryColor,
               radius: 60,
+            )
+                : ClipRRect(
+              borderRadius: BorderRadius.circular(120),
+              child: Container(
+                width: 120,
+                height: 120,
+                color: Colors.white54,
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/user_unknown.png',
+                  image: user.avatar,
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             Positioned(
               right: -5,
@@ -39,10 +53,10 @@ class CurrentUserInfo extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
                 child: Container(
-                  width: 35,
-                  height: 35,
-                  color: Colors.white,
-                  child: Image(image: AssetImage(setIcon()))
+                    width: 35,
+                    height: 35,
+                    color: Colors.white,
+                    child: Image(image: AssetImage(setIcon()))
                 ),
               ),
             ),

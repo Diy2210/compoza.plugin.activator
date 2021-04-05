@@ -14,6 +14,7 @@ class PluginListScreen extends StatelessWidget {
         title: Text(server.title),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xff008000),
+        brightness: Brightness.dark,
       ),
       // body: PluginList()
       body: PluginList(server)

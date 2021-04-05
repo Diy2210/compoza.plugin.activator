@@ -17,17 +17,26 @@ class AppDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Color(0xff008000),
             ),
-            height: 220,
+            height: 230,
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 65, vertical: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Stack(
               children: [
-                Container(
-                  width: 150,
-                  child: CurrentUserInfo(UserDataHelper().getUser()),
+                Positioned(
+                  left: 50,
+                  bottom: 0,
+                  child: Container(
+                    child: CurrentUserInfo(UserDataHelper().getUser()),
+                  ),
                 ),
+                Positioned(
+                  right: 0,
+                  top: 40,
+                  child: Container(
+                    height: 20,
+                    child: Text("ver 1.0.1", style: TextStyle(color: Colors.white))
+                    ),
+                  ),
               ],
             ),
           ),
@@ -73,12 +82,6 @@ class AppDrawer extends StatelessWidget {
                   });
             },
           ),
-          Divider(),
-          Container(
-              padding: EdgeInsets.all(10),
-              height: 100,
-              child: Text("ver 1.0.0")
-          )
         ],
       ),
     );

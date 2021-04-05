@@ -37,6 +37,8 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await authService.signInWithGoogle();
       } else if (method == SignInMethod.facebook) {
         userCredential = await authService.signInWithFacebook();
+      } else if(method == SignInMethod.twitter) {
+        userCredential = await authService.signInWithTwitter();
       } else {
         message = 'Sign in method $method is not implemented';
       }

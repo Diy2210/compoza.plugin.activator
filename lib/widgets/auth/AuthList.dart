@@ -57,10 +57,16 @@ class _AuthListState extends State<AuthList> {
                     onPressed: () =>
                         widget.submitFn(context, SignInMethod.facebook),
                   ),
+                  SignInButton(
+                    Buttons.Twitter,
+                    shape: borderShape,
+                    onPressed: () =>
+                        widget.submitFn(context, SignInMethod.twitter),
+                  ),
                 ],
               ),
             ),
-            Text('ver 1.0.0')
+            Text('ver 1.0.1')
           ],
         ),
       ),

@@ -2,7 +2,7 @@ Compoza.NET Plugin Activator
 
 This app allows to control Wordpress plugins.
 
-ver 1.0.0
+ver 1.0.1
 
 Screenshots:
 ![Screenshots 1](screenshots/1.jpg)
@@ -11,4 +11,4 @@ Screenshots:
 ![Screenshots 4](screenshots/4.jpg)
 ![Screenshots 5](screenshots/5.jpg)
 ![Screenshots 6](screenshots/6.jpg)
-![Screenshots 7](screenshots/7.jpg)
+![Screenshots 7](screenshots/main.jpg)
