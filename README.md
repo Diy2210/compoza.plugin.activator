@@ -11,4 +11,4 @@ Screenshots:
 ![Screenshots 4](screenshots/4.jpg)
 ![Screenshots 5](screenshots/5.jpg)
 ![Screenshots 6](screenshots/6.jpg)
-![Screenshots 7](screenshots/main.jpg)
+![Screenshots 7](screenshots/main.png)
