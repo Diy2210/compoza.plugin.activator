@@ -29,6 +29,13 @@ class UserDataHelper {
           signedInUser.displayName,
           signedInUser.email
       );
+      currentUser = CurrentUser(
+          userId: signedInUser.uid,
+          name: signedInUser.displayName,
+          email: signedInUser.email ?? '',
+          avatar: signedInUser.photoURL,
+          method: method
+      );
     } else {
       currentUser = CurrentUser(
         userId: signedInUser.uid,

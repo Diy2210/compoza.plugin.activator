@@ -283,6 +283,10 @@ PODS:
     - FBSDKCoreKit (~> 9.0.0)
     - FBSDKLoginKit (~> 9.0.0)
     - Flutter
+  - flutter_twitter_login (0.0.1):
+    - Flutter
+    - TwitterCore (~> 3.2.0)
+    - TwitterKit (~> 3.4.0)
   - google_sign_in (0.0.1):
     - Flutter
     - GoogleSignIn (~> 5.0)
@@ -348,8 +352,9 @@ PODS:
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (1.2.12)
-  - shared_preferences (0.0.1):
-    - Flutter
+  - TwitterCore (3.2.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -357,9 +362,9 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
+  - flutter_twitter_login (from `.symlinks/plugins/flutter_twitter_login/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
-  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
 
 SPEC REPOS:
   trunk:
@@ -383,6 +388,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - TwitterCore
+    - TwitterKit
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -395,12 +402,12 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_facebook_auth:
     :path: ".symlinks/plugins/flutter_facebook_auth/ios"
+  flutter_twitter_login:
+    :path: ".symlinks/plugins/flutter_twitter_login/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
-  shared_preferences:
-    :path: ".symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -418,6 +425,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 1906bf163afdb7c432d2e3b5c40ceb9dd2df5820
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_facebook_auth: d952ca599c6a76439c54472b0b225004e1b880c4
+  flutter_twitter_login: 1f670e60647cdf517ba20495e1b32046d9f22697
   google_sign_in: 6bd214b9c154f881422f5fe27b66aaa7bbd580cc
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
@@ -430,7 +438,8 @@ SPEC CHECKSUMS:
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

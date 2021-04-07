@@ -72,6 +72,11 @@ class FirebaseHelper {
         return await _userCredentials.user.linkWithCredential(credential);
       }
     }
+    if (userSignInMethods.first == 'twitter.com') {
+      if ((_userCredentials = await signInWithTwitter()) != null) {
+        return await _userCredentials.user.linkWithCredential(credential);
+      }
+    }
 
     return null;
   }

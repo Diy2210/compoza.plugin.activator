@@ -20,9 +20,10 @@ dependencies:
   flutter_facebook_auth:
   flutter_signin_button:
   flutter_twitter_login:
+    git:
+      url: https://github.com/eudangeld/flutter_twitter_login
   hive:
   hive_flutter:
-  shared_preferences:
 
 dev_dependencies:
   flutter_test:

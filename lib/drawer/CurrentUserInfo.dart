@@ -12,7 +12,7 @@ class CurrentUserInfo extends StatelessWidget {
        if(user.method == 'Facebook') {
         image = 'assets/images/facebook.png';
       } else if (user.method == 'Twitter') {
-         image = 'assets/images/twitter.png';
+         image = 'assets/images/twitter_logo.png';
       } else if (user.method == 'Google') {
         image = 'assets/images/google_logo.png';
       }

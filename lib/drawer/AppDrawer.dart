@@ -23,7 +23,7 @@ class AppDrawer extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned(
-                  left: 50,
+                  left: 20,
                   bottom: 0,
                   child: Container(
                     child: CurrentUserInfo(UserDataHelper().getUser()),
@@ -34,7 +34,7 @@ class AppDrawer extends StatelessWidget {
                   top: 40,
                   child: Container(
                     height: 20,
-                    child: Text("ver 1.0.1", style: TextStyle(color: Colors.white))
+                    child: Text("ver 1.0.1", style: TextStyle(color: Colors.white54))
                     ),
                   ),
               ],
