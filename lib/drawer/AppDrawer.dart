@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:activator/helper/UserDataHelper.dart';
-
 import 'CurrentUserInfo.dart';
+import 'package:activator/localization.dart';
+import 'package:activator/helper/UserDataHelper.dart';
 import 'package:activator/screens/ServersScreen.dart';
 import 'package:activator/screens/AuthScreen.dart';
 
@@ -43,7 +43,7 @@ class AppDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.list),
-            title: const Text('Servers'),
+            title: Text('Servers'.i18n),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(ServersScreen.routeName);
@@ -52,23 +52,23 @@ class AppDrawer extends StatelessWidget {
           Divider(),
           ListTile(
             leading: Icon(Icons.exit_to_app_outlined),
-            title: const Text('Logout'),
+            title: Text('Logout'.i18n),
             onTap: () {
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text("Logout"),
-                      content: Text("Do you want logout?"),
+                      title: Text("Logout".i18n),
+                      content: Text("Do you want logout?".i18n),
                       actions: <Widget>[
                         TextButton(
-                          child: Text("Cancel", style: TextStyle(color: Color(0xff008000))),
+                          child: Text("Cancel".i18n, style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
                         ),
                         TextButton(
-                          child: Text("Logout", style: TextStyle(color: Color(0xff008000))),
+                          child: Text("Logout".i18n, style: TextStyle(color: Color(0xff008000))),
                           onPressed: () {
                             FirebaseAuth.instance.signOut();
                             UserDataHelper().exit();

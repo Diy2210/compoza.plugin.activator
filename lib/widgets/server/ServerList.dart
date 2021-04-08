@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:activator/localization.dart';
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/widgets/server/ServerItem.dart';
@@ -18,7 +19,7 @@ class ServersList extends StatelessWidget {
         }
         if (snapshot.data.docs.length <= 0) {
           return Center(
-            child: const Text("Empty list"),
+            child: Text("Empty list".i18n),
           );
         }
         return ListView.builder(

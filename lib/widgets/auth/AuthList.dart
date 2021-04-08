@@ -52,7 +52,7 @@ class _AuthListState extends State<AuthList> {
                         widget.submitFn(context, SignInMethod.google),
                   ),
                   SignInButton(
-                    Buttons.FacebookNew,
+                    Buttons.Facebook,
                     shape: borderShape,
                     onPressed: () =>
                         widget.submitFn(context, SignInMethod.facebook),

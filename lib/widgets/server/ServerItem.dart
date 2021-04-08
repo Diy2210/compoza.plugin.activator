@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:activator/localization.dart';
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/EditScreenArguments.dart';
@@ -26,7 +27,7 @@ class ServerItem extends StatelessWidget {
                   children: <Widget>[
                     new ListTile(
                         leading: new Icon(Icons.edit),
-                        title: new Text('Edit'),
+                        title: new Text('Edit'.i18n),
                         onTap: () => {
                           Navigator.of(context).pop(),
                           Navigator.pushNamed(
@@ -40,7 +41,7 @@ class ServerItem extends StatelessWidget {
                             }),
                     new ListTile(
                       leading: new Icon(Icons.delete),
-                      title: new Text('Delete'),
+                      title: new Text('Delete'.i18n),
                       onTap: () => {
                         Navigator.of(context).pop(),
                         alertDeleteServer(context, server),
@@ -73,7 +74,7 @@ class ServerItem extends StatelessWidget {
 
   alertDeleteServer(ctx, Server server) {
     final dialog = AlertDialog(
-      title: const Text('Delete server'),
+      title: Text('Delete server'.i18n),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,21 +84,21 @@ class ServerItem extends StatelessWidget {
               server.title,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            const Text(' will be deleted.'),
+            Text(' will be deleted.'.i18n),
           ]),
           Divider(
             height: 10,
           ),
-          const Text('Are you sure?'),
+          Text('Are you sure?'.i18n),
         ],
       ),
       actions: [
         TextButton(
-          child: const Text('Cancel', style: TextStyle(color: Color(0xff008000))),
+          child: Text('Cancel'.i18n, style: TextStyle(color: Color(0xff008000))),
           onPressed: () => Navigator.of(ctx).pop(),
         ),
         TextButton(
-          child: const Text('OK', style: TextStyle(color: Color(0xff008000))),
+          child: Text('OK'.i18n, style: TextStyle(color: Color(0xff008000))),
           onPressed: () {
             _deleteServer(server);
             Navigator.of(ctx).pop();

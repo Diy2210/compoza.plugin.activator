@@ -5,21 +5,26 @@ import 'dart:convert' as convert;
 import 'package:activator/models/Server.dart';
 
 class ActivatorApi {
-
   static Future<List<Plugin>> getPluginList(Server server) async {
     try {
-      var resp = await http.Client().get('${server.url}/wp-json/deactivator/v1/list?token=${server.token}');
+      var resp = await http.Client().get(
+        Uri.parse(
+          '${server.url}/wp-json/deactivator/v1/list?token=${server.token}',
+        ),
+      );
       if (resp.statusCode < 400) {
         var jsonResponse = convert.jsonDecode(resp.body);
         if (jsonResponse['success']) {
           final List<Plugin> plugins = [];
           for (int i = 0; i < jsonResponse['data'].length; i++) {
             final item = jsonResponse['data'][i];
-            plugins.add(Plugin(
-              plugin: item['plugin'],
-              title: item['title'],
-              status: item['status']
-            ));
+            plugins.add(
+              Plugin(
+                plugin: item['plugin'],
+                title: item['title'],
+                status: item['status'],
+              ),
+            );
           }
           return plugins;
         }
@@ -31,20 +36,28 @@ class ActivatorApi {
     return null;
   }
 
-  static Future updatePluginStatus(Server server, Plugin plugin, bool state) async {
+  static Future updatePluginStatus(
+    Server server,
+    Plugin plugin,
+    bool state,
+  ) async {
     var status = 'deactivate';
 
     if (state) {
       status = 'activate';
     }
 
-    var params = new Map<String, dynamic>();
-    params['token'] = server.token;
-    params['id'] = plugin.plugin;
-    params['status'] = status;
+    var params = {
+      'token': server.token,
+      'id': plugin.plugin,
+      'status': status,
+    };
 
     try {
-      await http.Client().post("${server.url}/wp-json/deactivator/v1/update", body: params);
+      await http.Client().post(
+        Uri.parse("${server.url}/wp-json/deactivator/v1/update"),
+        body: params,
+      );
     } catch (error) {
       print(error);
     }

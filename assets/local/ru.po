@@ -1,0 +1,76 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Language: ru\n"
+
+msgid "Servers"
+msgstr "Серверы"
+
+msgid "Logout"
+msgstr "Выход"
+
+msgid "Do you want logout?"
+msgstr "Вы действительно хотите выйти?"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Add New Server"
+msgstr "Добавить новый сервер"
+
+msgid "Edit Server"
+msgstr "Редактировать сервер"
+
+msgid "Sign in method $method is not implemented"
+msgstr "Метод $method не реализован"
+
+msgid "Something is going wrong"
+msgstr "Что-то пошло не так."
+
+msgid "Empty list"
+msgstr "Список пуст"
+
+msgid "Delete server"
+msgstr "Удалить сервер"
+
+msgid " will be deleted."
+msgstr "будет удален."
+
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "Edit"
+msgstr "Редактировать"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Server Title"
+msgstr "Название сервера"
+
+msgid "Please enter server name"
+msgstr "Пожалуйста, введите название сервера"
+
+msgid "Server URL"
+msgstr "URL сервера"
+
+msgid "Please enter valid server URL"
+msgstr "Пожалуйста, введите правильный URL"
+
+msgid "Authorization Token"
+msgstr "Токен авторизации"
+
+msgid "Please enter the token"
+msgstr "Пожалуйста, введите токен"

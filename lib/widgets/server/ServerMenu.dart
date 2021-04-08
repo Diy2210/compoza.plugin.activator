@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'package:activator/localization.dart';
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/screens/EditServerScreen.dart';
 
-
 class ServerMenu {
   void _askToDeleteServer(BuildContext ctx, Server server) {
     final dialog = AlertDialog(
-      title: const Text('Delete server'),
+      title: Text('Delete server'.i18n),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -19,21 +19,21 @@ class ServerMenu {
               server.title,
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            const Text(' will be deleted.'),
+            Text(' will be deleted.'.i18n),
           ]),
           Divider(
             height: 10,
           ),
-          const Text('Are you sure?'),
+          Text('Are you sure?'.i18n),
         ],
       ),
       actions: [
         FlatButton(
-          child: const Text('Cancel'),
+          child: Text('Cancel'.i18n),
           onPressed: () => Navigator.of(ctx).pop(),
         ),
         FlatButton(
-          child: const Text('OK'),
+          child: Text('OK'.i18n),
           onPressed: () {
             _deleteServer(server);
             Navigator.of(ctx).pop();
@@ -72,7 +72,7 @@ class ServerMenu {
             children: <Widget>[
               Icon(Icons.edit),
               SizedBox(width: 8),
-              const Text('Edit'),
+              Text('Edit'.i18n),
             ],
           ),
           value: 'edit',
@@ -82,7 +82,7 @@ class ServerMenu {
             children: <Widget>[
               Icon(Icons.delete),
               SizedBox(width: 8),
-              const Text('Delete'),
+              Text('Delete'.i18n),
             ],
           ),
           value: 'delete',

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:activator/widgets/auth/AuthList.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:activator/localization.dart';
+import 'package:activator/widgets/auth/AuthList.dart';
 import 'package:activator/models/SignInMethod.dart';
-
 import 'package:activator/helper/UserDataHelper.dart';
 import 'package:activator/helper/FirebaseHelper.dart';
 
@@ -40,7 +39,7 @@ class _AuthScreenState extends State<AuthScreen> {
       } else if(method == SignInMethod.twitter) {
         userCredential = await authService.signInWithTwitter();
       } else {
-        message = 'Sign in method $method is not implemented';
+        message = 'Sign in method $method is not implemented'.i18n;
       }
     } catch (error) {
       if (error.code == 'account-exists-with-different-credential') {

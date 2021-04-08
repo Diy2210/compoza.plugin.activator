@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:activator/localization.dart';
 import 'package:activator/api/ActivatorApi.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/Plugin.dart';
@@ -23,7 +24,7 @@ class PluginList extends StatelessWidget {
           }
           if (snapshot.data == null) {
             return Center(
-              child: const Text('Something is going wrong'),
+              child: Text('Something is going wrong'.i18n),
             );
           }
 

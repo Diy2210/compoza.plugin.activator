@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/widgets/server/EditServerForm.dart';
@@ -41,8 +43,8 @@ class _EditServerScreenState extends State<EditServerScreen> {
     return Scaffold(
       appBar: AppBar(
         title: _server.serverID.isEmpty
-            ? const Text('Add New Server')
-            : const Text('Edit Server'),
+            ? Text('Add New Server'.i18n)
+            : Text('Edit Server'.i18n),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xff008000),
         brightness: Brightness.dark,

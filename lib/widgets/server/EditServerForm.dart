@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart' as validators;
 
+import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
 
 class EditServerForm extends StatefulWidget {
@@ -69,7 +70,7 @@ class _EditServerFormState extends State<EditServerForm> {
                 focusedBorder:OutlineInputBorder(
                   borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                 ),
-                labelText: 'Server Title',
+                labelText: 'Server Title'.i18n,
                 labelStyle: TextStyle(
                     color: titleFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
@@ -82,7 +83,7 @@ class _EditServerFormState extends State<EditServerForm> {
               ),
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter server name';
+                  return 'Please enter server name'.i18n;
                 }
                 return null;
               },
@@ -99,7 +100,7 @@ class _EditServerFormState extends State<EditServerForm> {
                 focusedBorder:OutlineInputBorder(
                   borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                 ),
-                labelText: 'Server URL',
+                labelText: 'Server URL'.i18n,
                 labelStyle: TextStyle(
                     color: urlFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
@@ -115,7 +116,7 @@ class _EditServerFormState extends State<EditServerForm> {
               keyboardType: TextInputType.url,
               validator: (value) {
                 if (value.isEmpty || !validators.isURL(value)) {
-                  return 'Please enter valid server URL';
+                  return 'Please enter valid server URL'.i18n;
                 }
                 return null;
               },
@@ -132,7 +133,7 @@ class _EditServerFormState extends State<EditServerForm> {
                 focusedBorder:OutlineInputBorder(
                   borderSide: const BorderSide(color: Color(0xff008000), width: 2.0),
                 ),
-                labelText: 'Authorization Token',
+                labelText: 'Authorization Token'.i18n,
                 labelStyle: TextStyle(
                     color: tokenFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
@@ -146,7 +147,7 @@ class _EditServerFormState extends State<EditServerForm> {
               maxLines: 3,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Please enter the token';
+                  return 'Please enter the token'.i18n;
                 }
                 return null;
               },
