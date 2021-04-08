@@ -17,7 +17,7 @@ class CurrentUser {
 
   CurrentUser({
     this.userId = '',
-    this.name = 'Anonymous',
+    this.name = '',
     this.email = '',
     this.avatar = '',
     this.method = '',

@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:hive/hive.dart';
+import 'package:i18n_extension/i18n_extension.dart';
+import 'package:i18n_extension/i18n_widget.dart';
+import 'package:i18n_extension/io/import.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 
 import 'package:activator/screens/AuthScreen.dart';
@@ -15,6 +18,13 @@ import 'package:activator/screens/EditServerScreen.dart';
 import 'package:activator/screens/PluginListScreen.dart';
 
 import 'models/CurrentUser.dart';
+
+TranslationsByLocale translations;
+
+Future<void> loadTranslations() async {
+  translations = Translations.byLocale(I18n.locale.toString()) +
+      await GettextImporter().fromAssetDirectory("assets/local");
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +52,15 @@ class MyApp extends StatelessWidget {
           displayColor: Colors.white,
         ),
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en'),
+        const Locale('ru'),
+      ],
       home: StreamBuilder(
           stream: _authStateChanged,
           builder: (ctx, userSnapshot) {
