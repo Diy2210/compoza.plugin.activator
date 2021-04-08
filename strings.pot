@@ -1,0 +1,62 @@
+msgid "Servers"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Do you want logout?"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Add New Server"
+msgstr ""
+
+msgid "Edit Server"
+msgstr ""
+
+msgid "Sign in method $method is not implemented"
+msgstr ""
+
+msgid "Something is going wrong"
+msgstr ""
+
+msgid "Empty list"
+msgstr ""
+
+msgid "Delete server"
+msgstr ""
+
+msgid " will be deleted."
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Server Title"
+msgstr ""
+
+msgid "Please enter server name"
+msgstr ""
+
+msgid "Server URL"
+msgstr ""
+
+msgid "Please enter valid server URL"
+msgstr ""
+
+msgid "Authorization Token"
+msgstr ""
+
+msgid "Please enter the token"
+msgstr ""

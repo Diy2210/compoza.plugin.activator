@@ -26,6 +26,8 @@ dependencies:
   flutter_twitter_login:
     git:
       url: https://github.com/eudangeld/flutter_twitter_login
+  sign_in_with_apple: ^2.5.2
+  crypto: ^2.1.5
   hive:
   hive_flutter:
 
@@ -46,4 +48,5 @@ flutter:
     - assets/images/facebook.png
     - assets/images/twitter_logo.png
     - assets/images/compoza_logo.png
+    - assets/images/apple_logo.png
     - assets/local/ru.po
