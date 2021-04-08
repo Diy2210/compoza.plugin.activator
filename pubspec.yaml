@@ -2,7 +2,7 @@ name: activator
 description: Compoza.NET Activator. This app allows to control Wordpress plugins.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.1+2
+version: 1.0.2+3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -46,5 +46,4 @@ flutter:
     - assets/images/facebook.png
     - assets/images/twitter_logo.png
     - assets/images/compoza_logo.png
-
     - assets/local/ru.po

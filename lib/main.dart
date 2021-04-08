@@ -33,24 +33,25 @@ void main() async {
   Hive.init(directory.path);
   Hive.registerAdapter<CurrentUser>(CurrentUserAdapter());
   await Hive.openBox<CurrentUser>('user_db');
+  await loadTranslations();
   return runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   final _authStateChanged = FirebaseAuth.instance.authStateChanges();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Compoza.NET Activator',
       theme: ThemeData(
         accentColor: const Color(0xff008000),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryTextTheme: Theme.of(context).primaryTextTheme.apply(
-          bodyColor: Colors.white,
-          displayColor: Colors.white,
-        ),
+              bodyColor: Colors.white,
+              displayColor: Colors.white,
+            ),
       ),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -61,14 +62,17 @@ class MyApp extends StatelessWidget {
         const Locale('en'),
         const Locale('ru'),
       ],
-      home: StreamBuilder(
+      home: I18n(
+        child: StreamBuilder(
           stream: _authStateChanged,
           builder: (ctx, userSnapshot) {
             if (userSnapshot.hasData) {
               return ServersScreen();
             }
             return AuthScreen();
-          }),
+          },
+        ),
+      ),
       routes: {
         ServersScreen.routeName: (ctx) => ServersScreen(),
         EditServerScreen.routeName: (ctx) => EditServerScreen(),

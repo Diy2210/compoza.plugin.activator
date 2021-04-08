@@ -27,7 +27,7 @@ class ServerItem extends StatelessWidget {
                   children: <Widget>[
                     new ListTile(
                         leading: new Icon(Icons.edit),
-                        title: new Text('Edit'.i18n),
+                        title: Text('Edit'.i18n),
                         onTap: () => {
                           Navigator.of(context).pop(),
                           Navigator.pushNamed(
@@ -41,7 +41,7 @@ class ServerItem extends StatelessWidget {
                             }),
                     new ListTile(
                       leading: new Icon(Icons.delete),
-                      title: new Text('Delete'.i18n),
+                      title: Text('Delete'.i18n),
                       onTap: () => {
                         Navigator.of(context).pop(),
                         alertDeleteServer(context, server),
