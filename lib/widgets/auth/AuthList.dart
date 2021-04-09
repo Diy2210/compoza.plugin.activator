@@ -5,11 +5,11 @@ import 'package:activator/models/SignInMethod.dart';
 
 class AuthList extends StatefulWidget {
   final void Function(
-      BuildContext context,
-      String method, [
-      String email,
-      String password,
-      ]) submitFn;
+    BuildContext context,
+    String method, [
+    String email,
+    String password,
+  ]) submitFn;
 
   AuthList(this.submitFn);
 
@@ -73,7 +73,7 @@ class _AuthListState extends State<AuthList> {
                 ],
               ),
             ),
-            Text('ver 1.0.1')
+            Text('ver 1.0.2')
           ],
         ),
       ),

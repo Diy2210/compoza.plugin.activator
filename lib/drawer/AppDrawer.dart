@@ -33,10 +33,10 @@ class AppDrawer extends StatelessWidget {
                   right: 0,
                   top: 40,
                   child: Container(
-                    height: 20,
-                    child: Text("ver 1.0.1", style: TextStyle(color: Colors.white54))
-                    ),
-                  ),
+                      height: 20,
+                      child: Text("ver 1.0.2",
+                          style: TextStyle(color: Colors.white54))),
+                ),
               ],
             ),
           ),
@@ -55,31 +55,32 @@ class AppDrawer extends StatelessWidget {
             title: Text('Logout'.i18n),
             onTap: () {
               showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text("Logout".i18n),
-                      content: Text("Do you want logout?".i18n),
-                      actions: <Widget>[
-                        TextButton(
-                          child: Text("Cancel".i18n, style: TextStyle(color: Color(0xff008000))),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        TextButton(
-                          child: Text("Logout".i18n, style: TextStyle(color: Color(0xff008000))),
-                          onPressed: () {
-                            FirebaseAuth.instance.signOut();
-                            UserDataHelper().exit();
-                            Navigator.of(context).pop();
-                            Navigator.pushReplacementNamed(
-                                context, AuthScreen.routeName);
-                          },
-                        )
-                      ],
-                    );
-                  });
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("Logout".i18n),
+                    content: Text("Do you want to logout?".i18n),
+                    actions: <Widget>[
+                      TextButton(
+                        child: Text("No".i18n,
+                            style: TextStyle(color: Color(0xff008000))),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: Text("Yes".i18n,
+                            style: TextStyle(color: Color(0xff008000))),
+                        onPressed: () {
+                          UserDataHelper().exit();
+                          FirebaseAuth.instance.signOut();
+                          Navigator.of(context).pop();
+                        },
+                      )
+                    ],
+                  );
+                },
+              );
             },
           ),
         ],

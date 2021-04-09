@@ -18,11 +18,17 @@ msgstr "Серверы"
 msgid "Logout"
 msgstr "Выход"
 
-msgid "Do you want logout?"
+msgid "Do you want to logout?"
 msgstr "Вы действительно хотите выйти?"
 
 msgid "Cancel"
 msgstr "Отмена"
+
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Нет"
 
 msgid "Add New Server"
 msgstr "Добавить новый сервер"
@@ -30,11 +36,14 @@ msgstr "Добавить новый сервер"
 msgid "Edit Server"
 msgstr "Редактировать сервер"
 
-msgid "Sign in method $method is not implemented"
-msgstr "Метод $method не реализован"
+msgid "Sign in method %s is not implemented"
+msgstr "Метод %s не реализован"
 
 msgid "Something is going wrong"
 msgstr "Что-то пошло не так."
+
+msgid "ver %s"
+msgstr "версия %s"
 
 msgid "Empty list"
 msgstr "Список пуст"

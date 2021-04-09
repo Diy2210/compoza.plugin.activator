@@ -49,4 +49,4 @@ flutter:
     - assets/images/twitter_logo.png
     - assets/images/compoza_logo.png
     - assets/images/apple_logo.png
-    - assets/local/ru.po
+    - assets/locales/ru.po
