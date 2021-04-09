@@ -30,6 +30,7 @@ dependencies:
   crypto: ^2.1.5
   hive:
   hive_flutter:
+  package_info:
 
 dev_dependencies:
   flutter_test:

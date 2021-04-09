@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'CurrentUserInfo.dart';
 import 'package:activator/localization.dart';
+import 'package:activator/helper/AppInfoHelper.dart';
 import 'package:activator/helper/UserDataHelper.dart';
 import 'package:activator/screens/ServersScreen.dart';
-import 'package:activator/screens/AuthScreen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -33,9 +32,16 @@ class AppDrawer extends StatelessWidget {
                   right: 0,
                   top: 40,
                   child: Container(
-                      height: 20,
-                      child: Text("ver 1.0.2",
-                          style: TextStyle(color: Colors.white54))),
+                    height: 20,
+                    child: FutureBuilder(
+                      future: AppInfoHelper().getVersionNumber(),
+                      builder: (BuildContext context, AsyncSnapshot<String> snapshot) => 
+                          Text(
+                            snapshot.hasData ? snapshot.data : "Loading ...",
+                            style: TextStyle(color: Colors.white54),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

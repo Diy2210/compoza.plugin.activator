@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:activator/models/SignInMethod.dart';
+import 'package:activator/helper/AppInfoHelper.dart';
 
 class AuthList extends StatefulWidget {
   final void Function(
@@ -73,7 +74,13 @@ class _AuthListState extends State<AuthList> {
                 ],
               ),
             ),
-            Text('ver 1.0.2')
+            FutureBuilder(
+              future: AppInfoHelper().getVersionNumber(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) =>
+                  Text(
+                    snapshot.hasData ? snapshot.data : "Loading ...",
+              ),
+            ),
           ],
         ),
       ),
