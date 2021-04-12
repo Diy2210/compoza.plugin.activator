@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:math';
 
+import 'package:activator/models/SignInMethod.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,7 +36,7 @@ class FirebaseHelper {
 
   //Facebook SignIn
   Future<UserCredential> signInWithFacebook() async {
-    final AccessToken accessToken = await FacebookAuth.instance.login();
+    final AccessToken accessToken = (await FacebookAuth.instance.login()) as AccessToken;
     final FacebookAuthCredential facebookAuthCredential =
     FacebookAuthProvider.credential(accessToken.token);
 
@@ -124,5 +126,13 @@ class FirebaseHelper {
     }
 
     return null;
+  }
+
+  Future<Void> signOut() async {
+    await _firebaseAuth.signOut();
+    // logout external provider
+    if (_signinMethod == SignInMethod.facebook) {
+      await FacebookAuth.instance.logOut();
+    }
   }
 }

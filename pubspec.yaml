@@ -2,7 +2,7 @@ name: activator
 description: Compoza.NET Activator. This app allows to control Wordpress plugins.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.2+3
+version: 1.0.3+4
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -17,17 +17,22 @@ dependencies:
   provider:
   http:
   validators:
-  firebase_core: ^1.0.3
-  cloud_firestore: ^1.0.3
-  firebase_auth: ^1.0.2
-  google_sign_in: ^5.0.1
-  flutter_facebook_auth: ^1.0.2+2
+#  firebase_core: ^1.0.3
+#  cloud_firestore: ^1.0.3
+#  firebase_auth: ^1.0.2
+#  google_sign_in: ^5.0.1
+#  flutter_facebook_auth: ^1.0.2+2
+  firebase_core:
+  cloud_firestore:
+  firebase_auth:
+  google_sign_in:
+  flutter_facebook_auth: ^3.3.2+2
   flutter_signin_button:
   flutter_twitter_login:
     git:
       url: https://github.com/eudangeld/flutter_twitter_login
-  sign_in_with_apple: ^2.5.2
-  crypto: ^2.1.5
+  sign_in_with_apple:
+  crypto:
   hive:
   hive_flutter:
   package_info:

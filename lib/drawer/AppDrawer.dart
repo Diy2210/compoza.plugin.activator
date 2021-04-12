@@ -1,5 +1,5 @@
+import 'package:activator/helper/FirebaseHelper.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'CurrentUserInfo.dart';
 import 'package:activator/localization.dart';
 import 'package:activator/helper/AppInfoHelper.dart';
@@ -79,8 +79,8 @@ class AppDrawer extends StatelessWidget {
                             style: TextStyle(color: Color(0xff008000))),
                         onPressed: () {
                           UserDataHelper().exit();
-                          FirebaseAuth.instance.signOut();
                           Navigator.of(context).pop();
+                          FirebaseHelper().signOut();
                         },
                       )
                     ],

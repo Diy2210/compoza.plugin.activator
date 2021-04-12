@@ -1,6 +1,8 @@
+import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+// import 'package:apple_sign_in/apple_sign_in_button.dart';
 import 'package:activator/models/SignInMethod.dart';
 import 'package:activator/helper/AppInfoHelper.dart';
 
@@ -64,13 +66,13 @@ class _AuthListState extends State<AuthList> {
                     onPressed: () =>
                         widget.submitFn(context, SignInMethod.twitter),
                   ),
-                  // if (LocalPlatform().isIOS)
-                  //   SignInButton(
-                  //     Buttons.AppleDark,
-                  //     shape: borderShape,
-                  //     onPressed: () =>
-                  //         widget.submitFn(context, SignInMethod.apple),
-                  //   ),
+                  if (Platform.isIOS)
+                    SignInButton(
+                      Buttons.AppleDark,
+                      shape: borderShape,
+                      onPressed: () =>
+                          widget.submitFn(context, SignInMethod.apple),
+                    ),
                 ],
               ),
             ),
