@@ -43,5 +43,23 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSAppleMusicUsageDescription</key>
+        <string>We do not directly use music</string>
+        <key>NSBluetoothPeripheralUsageDescription</key>
+        <string>We do not directly use bluetooth peripheral</string>
+        <key>NSBluetoothAlwaysUsageDescription</key>
+        <string>We do not directly use bluetooth always</string>
+        <key>NSCalendarsUsageDescription</key>
+        <string>We do not directly use calendar</string>
+        <key>NSContactsUsageDescription</key>
+        <string>We do not directly use contacts</string>
+        <key>NSMotionUsageDescription</key>
+        <string>We do not directly use motion data</string>
+        <key>NSSpeechRecognitionUsageDescription</key>
+        <string>We do not directly use speech recognition</string>
+        <key>NSLocationAlwaysUsageDescription</key>
+        <string>We do not directly use locations</string>
+        <key>NSLocationWhenInUseUsageDescription</key>
+        <string>We do not directly use locations</string>
 </dict>
 </plist>
