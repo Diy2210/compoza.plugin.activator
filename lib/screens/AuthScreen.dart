@@ -38,8 +38,8 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await authService.signInWithFacebook();
       } else if(method == SignInMethod.apple) {
         userCredential = await authService.signInWithApple();
-      } else if(method == SignInMethod.twitter) {
-        userCredential = await authService.signInWithTwitter();
+      // } else if(method == SignInMethod.twitter) {
+      //   userCredential = await authService.signInWithTwitter();
       } else {
         message = 'Sign in method %s is not implemented'.i18n;
       }

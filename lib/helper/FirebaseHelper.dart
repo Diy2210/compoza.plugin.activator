@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:flutter_twitter_login/flutter_twitter_login.dart';
+// import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class FirebaseHelper {
@@ -43,23 +43,23 @@ class FirebaseHelper {
     return await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 
-  //Twitter SignIn
-  Future<UserCredential> signInWithTwitter() async {
-    final TwitterLogin twitterLogin = new TwitterLogin(
-      consumerKey: 'Hvf8HA3OI9J4haDnHEY6Cpxmv',
-      consumerSecret: 'Ecb0BqgFaw5diPR48VlmixiE3llNUOZgGQrZRs3my50Gk6uZuD',
-    );
-
-    final TwitterLoginResult loginResult = await twitterLogin.authorize();
-    if (loginResult.errorMessage != null) {
-      throw Exception(loginResult.errorMessage);
-    }
-    final TwitterSession twitterSession = loginResult.session;
-    final AuthCredential twitterAuthCredential =
-    TwitterAuthProvider.credential(accessToken: twitterSession.token, secret: twitterSession.secret);
-
-    return await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
-  }
+  // //Twitter SignIn
+  // Future<UserCredential> signInWithTwitter() async {
+  //   final TwitterLogin twitterLogin = new TwitterLogin(
+  //     consumerKey: 'Hvf8HA3OI9J4haDnHEY6Cpxmv',
+  //     consumerSecret: 'Ecb0BqgFaw5diPR48VlmixiE3llNUOZgGQrZRs3my50Gk6uZuD',
+  //   );
+  //
+  //   final TwitterLoginResult loginResult = await twitterLogin.authorize();
+  //   if (loginResult.errorMessage != null) {
+  //     throw Exception(loginResult.errorMessage);
+  //   }
+  //   final TwitterSession twitterSession = loginResult.session;
+  //   final AuthCredential twitterAuthCredential =
+  //   TwitterAuthProvider.credential(accessToken: twitterSession.token, secret: twitterSession.secret);
+  //
+  //   return await FirebaseAuth.instance.signInWithCredential(twitterAuthCredential);
+  // }
 
   //Apple SignIn
   String generateNonce([int length = 32]) {
@@ -114,11 +114,11 @@ class FirebaseHelper {
         return await _userCredentials.user.linkWithCredential(credential);
       }
     }
-    if (userSignInMethods.first == 'twitter.com') {
-      if ((_userCredentials = await signInWithTwitter()) != null) {
-        return await _userCredentials.user.linkWithCredential(credential);
-      }
-    }
+    // if (userSignInMethods.first == 'twitter.com') {
+    //   if ((_userCredentials = await signInWithTwitter()) != null) {
+    //     return await _userCredentials.user.linkWithCredential(credential);
+    //   }
+    // }
     if (userSignInMethods.first == 'apple.com') {
       if ((_userCredentials = await signInWithApple()) != null) {
         return await _userCredentials.user.linkWithCredential(credential);

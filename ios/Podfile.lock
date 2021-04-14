@@ -53,10 +53,6 @@ PODS:
     - FBSDKCoreKit (~> 9.1.0)
     - FBSDKLoginKit (~> 9.1.0)
     - Flutter
-  - flutter_twitter_login (0.0.1):
-    - Flutter
-    - TwitterCore (~> 3.2.0)
-    - TwitterKit (~> 3.4.0)
   - google_sign_in (0.0.1):
     - Flutter
     - GoogleSignIn (~> 5.0)
@@ -97,9 +93,6 @@ PODS:
   - PromisesObjC (1.2.12)
   - sign_in_with_apple (0.0.1):
     - Flutter
-  - TwitterCore (3.2.0)
-  - TwitterKit (3.4.2):
-    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -108,7 +101,6 @@ DEPENDENCIES:
   - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `7.3.0`)
   - Flutter (from `Flutter`)
   - flutter_facebook_auth (from `.symlinks/plugins/flutter_facebook_auth/ios`)
-  - flutter_twitter_login (from `.symlinks/plugins/flutter_twitter_login/ios`)
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -130,8 +122,6 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
-    - TwitterCore
-    - TwitterKit
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -147,8 +137,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_facebook_auth:
     :path: ".symlinks/plugins/flutter_facebook_auth/ios"
-  flutter_twitter_login:
-    :path: ".symlinks/plugins/flutter_twitter_login/ios"
   google_sign_in:
     :path: ".symlinks/plugins/google_sign_in/ios"
   package_info:
@@ -177,7 +165,6 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 46e32f479aac127e742b1cf873930f7bb43e7b45
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_facebook_auth: 4b170c07b7fce791497093fcc3f134fb215f3f07
-  flutter_twitter_login: 1f670e60647cdf517ba20495e1b32046d9f22697
   google_sign_in: 6bd214b9c154f881422f5fe27b66aaa7bbd580cc
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
@@ -189,9 +176,7 @@ SPEC CHECKSUMS:
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   sign_in_with_apple: 34f3f5456a45fd7ac5fb42905e2ad31dae061b4a
-  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 1b4b3822f16182da5de4e61fdbac69f708cfcd6a
+PODFILE CHECKSUM: ab2e22fd19e390508128354896fa7a05db49f0e3
 
 COCOAPODS: 1.10.1

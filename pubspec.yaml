@@ -28,9 +28,9 @@ dependencies:
   google_sign_in:
   flutter_facebook_auth: ^3.3.2+2
   flutter_signin_button:
-  flutter_twitter_login:
-    git:
-      url: https://github.com/eudangeld/flutter_twitter_login
+#  flutter_twitter_login:
+#    git:
+#      url: https://github.com/eudangeld/flutter_twitter_login
   sign_in_with_apple:
   crypto:
   hive:
