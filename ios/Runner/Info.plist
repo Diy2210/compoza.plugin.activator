@@ -45,6 +45,18 @@
     	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+		<key>FacebookAppID</key>
+    	<string>208193451101519</string>
+    	<key>FacebookDisplayName</key>
+    	<string>Compoza.NET Activator</string>
+    	<key>LSApplicationQueriesSchemes</key>
+    	<array>
+    		<string>fbapi</string>
+    		<string>fb-messenger-share-api</string>
+    		<string>fbauth2</string>
+    		<string>fbshareextension</string>
+    	</array>
+
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
