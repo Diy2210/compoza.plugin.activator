@@ -21,32 +21,50 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
-    	<array>
-    		<dict>
-    			<key>CFBundleTypeRole</key>
-    			<string>Editor</string>
-    			<key>CFBundleURLName</key>
-    			<string>Facebook</string>
-    			<key>CFBundleURLSchemes</key>
-    			<array>
-    				<string>fb208193451101519</string>
-    			</array>
-    		</dict>
-    		<dict>
-    			<key>CFBundleTypeRole</key>
-    			<string>Editor</string>
-    			<key>CFBundleURLName</key>
-    			<string>Google</string>
-    			<key>CFBundleURLSchemes</key>
-    			<array>
-    				<string>com.googleusercontent.apps.586934695423-vl249okhrk8kfr5efeb5i9510umua7oi</string>
-    			</array>
-    		</dict>
-    	</array>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb208193451101519</string>
+				<string>com.googleusercontent.apps.586934695423-vl249okhrk8kfr5efeb5i9510umua7oi</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>208193451101519</string>
+	<key>FacebookDisplayName</key>
+	<string>Compoza.NET Activator</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We do not directly use music</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>We do not directly use bluetooth always</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>We do not directly use bluetooth peripheral</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We do not directly use calendar</string>
+	<key>NSContactsUsageDescription</key>
+	<string>We do not directly use contacts</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We do not directly use locations</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We do not directly use locations</string>
+	<key>NSMotionUsageDescription</key>
+	<string>We do not directly use motion data</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>We do not directly use speech recognition</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -66,23 +84,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSAppleMusicUsageDescription</key>
-        <string>We do not directly use music</string>
-        <key>NSBluetoothPeripheralUsageDescription</key>
-        <string>We do not directly use bluetooth peripheral</string>
-        <key>NSBluetoothAlwaysUsageDescription</key>
-        <string>We do not directly use bluetooth always</string>
-        <key>NSCalendarsUsageDescription</key>
-        <string>We do not directly use calendar</string>
-        <key>NSContactsUsageDescription</key>
-        <string>We do not directly use contacts</string>
-        <key>NSMotionUsageDescription</key>
-        <string>We do not directly use motion data</string>
-        <key>NSSpeechRecognitionUsageDescription</key>
-        <string>We do not directly use speech recognition</string>
-        <key>NSLocationAlwaysUsageDescription</key>
-        <string>We do not directly use locations</string>
-        <key>NSLocationWhenInUseUsageDescription</key>
-        <string>We do not directly use locations</string>
 </dict>
 </plist>

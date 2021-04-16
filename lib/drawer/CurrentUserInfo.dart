@@ -7,19 +7,19 @@ class CurrentUserInfo extends StatelessWidget {
 
   CurrentUserInfo(this.user);
 
-    String setIcon() {
-      String image = 'assets/images/activator_logo.png';
-      if (user.method == 'Facebook') {
-        image = 'assets/images/facebook.png';
-      // } else if (user.method == 'Twitter') {
-      //   image = 'assets/images/twitter_logo.png';
-      } else if (user.method == 'Apple') {
-        image = 'assets/images/apple_logo.png';
-      } else if (user.method == 'Google') {
-        image = 'assets/images/google_logo.png';
-      }
-      return image;
+  String setIcon() {
+    String image = 'assets/images/activator_logo.png';
+    if (user.method == 'Facebook') {
+      image = 'assets/images/facebook_logo.png';
+    } else if (user.method == 'Twitter') {
+      image = 'assets/images/twitter_logo.png';
+    } else if (user.method == 'Apple') {
+      image = 'assets/images/apple_logo.png';
+    } else if (user.method == 'Google') {
+      image = 'assets/images/google_logo.png';
     }
+    return image;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,36 +30,35 @@ class CurrentUserInfo extends StatelessWidget {
           children: [
             user.method.isEmpty || user.avatar == null
                 ? CircleAvatar(
-              backgroundImage:
-              AssetImage('assets/images/user_unknown.png'),
-              backgroundColor: Colors.grey[300],
-              foregroundColor: Theme.of(context).primaryColor,
-              radius: 60,
-            )
+                    backgroundImage:
+                        AssetImage('assets/images/user_unknown.png'),
+                    backgroundColor: Colors.grey[300],
+                    foregroundColor: Theme.of(context).primaryColor,
+                    radius: 60,
+                  )
                 : ClipRRect(
-              borderRadius: BorderRadius.circular(120),
-              child: Container(
-                width: 120,
-                height: 120,
-                color: Colors.white54,
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/user_unknown.png',
-                  image: user.avatar,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
+                    borderRadius: BorderRadius.circular(120),
+                    child: Container(
+                      width: 120,
+                      height: 120,
+                      color: Colors.white54,
+                      child: FadeInImage.assetNetwork(
+                        placeholder: 'assets/images/user_unknown.png',
+                        image: user.avatar,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
             Positioned(
               right: -5,
               top: -5,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(40),
                 child: Container(
-                    width: 35,
-                    height: 35,
+                    width: 36,
+                    height: 36,
                     color: Colors.white,
-                    child: Image(image: AssetImage(setIcon()))
-                ),
+                    child: Image(image: AssetImage(setIcon()))),
               ),
             ),
           ],

@@ -28,11 +28,11 @@ class ServerMenu {
         ],
       ),
       actions: [
-        FlatButton(
+        TextButton(
           child: Text('Cancel'.i18n),
           onPressed: () => Navigator.of(ctx).pop(),
         ),
-        FlatButton(
+        TextButton(
           child: Text('OK'.i18n),
           onPressed: () {
             _deleteServer(server);
