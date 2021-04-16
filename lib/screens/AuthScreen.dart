@@ -18,13 +18,14 @@ class _AuthScreenState extends State<AuthScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   var _isLoading = false;
 
-  Future<void> _tryToSignIn(BuildContext context,
-      String method, [
-        String email = '',
-        String password = '',
-        String username = '',
-        bool isLogin,
-      ]) async {
+  Future<void> _tryToSignIn(
+    BuildContext context,
+    String method, [
+    String email = '',
+    String password = '',
+    String username = '',
+    bool isLogin,
+  ]) async {
     String message;
     UserCredential userCredential;
     final authService = FirebaseHelper();
@@ -36,23 +37,27 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await authService.signInWithGoogle();
       } else if (method == SignInMethod.facebook) {
         userCredential = await authService.signInWithFacebook();
-      } else if(method == SignInMethod.apple) {
+      } else if (method == SignInMethod.apple) {
         userCredential = await authService.signInWithApple();
-      // } else if(method == SignInMethod.twitter) {
-      //   userCredential = await authService.signInWithTwitter();
+        // } else if(method == SignInMethod.twitter) {
+        //   userCredential = await authService.signInWithTwitter();
       } else {
         message = 'Sign in method %s is not implemented'.i18n;
       }
     } catch (error) {
       if (error.code == 'account-exists-with-different-credential') {
         // try to link with other account
-        userCredential = await authService.tryToLink(
-          context,
-          error.email,
-          // we need it in case email/password provider is used
-          password,
-          error.credential,
-        );
+        try {
+          userCredential = await authService.tryToLink(
+            context,
+            error.email,
+            // we need it in case email/password provider is used
+            password,
+            error.credential,
+          );
+        } on Exception catch (error) {
+          message = error.toString();
+        }
       } else if (error.message != null) {
         message = error.message;
       }
@@ -63,6 +68,7 @@ class _AuthScreenState extends State<AuthScreen> {
       }
 
       if (message != null) {
+        ScaffoldMessenger.of(_scaffoldKey.currentContext).hideCurrentSnackBar();
         ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(
           SnackBar(
             content: Text(message),
@@ -88,19 +94,20 @@ class _AuthScreenState extends State<AuthScreen> {
             AuthList(_tryToSignIn),
             _isLoading
                 ? Container(
-              color: Colors.black45,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: CircularProgressIndicator(
-                      valueColor:
-                      AlwaysStoppedAnimation<Color>(Color(0xff008000)),
+                    color: Colors.black45,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Color(0xff008000)),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ) : Container()
+                  )
+                : Container()
           ],
         ),
       ),

@@ -4,10 +4,13 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-msgid "Do you want logout?"
+msgid "Do you want to logout?"
 msgstr ""
 
-msgid "Cancel"
+msgid "No"
+msgstr ""
+
+msgid "Yes"
 msgstr ""
 
 msgid "Add New Server"
@@ -16,7 +19,13 @@ msgstr ""
 msgid "Edit Server"
 msgstr ""
 
-msgid "Sign in method $method is not implemented"
+msgid "Sign in method %s is not implemented"
+msgstr ""
+
+msgid "Unsupported auth method"
+msgstr ""
+
+msgid "ver %s"
 msgstr ""
 
 msgid "Something is going wrong"
@@ -32,6 +41,9 @@ msgid " will be deleted."
 msgstr ""
 
 msgid "Are you sure?"
+msgstr ""
+
+msgid "Cancel"
 msgstr ""
 
 msgid "OK"

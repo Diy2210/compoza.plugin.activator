@@ -1,9 +1,9 @@
 import 'package:package_info/package_info.dart';
+import 'package:activator/localization.dart';
 
 class AppInfoHelper {
   Future<String> getVersionNumber() async {
-    String ver = 'ver ';
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    return ver + packageInfo.version;
+    return 'ver %s'.i18n.fill([packageInfo.version]);
   }
 }

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
 import 'dart:math';
 
+import 'package:activator/localization.dart';
 import 'package:activator/models/SignInMethod.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +27,8 @@ class FirebaseHelper {
   //Google SignIn
   Future<UserCredential> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
     final GoogleAuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -36,11 +39,14 @@ class FirebaseHelper {
 
   //Facebook SignIn
   Future<UserCredential> signInWithFacebook() async {
-    final AccessToken accessToken = (await FacebookAuth.instance.login()) as AccessToken;
-    final FacebookAuthCredential facebookAuthCredential =
-    FacebookAuthProvider.credential(accessToken.token);
-
-    return await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    final LoginResult result = await FacebookAuth.instance.login();
+    if (result.status == LoginStatus.success) {
+      final AccessToken accessToken = result.accessToken;
+      final FacebookAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(accessToken.token);
+      return await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+    }
+    return null;
   }
 
   // //Twitter SignIn
@@ -97,32 +103,37 @@ class FirebaseHelper {
   }
 
   Future<UserCredential> tryToLink(
-      BuildContext context,
-      String email,
-      String password,
-      AuthCredential credential,
-      ) async {
+    BuildContext context,
+    String email,
+    String password,
+    AuthCredential credential,
+  ) async {
     List<String> userSignInMethods =
-    await _firebaseAuth.fetchSignInMethodsForEmail(email);
+        await _firebaseAuth.fetchSignInMethodsForEmail(email);
+    // remove unsupported auth method
+    if (userSignInMethods.contains('twitter.com')) {
+      userSignInMethods.remove('twitter.com');
+    }
     if (userSignInMethods.first == 'google.com') {
       if ((_userCredentials = await signInWithGoogle()) != null) {
         return await _userCredentials.user.linkWithCredential(credential);
       }
-    }
-    if (userSignInMethods.first == 'facebook.com') {
+    } else if (userSignInMethods.first == 'facebook.com') {
       if ((_userCredentials = await signInWithFacebook()) != null) {
         return await _userCredentials.user.linkWithCredential(credential);
       }
     }
-    // if (userSignInMethods.first == 'twitter.com') {
+    // esle if (userSignInMethods.first == 'twitter.com') {
     //   if ((_userCredentials = await signInWithTwitter()) != null) {
     //     return await _userCredentials.user.linkWithCredential(credential);
     //   }
     // }
-    if (userSignInMethods.first == 'apple.com') {
+    else if (userSignInMethods.first == 'apple.com') {
       if ((_userCredentials = await signInWithApple()) != null) {
         return await _userCredentials.user.linkWithCredential(credential);
       }
+    } else {
+      throw Exception('Unsupported auth method'.i18n);
     }
 
     return null;

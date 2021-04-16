@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: russ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.2\n"
-"Last-Translator: \n"
-"Language: russ\n"
 
 msgid "Servers"
 msgstr "Серверы"
@@ -20,14 +20,11 @@ msgstr "Выход"
 msgid "Do you want to logout?"
 msgstr "Вы действительно хотите выйти?"
 
-msgid "Cancel"
-msgstr "Отмена"
+msgid "No"
+msgstr "Нет"
 
 msgid "Yes"
 msgstr "Да"
-
-msgid "No"
-msgstr "Нет"
 
 msgid "Add New Server"
 msgstr "Добавить новый сервер"
@@ -38,11 +35,14 @@ msgstr "Редактировать сервер"
 msgid "Sign in method %s is not implemented"
 msgstr "Метод %s не реализован"
 
-msgid "Something is going wrong"
-msgstr "Что-то пошло не так."
+msgid "Unsupported auth method"
+msgstr "Неизвестный метод авторизации"
 
 msgid "ver %s"
 msgstr "версия %s"
+
+msgid "Something is going wrong"
+msgstr "Что-то пошло не так"
 
 msgid "Empty list"
 msgstr "Список пуст"
@@ -51,10 +51,13 @@ msgid "Delete server"
 msgstr "Удалить сервер"
 
 msgid " will be deleted."
-msgstr "будет удален."
+msgstr " будет удален."
 
 msgid "Are you sure?"
 msgstr "Вы уверены?"
+
+msgid "Cancel"
+msgstr "Отмена"
 
 msgid "OK"
 msgstr "ОК"
