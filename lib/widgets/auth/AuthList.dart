@@ -60,12 +60,12 @@ class _AuthListState extends State<AuthList> {
                         widget.submitFn(context, SignInMethod.facebook),
                   ),
                   if (Platform.isAndroid)
-                  SignInButton(
-                    Buttons.Twitter,
-                    shape: borderShape,
-                    onPressed: () =>
-                        widget.submitFn(context, SignInMethod.twitter),
-                  ),
+                    SignInButton(
+                      Buttons.Twitter,
+                      shape: borderShape,
+                      onPressed: () =>
+                          widget.submitFn(context, SignInMethod.twitter),
+                    ),
                   if (Platform.isIOS)
                     SignInButton(
                       Buttons.AppleDark,
