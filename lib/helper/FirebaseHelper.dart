@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
 import 'dart:math';
 
 import 'package:activator/localization.dart';
@@ -111,8 +112,10 @@ class FirebaseHelper {
     List<String> userSignInMethods =
         await _firebaseAuth.fetchSignInMethodsForEmail(email);
     // remove unsupported auth method
-    if (userSignInMethods.contains('twitter.com')) {
-      userSignInMethods.remove('twitter.com');
+    if (Platform.isIOS) {
+      if (userSignInMethods.contains('twitter.com')) {
+        userSignInMethods.remove('twitter.com');
+      }
     }
     if (userSignInMethods.first == 'google.com') {
       if ((_userCredentials = await signInWithGoogle()) != null) {
