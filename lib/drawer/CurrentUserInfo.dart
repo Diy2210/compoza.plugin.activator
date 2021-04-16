@@ -11,8 +11,8 @@ class CurrentUserInfo extends StatelessWidget {
       String image = 'assets/images/activator_logo.png';
       if (user.method == 'Facebook') {
         image = 'assets/images/facebook.png';
-      // } else if (user.method == 'Twitter') {
-      //   image = 'assets/images/twitter_logo.png';
+      } else if (user.method == 'Twitter') {
+        image = 'assets/images/twitter_logo.png';
       } else if (user.method == 'Apple') {
         image = 'assets/images/apple_logo.png';
       } else if (user.method == 'Google') {
