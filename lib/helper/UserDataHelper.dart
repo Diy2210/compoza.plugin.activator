@@ -1,3 +1,4 @@
+import 'package:activator/localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
 import 'package:activator/models/CurrentUser.dart';
@@ -25,22 +26,18 @@ class UserDataHelper {
     final user = await firestoreHelper.getUserData(signedInUser.uid);
     if (!user.exists) {
       firestoreHelper.setUserData(
-          signedInUser.uid,
-          signedInUser.displayName,
-          signedInUser.email
-      );
+          signedInUser.uid, signedInUser.displayName, signedInUser.email);
       currentUser = CurrentUser(
           userId: signedInUser.uid,
           name: signedInUser.displayName,
           email: signedInUser.email ?? '',
           avatar: signedInUser.photoURL,
-          method: method
-      );
+          method: method);
     } else {
       currentUser = CurrentUser(
         userId: signedInUser.uid,
-        name: user.data()['username'],
-        email: signedInUser.email,
+        name: user.data()['username'] ?? 'Anonymous'.i18n,
+        email: signedInUser.email ?? '',
         avatar: signedInUser.photoURL,
         method: method,
       );

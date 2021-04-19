@@ -22,10 +22,22 @@ msgstr ""
 msgid "Sign in method %s is not implemented"
 msgstr ""
 
+msgid "Cancelled by user"
+msgstr ""
+
+msgid "Check Twitter App Settings"
+msgstr ""
+
 msgid "Unsupported auth method"
 msgstr ""
 
+msgid "Anonymous"
+msgstr ""
+
 msgid "ver %s"
+msgstr ""
+
+msgid "Loading..."
 msgstr ""
 
 msgid "Something is going wrong"

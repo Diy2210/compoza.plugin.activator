@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ffi';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:activator/localization.dart';
@@ -57,15 +56,24 @@ class FirebaseHelper {
     );
 
     final TwitterLoginResult loginResult = await twitterLogin.authorize();
-    if (loginResult.errorMessage != null) {
-      throw Exception(loginResult.errorMessage);
+    switch (loginResult.status) {
+      case TwitterLoginStatus.loggedIn:
+        var twitterSession = loginResult.session;
+        final AuthCredential twitterAuthCredential =
+            TwitterAuthProvider.credential(
+          accessToken: twitterSession.token,
+          secret: twitterSession.secret,
+        );
+        return await FirebaseAuth.instance
+            .signInWithCredential(twitterAuthCredential);
+        break;
+      case TwitterLoginStatus.cancelledByUser:
+        throw Exception('Cancelled by user'.i18n);
+        break;
+      case TwitterLoginStatus.error:
+        throw Exception('Check Twitter App Settings'.i18n);
+        break;
     }
-    final TwitterSession twitterSession = loginResult.session;
-    final AuthCredential twitterAuthCredential = TwitterAuthProvider.credential(
-        accessToken: twitterSession.token, secret: twitterSession.secret);
-
-    return await FirebaseAuth.instance
-        .signInWithCredential(twitterAuthCredential);
   }
 
   //Apple SignIn
@@ -112,11 +120,11 @@ class FirebaseHelper {
     List<String> userSignInMethods =
         await _firebaseAuth.fetchSignInMethodsForEmail(email);
     // remove unsupported auth method
-    if (Platform.isIOS) {
-      if (userSignInMethods.contains('twitter.com')) {
-        userSignInMethods.remove('twitter.com');
-      }
-    }
+    // if (Platform.isIOS) {
+    //   if (userSignInMethods.contains('twitter.com')) {
+    //     userSignInMethods.remove('twitter.com');
+    //   }
+    // }
     if (userSignInMethods.first == 'google.com') {
       if ((_userCredentials = await signInWithGoogle()) != null) {
         return await _userCredentials.user.linkWithCredential(credential);

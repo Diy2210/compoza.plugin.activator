@@ -133,7 +133,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -147,7 +147,7 @@ packages:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   code_builder:
     dependency: transitive
     description:
@@ -210,21 +210,21 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3"
+    version: "1.1.0"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.2"
+    version: "4.1.0"
   firebase_auth_web:
     dependency: transitive
     description:
       name: firebase_auth_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   firebase_core:
     dependency: "direct main"
     description:
@@ -301,8 +301,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: aba1223f224fd46b564d582e1f9af82f1a2df7d0
-      url: "https://github.com/eudangeld/flutter_twitter_login"
+      resolved-ref: d341324f7cfb29b92c49a16c419cda63cde4c596
+      url: "https://github.com/Kiruel/flutter_twitter_login"
     source: git
     version: "1.1.0"
   flutter_web_plugins:
@@ -337,7 +337,7 @@ packages:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   google_sign_in_platform_interface:
     dependency: transitive
     description:
@@ -365,7 +365,7 @@ packages:
       name: hive
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.2"
+    version: "2.0.3"
   hive_flutter:
     dependency: "direct main"
     description:
@@ -393,7 +393,7 @@ packages:
       name: http_multi_server
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   http_parser:
     dependency: transitive
     description:

@@ -35,11 +35,23 @@ msgstr "Редактировать сервер"
 msgid "Sign in method %s is not implemented"
 msgstr "Метод %s не реализован"
 
+msgid "Cancelled by user"
+msgstr "Отменено пользователем"
+
+msgid "Check Twitter App Settings"
+msgstr "ПРоверьте настройки приложения Twitter"
+
 msgid "Unsupported auth method"
 msgstr "Неизвестный метод авторизации"
 
+msgid "Anonymous"
+msgstr "Анонимный"
+
 msgid "ver %s"
 msgstr "версия %s"
+
+msgid "Loading..."
+msgstr "Загрузка…"
 
 msgid "Something is going wrong"
 msgstr "Что-то пошло не так"

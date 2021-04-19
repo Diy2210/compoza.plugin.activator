@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:activator/models/SignInMethod.dart';
 import 'package:activator/helper/AppInfoHelper.dart';
+import 'package:activator/localization.dart';
 
 class AuthList extends StatefulWidget {
   final void Function(
@@ -59,13 +60,13 @@ class _AuthListState extends State<AuthList> {
                     onPressed: () =>
                         widget.submitFn(context, SignInMethod.facebook),
                   ),
-                  if (Platform.isAndroid)
-                    SignInButton(
-                      Buttons.Twitter,
-                      shape: borderShape,
-                      onPressed: () =>
-                          widget.submitFn(context, SignInMethod.twitter),
-                    ),
+                  // if (Platform.isAndroid)
+                  SignInButton(
+                    Buttons.Twitter,
+                    shape: borderShape,
+                    onPressed: () =>
+                        widget.submitFn(context, SignInMethod.twitter),
+                  ),
                   if (Platform.isIOS)
                     SignInButton(
                       Buttons.AppleDark,
@@ -80,7 +81,7 @@ class _AuthListState extends State<AuthList> {
               future: AppInfoHelper().getVersionNumber(),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) =>
                   Text(
-                    snapshot.hasData ? snapshot.data : "Loading ...",
+                snapshot.hasData ? snapshot.data : "Loading...".i18n,
               ),
             ),
           ],

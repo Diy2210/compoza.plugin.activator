@@ -39,12 +39,12 @@ class _AuthScreenState extends State<AuthScreen> {
         userCredential = await authService.signInWithFacebook();
       } else if (method == SignInMethod.apple) {
         userCredential = await authService.signInWithApple();
-        // } else if(method == SignInMethod.twitter) {
-        //   userCredential = await authService.signInWithTwitter();
+      } else if (method == SignInMethod.twitter) {
+        userCredential = await authService.signInWithTwitter();
       } else {
-        message = 'Sign in method %s is not implemented'.i18n;
+        message = 'Sign in method %s is not implemented'.i18n.fill([method]);
       }
-    } catch (error) {
+    } on FirebaseAuthException catch (error) {
       if (error.code == 'account-exists-with-different-credential') {
         // try to link with other account
         try {
@@ -61,6 +61,8 @@ class _AuthScreenState extends State<AuthScreen> {
       } else if (error.message != null) {
         message = error.message;
       }
+    } catch (error) {
+      message = error.message;
     } finally {
       if (userCredential != null) {
         authService.signInMethod = method;
