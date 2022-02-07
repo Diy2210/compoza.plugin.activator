@@ -8,13 +8,12 @@ class PluginListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Server server = ModalRoute.of(context).settings.arguments;
+    final Server server = ModalRoute.of(context)?.settings.arguments as Server;
     return Scaffold(
       appBar: AppBar(
         title: Text(server.title),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xff008000),
-        brightness: Brightness.dark,
       ),
       // body: PluginList()
       body: PluginList(server)

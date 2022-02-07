@@ -9,6 +9,8 @@ import 'package:activator/screens/ServersScreen.dart';
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var versionApp;
+
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -35,11 +37,15 @@ class AppDrawer extends StatelessWidget {
                     height: 20,
                     child: FutureBuilder(
                       future: AppInfoHelper().getVersionNumber(),
-                      builder: (BuildContext context, AsyncSnapshot<String> snapshot) => 
-                          Text(
-                            snapshot.hasData ? snapshot.data : "Loading ...",
-                            style: TextStyle(color: Colors.white54),
-                      ),
+                      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                        if(snapshot.hasData) {
+                          versionApp = snapshot.data;
+                        }
+                        return Text(
+                          snapshot.hasData ? versionApp : "Loading ...",
+                          style: TextStyle(color: Colors.white54),
+                        );
+                      }
                     ),
                   ),
                 ),

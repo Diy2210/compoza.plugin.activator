@@ -3,12 +3,11 @@ import 'package:activator/models/Server.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreHelper {
-
-  UserCredential userCredential;
+  late UserCredential userCredential;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  //Get user
+  ///Get user
   Future<DocumentSnapshot> getUserData(String userId) async {
     return await _firebaseFirestore
         .collection('users')
@@ -16,7 +15,7 @@ class FirestoreHelper {
         .get();
   }
 
-  //Save user to db
+  ///Save user to db
   Future<void> setUserData(String userID, username, email) async {
     return await _firebaseFirestore.collection('users').doc(userID).set(
       {
@@ -26,26 +25,26 @@ class FirestoreHelper {
     );
   }
 
-  //Get all servers
+  ///Get all servers
   Stream<QuerySnapshot> getServers() {
     return FirebaseFirestore.instance
         .collection('servers')
-        .where('userID', isEqualTo: _firebaseAuth.currentUser.uid)
+        .where('userID', isEqualTo: _firebaseAuth.currentUser?.uid)
         .snapshots();
   }
 
-  //Add new server
+  ///Add new server
   static void addServer(Server server) {
     FirebaseFirestore.instance.collection('servers').add({
       'title': server.title,
       'url': server.url,
       'token': server.token,
-      'userID': FirebaseAuth.instance.currentUser.uid,
+      'userID': FirebaseAuth.instance.currentUser?.uid,
       'createdAt': DateTime.now().toIso8601String(),
     });
   }
 
-  //Edit server
+  ///Edit server
   static void editServer(Server server) {
     FirebaseFirestore.instance
         .collection('servers')
@@ -57,7 +56,7 @@ class FirestoreHelper {
     });
   }
 
-  //Delete server
+  ///Delete server
   static void deleteServer(Server server) {
     FirebaseFirestore.instance
         .collection('servers')

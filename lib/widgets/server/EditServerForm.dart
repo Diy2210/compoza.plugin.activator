@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart' as validators;
-
 import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
 
@@ -15,9 +14,9 @@ class EditServerForm extends StatefulWidget {
 }
 
 class _EditServerFormState extends State<EditServerForm> {
-  TextEditingController _titleController;
-  TextEditingController _urlController;
-  TextEditingController _tokenController;
+  TextEditingController? _titleController;
+  TextEditingController? _urlController;
+  TextEditingController? _tokenController;
 
   FocusNode titleFocus = new FocusNode();
   FocusNode urlFocus = new FocusNode();
@@ -30,24 +29,24 @@ class _EditServerFormState extends State<EditServerForm> {
     _urlController = TextEditingController(text: widget._server.url);
     _tokenController = TextEditingController(text: widget._server.token);
 
-    _titleController.addListener(() {
+    _titleController?.addListener(() {
       setState(() {});
     });
 
-    _urlController.addListener(() {
+    _urlController?.addListener(() {
       setState(() {});
     });
 
-    _tokenController.addListener(() {
+    _tokenController?.addListener(() {
       setState(() {});
     });
   }
 
   @override
   void dispose() {
-    _titleController.dispose();
-    _urlController.dispose();
-    _tokenController.dispose();
+    _titleController?.dispose();
+    _urlController?.dispose();
+    _tokenController?.dispose();
     super.dispose();
   }
 
@@ -74,21 +73,23 @@ class _EditServerFormState extends State<EditServerForm> {
                 labelStyle: TextStyle(
                     color: titleFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
-                suffixIcon: _titleController.text.length > 0
+                suffixIcon: _titleController?.text.length != 0
                     ? IconButton(
-                        onPressed: () => _titleController.clear(),
+                        onPressed: () => _titleController?.clear(),
                         icon: Icon(Icons.clear, color: Colors.grey),
                       )
                     : null,
               ),
               validator: (value) {
-                if (value.isEmpty) {
+                if (value == null) {
                   return 'Please enter server name'.i18n;
                 }
                 return null;
               },
               onSaved: (value) {
-                widget._server.title = value.trim();
+                if(value != null) {
+                  widget._server.title = value.trim();
+                }
               },
             ),
             Divider(),
@@ -105,9 +106,9 @@ class _EditServerFormState extends State<EditServerForm> {
                     color: urlFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
 
-                suffixIcon: _urlController.text.length > 0
+                suffixIcon: _urlController?.text.length != 0
                     ? IconButton(
-                        onPressed: () => _urlController.clear(),
+                        onPressed: () => _urlController?.clear(),
                         icon: Icon(Icons.clear, color: Colors.grey),
                       )
                     : null,
@@ -115,13 +116,20 @@ class _EditServerFormState extends State<EditServerForm> {
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.url,
               validator: (value) {
-                if (value.isEmpty || !validators.isURL(value)) {
-                  return 'Please enter valid server URL'.i18n;
+                if(value != null) {
+                  if (value.isEmpty || !validators.isURL(value)) {
+                    return 'Please enter valid server URL'.i18n;
+                  }
                 }
+                // if (value.isEmpty || !validators.isURL(value)) {
+                //   return 'Please enter valid server URL'.i18n;
+                // }
                 return null;
               },
               onSaved: (value) {
-                widget._server.url = value.trim();
+                if(value != null) {
+                  widget._server.url = value.trim();
+                }
               },
             ),
             Divider(),
@@ -137,22 +145,26 @@ class _EditServerFormState extends State<EditServerForm> {
                 labelStyle: TextStyle(
                     color: tokenFocus.hasFocus ? Color(0xff008000) : Colors.grey
                 ),
-                suffixIcon: _tokenController.text.length > 0
+                suffixIcon: _tokenController?.text.length != 0
                     ? IconButton(
-                        onPressed: () => _tokenController.clear(),
+                        onPressed: () => _tokenController?.clear(),
                         icon: Icon(Icons.clear, color: Colors.grey),
                       )
                     : null,
               ),
               maxLines: 3,
               validator: (value) {
-                if (value.isEmpty) {
-                  return 'Please enter the token'.i18n;
+                if(value != null) {
+                  if (value.isEmpty) {
+                    return 'Please enter the token'.i18n;
+                  }
                 }
                 return null;
               },
               onSaved: (value) {
-                widget._server.token = value.trim();
+                if(value != null) {
+                  widget._server.token = value.trim();
+                }
               },
             ),
           ],

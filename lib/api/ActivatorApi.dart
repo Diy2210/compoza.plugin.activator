@@ -5,12 +5,10 @@ import 'dart:convert' as convert;
 import 'package:activator/models/Server.dart';
 
 class ActivatorApi {
-  static Future<List<Plugin>> getPluginList(Server server) async {
+  static Future<List<Plugin>?> getPluginList(Server server) async {
     try {
       var resp = await http.Client().get(
-        Uri.parse(
-          '${server.url}/wp-json/deactivator/v1/list?token=${server.token}',
-        ),
+        Uri.parse('${server.url}/wp-json/deactivator/v1/list?token=${server.token}'),
       );
       if (resp.statusCode < 400) {
         var jsonResponse = convert.jsonDecode(resp.body);

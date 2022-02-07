@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:activator/localization.dart';
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
@@ -17,18 +16,18 @@ class ServersList extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        if (snapshot.data.docs.length <= 0) {
+        if (snapshot.data?.docs.length == 0) {
           return Center(
             child: Text("Empty list".i18n),
           );
         }
         return ListView.builder(
-          itemCount: snapshot.data.docs.length,
+          itemCount: snapshot.data?.docs.length,
           itemBuilder: (ctx, index) {
-            final doc = snapshot.data.docs[index];
+            final doc = snapshot.data?.docs[index];
             return ServerItem(
               Server(
-                title: doc['title'],
+                title: doc!['title'],
                 url: doc['url'],
                 token: doc['token'],
                 userID: doc['userID'],

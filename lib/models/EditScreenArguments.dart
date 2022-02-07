@@ -4,6 +4,6 @@ class EditScreenArguments {
   final Server server;
   final Function saveHandler;
 
-  EditScreenArguments({this.server, this.saveHandler});
+  EditScreenArguments({required this.server, required this.saveHandler});
 }
 

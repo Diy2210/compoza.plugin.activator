@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/EditScreenArguments.dart';
@@ -13,23 +12,23 @@ class EditServerScreen extends StatefulWidget {
 }
 
 class _EditServerScreenState extends State<EditServerScreen> {
-  EditScreenArguments args;
-  Server _server;
+  EditScreenArguments? args;
+  Server? _server;
 
   final _formKey = GlobalKey<FormState>();
 
   bool _isLoading = false;
 
   Future<void> _saveForm() async {
-    final _isValid = _formKey.currentState.validate();
-    if (!_isValid) {
+    final _isValid = _formKey.currentState?.validate();
+    if (!_isValid!) {
       return;
     }
-    _formKey.currentState.save();
+    _formKey.currentState?.save();
     setState(() {
       _isLoading = true;
     });
-    args.saveHandler(_server);
+    args?.saveHandler(_server);
     setState(() {
       _isLoading = false;
     });
@@ -38,11 +37,11 @@ class _EditServerScreenState extends State<EditServerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    args = ModalRoute.of(context).settings.arguments;
-    _server = args.server;
+    args = ModalRoute.of(context)?.settings.arguments as EditScreenArguments?;
+    _server = args?.server;
     return Scaffold(
       appBar: AppBar(
-        title: _server.serverID.isEmpty
+        title: _server?.serverID == null
             ? Text('Add New Server'.i18n)
             : Text('Edit Server'.i18n),
         iconTheme: IconThemeData(color: Colors.white),
@@ -63,7 +62,7 @@ class _EditServerScreenState extends State<EditServerScreen> {
         padding: EdgeInsets.all(10),
         child: EditServerForm(
           _formKey,
-          _server,
+          _server!,
         ),
       ),
     );

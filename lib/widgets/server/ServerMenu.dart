@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:activator/localization.dart';
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
@@ -47,7 +46,7 @@ class ServerMenu {
     );
   }
 
-  // Possible to manage state during these operations
+  /// Possible to manage state during these operations
   void addNewServer(Server server) {
     FirestoreHelper.addServer(server);
   }

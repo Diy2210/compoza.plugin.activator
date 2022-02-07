@@ -19,7 +19,7 @@ import 'package:activator/screens/PluginListScreen.dart';
 
 import 'models/CurrentUser.dart';
 
-TranslationsByLocale translations;
+TranslationsByLocale? translations;
 
 Future<void> loadTranslations() async {
   translations = Translations.byLocale(I18n.locale.toString()) +
@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Compoza.NET Activator',
       theme: ThemeData(
-        accentColor: const Color(0xff008000),
         visualDensity: VisualDensity.adaptivePlatformDensity,
         primaryTextTheme: Theme.of(context).primaryTextTheme.apply(
               bodyColor: Colors.white,

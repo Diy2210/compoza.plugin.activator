@@ -14,6 +14,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "586934695423-9vc4qte5c3itordve0rfef7hn1d3d48q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.compoza.activator",
+            "certificate_hash": "40e85253374a4541a65931fb4fa433e8554ef98e"
+          }
+        },
+        {
+          "client_id": "586934695423-p1h5mappurtfp45p3lll6lqnir75808r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.compoza.activator",
+            "certificate_hash": "c91e2f8eef6da2860d2384fab8376dba3bb8ca7b"
+          }
+        },
+        {
+          "client_id": "586934695423-rkg8qihjdvo8mu16ukaeg9sr4p6piedn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.compoza.activator",
+            "certificate_hash": "276cac5180ae5555299092a3bec29e8b2ed8ec1d"
+          }
+        },
+        {
           "client_id": "586934695423-s6s4quarvm5vg6bfps2sss1fr5ngobt2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:activator/localization.dart';
 import 'package:activator/api/ActivatorApi.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/models/Plugin.dart';
-
 import 'PluginItem.dart';
 
 class PluginList extends StatelessWidget {
@@ -14,7 +12,7 @@ class PluginList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Plugin>>(
+    return FutureBuilder<List<Plugin>?>(
         future: ActivatorApi.getPluginList(server),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -22,16 +20,20 @@ class PluginList extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
+          if(!snapshot.hasData) {
+            return Center(
+              child: Text('Empty list'.i18n),
+            );
+          }
           if (snapshot.data == null) {
             return Center(
               child: Text('Something is going wrong'.i18n),
             );
           }
-
           return ListView.builder(
-            itemCount: snapshot.data.length,
+            itemCount: snapshot.data?.length,
             itemBuilder: (ctx, index) {
-              return PluginItem(snapshot.data[index], server);
+              return PluginItem(snapshot.data![index], server);
             },
           );
         });

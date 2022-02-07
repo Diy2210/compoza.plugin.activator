@@ -6,6 +6,6 @@ class Plugin {
   Plugin({
     this.title = '',
     this.plugin = '',
-    this.status
+    required this.status
   });
 }

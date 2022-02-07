@@ -15,20 +15,15 @@ class PluginItem extends StatefulWidget {
 }
 
 class _PluginItemState extends State<PluginItem> {
-
-  Plugin plugin;
-  Server server;
-
   @override
   Widget build(BuildContext context) {
-    return  SwitchListTile.adaptive(
+    return SwitchListTile.adaptive(
       title: Text(
         widget.plugin.title,
       ),
       value: widget.plugin.status,
       onChanged: (bool value) {
         ActivatorApi.updatePluginStatus(widget.server, widget.plugin, value);
-
         setState(() {
           widget.plugin.status = value;
         });

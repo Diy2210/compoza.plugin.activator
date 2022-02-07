@@ -21,6 +21,8 @@ class AuthList extends StatefulWidget {
 }
 
 class _AuthListState extends State<AuthList> {
+  var versionApp;
+
   @override
   Widget build(BuildContext context) {
     final borderShape = RoundedRectangleBorder(
@@ -79,10 +81,14 @@ class _AuthListState extends State<AuthList> {
             ),
             FutureBuilder(
               future: AppInfoHelper().getVersionNumber(),
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) =>
-                  Text(
-                snapshot.hasData ? snapshot.data : "Loading...".i18n,
-              ),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if(snapshot.hasData) {
+                  versionApp = snapshot.data;
+                }
+                return Text(
+                  snapshot.hasData ? versionApp : 'Loading...'.i18n,
+                );
+              }
             ),
           ],
         ),

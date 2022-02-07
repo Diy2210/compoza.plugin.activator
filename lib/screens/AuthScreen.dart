@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:activator/localization.dart';
 import 'package:activator/widgets/auth/AuthList.dart';
 import 'package:activator/models/SignInMethod.dart';
@@ -24,11 +23,11 @@ class _AuthScreenState extends State<AuthScreen> {
     String email = '',
     String password = '',
     String username = '',
-    bool isLogin,
+    bool? isLogin,
   ]) async {
-    String message;
-    UserCredential userCredential;
-    final authService = FirebaseHelper();
+    String? message = '';
+    UserCredential? userCredential;
+    dynamic authService = FirebaseHelper();
     try {
       setState(() {
         _isLoading = true;
@@ -40,18 +39,18 @@ class _AuthScreenState extends State<AuthScreen> {
       } else if (method == SignInMethod.apple) {
         userCredential = await authService.signInWithApple();
       } else if (method == SignInMethod.twitter) {
-        userCredential = await authService.signInWithTwitter();
+        userCredential = await authService.signInWithNewTwitter();
       } else {
         message = 'Sign in method %s is not implemented'.i18n.fill([method]);
       }
     } on FirebaseAuthException catch (error) {
       if (error.code == 'account-exists-with-different-credential') {
-        // try to link with other account
+        /// try to link with other account
         try {
           userCredential = await authService.tryToLink(
             context,
             error.email,
-            // we need it in case email/password provider is used
+            /// we need it in case email/password provider is used
             password,
             error.credential,
           );
@@ -62,7 +61,7 @@ class _AuthScreenState extends State<AuthScreen> {
         message = error.message;
       }
     } catch (error) {
-      message = error.message;
+      message = error.toString();
     } finally {
       if (userCredential != null) {
         authService.signInMethod = method;
@@ -70,8 +69,8 @@ class _AuthScreenState extends State<AuthScreen> {
       }
 
       if (message != null) {
-        ScaffoldMessenger.of(_scaffoldKey.currentContext).hideCurrentSnackBar();
-        ScaffoldMessenger.of(_scaffoldKey.currentContext).showSnackBar(
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(message),
           ),

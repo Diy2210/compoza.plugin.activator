@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'package:activator/models/CurrentUser.dart';
 
 class CurrentUserInfo extends StatelessWidget {
-  final CurrentUser user;
+  final CurrentUser? user;
 
   CurrentUserInfo(this.user);
 
   String setIcon() {
     String image = 'assets/images/activator_logo.png';
-    if (user.method == 'Facebook') {
+    if (user?.method == 'Facebook') {
       image = 'assets/images/facebook_logo.png';
-    } else if (user.method == 'Twitter') {
+    } else if (user?.method == 'Twitter') {
       image = 'assets/images/twitter_logo.png';
-    } else if (user.method == 'Apple') {
+    } else if (user?.method == 'Apple') {
       image = 'assets/images/apple_logo.png';
-    } else if (user.method == 'Google') {
+    } else if (user?.method == 'Google') {
       image = 'assets/images/google_logo.png';
     }
     return image;
@@ -23,12 +22,24 @@ class CurrentUserInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userAvatar, userName, userEmail;
+
+    if(user?.avatar != null) {
+      userAvatar = user?.avatar;
+    }
+    if(user?.name != null) {
+      userName = user?.name;
+    }
+    if(user?.email != null) {
+      userEmail = user?.email;
+    }
+
     return Column(
       children: [
         Stack(
           clipBehavior: Clip.none,
           children: [
-            user.method.isEmpty || user.avatar == null
+            user?.method == null || user?.avatar == null
                 ? CircleAvatar(
                     backgroundImage:
                         AssetImage('assets/images/user_unknown.png'),
@@ -44,7 +55,7 @@ class CurrentUserInfo extends StatelessWidget {
                       color: Colors.white54,
                       child: FadeInImage.assetNetwork(
                         placeholder: 'assets/images/user_unknown.png',
-                        image: user.avatar,
+                        image: userAvatar,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -71,7 +82,7 @@ class CurrentUserInfo extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                user.name,
+                userName,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
@@ -80,15 +91,15 @@ class CurrentUserInfo extends StatelessWidget {
                 ),
               ),
               Text(
-                user.email,
+                userEmail,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Colors.white,
                 ),
-              ),
+              )
             ],
           ),
-        ),
+        )
       ],
     );
   }

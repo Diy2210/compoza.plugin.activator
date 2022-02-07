@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:activator/localization.dart';
 import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
