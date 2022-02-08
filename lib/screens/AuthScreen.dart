@@ -100,7 +100,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Center(
-                          child: CircularProgressIndicator(
+                          child: CircularProgressIndicator.adaptive(
                             valueColor: AlwaysStoppedAnimation<Color>(
                                 Color(0xff008000)),
                           ),

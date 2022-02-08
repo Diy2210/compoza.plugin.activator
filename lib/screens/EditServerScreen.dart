@@ -1,3 +1,4 @@
+import 'package:activator/screens/ServersScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
@@ -21,14 +22,19 @@ class _EditServerScreenState extends State<EditServerScreen> {
 
   Future<void> _saveForm() async {
     final _isValid = _formKey.currentState?.validate();
+
     if (!_isValid!) {
       return;
     }
+
     _formKey.currentState?.save();
+
     setState(() {
       _isLoading = true;
     });
+
     args?.saveHandler(_server);
+
     setState(() {
       _isLoading = false;
     });
@@ -46,7 +52,10 @@ class _EditServerScreenState extends State<EditServerScreen> {
             : Text('Edit Server'.i18n),
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xff008000),
-        brightness: Brightness.dark,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pushReplacementNamed(ServersScreen.routeName),
+        ),
         actions: [
           IconButton(
             icon: Icon(Icons.save),
@@ -56,7 +65,7 @@ class _EditServerScreenState extends State<EditServerScreen> {
       ),
       body: _isLoading
           ? Center(
-        child: CircularProgressIndicator(),
+        child: CircularProgressIndicator.adaptive(),
       )
           : Padding(
         padding: EdgeInsets.all(10),

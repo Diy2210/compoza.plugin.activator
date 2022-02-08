@@ -29,6 +29,7 @@ dependencies:
   hive:
   hive_flutter:
   package_info:
+  flutter_swipe_action_cell: ^2.1.6
 
 dev_dependencies:
   flutter_test:
