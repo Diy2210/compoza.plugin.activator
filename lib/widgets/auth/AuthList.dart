@@ -1,9 +1,9 @@
 import 'dart:io' show Platform;
+import 'package:activator/services/AppInfoService.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:activator/models/SignInMethod.dart';
-import 'package:activator/helper/AppInfoHelper.dart';
 import 'package:activator/localization.dart';
 
 class AuthList extends StatefulWidget {
@@ -80,7 +80,7 @@ class _AuthListState extends State<AuthList> {
               ),
             ),
             FutureBuilder(
-              future: AppInfoHelper().getVersionNumber(),
+              future: AppInfoService().getVersionNumber(),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                 if(snapshot.hasData) {
                   versionApp = snapshot.data;

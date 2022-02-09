@@ -1,9 +1,9 @@
-import 'package:activator/helper/FirebaseHelper.dart';
+import 'package:activator/services/FirebaseService.dart';
 import 'package:flutter/material.dart';
 import 'CurrentUserInfo.dart';
+import 'package:activator/services/AppInfoService.dart';
+import 'package:activator/services/UserDataService.dart';
 import 'package:activator/localization.dart';
-import 'package:activator/helper/AppInfoHelper.dart';
-import 'package:activator/helper/UserDataHelper.dart';
 import 'package:activator/screens/ServersScreen.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -27,7 +27,7 @@ class AppDrawer extends StatelessWidget {
                   left: 20,
                   bottom: 0,
                   child: Container(
-                    child: CurrentUserInfo(UserDataHelper().getUser()),
+                    child: CurrentUserInfo(UserDataService().getUser()),
                   ),
                 ),
                 Positioned(
@@ -36,7 +36,7 @@ class AppDrawer extends StatelessWidget {
                   child: Container(
                     height: 20,
                     child: FutureBuilder(
-                      future: AppInfoHelper().getVersionNumber(),
+                      future: AppInfoService().getVersionNumber(),
                       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                         if(snapshot.hasData) {
                           versionApp = snapshot.data;
@@ -84,9 +84,9 @@ class AppDrawer extends StatelessWidget {
                         child: Text("Yes".i18n,
                             style: TextStyle(color: Color(0xff008000))),
                         onPressed: () {
-                          UserDataHelper().exit();
+                          UserDataService().exit();
                           Navigator.of(context).pop();
-                          FirebaseHelper().signOut();
+                          FirebaseService().signOut();
                         },
                       )
                     ],

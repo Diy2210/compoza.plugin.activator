@@ -10,7 +10,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:twitter_login/twitter_login.dart';
 
-class FirebaseHelper {
+class FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   UserCredential? _userCredentials;
   String _signinMethod = '';

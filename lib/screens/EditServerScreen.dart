@@ -2,7 +2,6 @@ import 'package:activator/screens/ServersScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
-import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/widgets/server/EditServerForm.dart';
 
 class EditServerScreen extends StatefulWidget {
@@ -13,41 +12,15 @@ class EditServerScreen extends StatefulWidget {
 }
 
 class _EditServerScreenState extends State<EditServerScreen> {
-  EditScreenArguments? args;
-  Server? _server;
-
-  final _formKey = GlobalKey<FormState>();
-
-  bool _isLoading = false;
-
-  Future<void> _saveForm() async {
-    final _isValid = _formKey.currentState?.validate();
-
-    if (!_isValid!) {
-      return;
-    }
-
-    _formKey.currentState?.save();
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    args?.saveHandler(_server);
-
-    setState(() {
-      _isLoading = false;
-    });
-    Navigator.of(context).pop();
-  }
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    args = ModalRoute.of(context)?.settings.arguments as EditScreenArguments?;
-    _server = args?.server;
+    Server server = ModalRoute.of(context)?.settings.arguments as Server;
     return Scaffold(
       appBar: AppBar(
-        title: _server?.serverID == null
+        centerTitle: true,
+        title: server.serverID == ''
             ? Text('Add New Server'.i18n)
             : Text('Edit Server'.i18n),
         iconTheme: IconThemeData(color: Colors.white),
@@ -56,24 +29,15 @@ class _EditServerScreenState extends State<EditServerScreen> {
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.of(context).pushReplacementNamed(ServersScreen.routeName),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: _saveForm,
-          )
-        ],
       ),
-      body: _isLoading
+      body: isLoading
           ? Center(
-        child: CircularProgressIndicator.adaptive(),
-      )
+              child: CircularProgressIndicator.adaptive(),
+            )
           : Padding(
-        padding: EdgeInsets.all(10),
-        child: EditServerForm(
-          _formKey,
-          _server!,
-        ),
-      ),
+              padding: EdgeInsets.all(10),
+              child: EditServerForm(server, server.serverID == '' ? 'new_server' : 'edit_server'),
+            ),
     );
   }
 }

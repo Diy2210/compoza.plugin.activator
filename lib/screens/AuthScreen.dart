@@ -1,10 +1,10 @@
+import 'package:activator/services/FirebaseService.dart';
+import 'package:activator/services/UserDataService.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:activator/localization.dart';
 import 'package:activator/widgets/auth/AuthList.dart';
 import 'package:activator/models/SignInMethod.dart';
-import 'package:activator/helper/UserDataHelper.dart';
-import 'package:activator/helper/FirebaseHelper.dart';
 
 class AuthScreen extends StatefulWidget {
   static const routeName = '/auth';
@@ -27,7 +27,7 @@ class _AuthScreenState extends State<AuthScreen> {
   ]) async {
     String? message = '';
     UserCredential? userCredential;
-    dynamic authService = FirebaseHelper();
+    dynamic authService = FirebaseService();
     try {
       setState(() {
         _isLoading = true;
@@ -65,7 +65,7 @@ class _AuthScreenState extends State<AuthScreen> {
     } finally {
       if (userCredential != null) {
         authService.signInMethod = method;
-        await UserDataHelper().cacheUserData(method, authService.currentUser);
+        await UserDataService().cacheUserData(method, authService.currentUser);
       }
 
       if (message != null) {

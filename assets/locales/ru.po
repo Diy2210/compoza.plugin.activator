@@ -74,10 +74,10 @@ msgstr "Отмена"
 msgid "OK"
 msgstr "ОК"
 
-msgid "Edit"
+msgid "edit"
 msgstr "Редактировать"
 
-msgid "Delete"
+msgid "delete"
 msgstr "Удалить"
 
 msgid "Server Title"

@@ -1,10 +1,9 @@
 import 'package:activator/localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
 import 'package:activator/models/CurrentUser.dart';
-import 'FirestoreHelper.dart';
+import 'FirestoreService.dart';
 
-class UserDataHelper {
+class UserDataService {
   late Box<CurrentUser> _currentUser;
 
   ///Save user to Hive box
@@ -21,7 +20,7 @@ class UserDataHelper {
 
   Future<void> cacheUserData(String method, dynamic signedInUser) async {
     CurrentUser currentUser;
-    final firestoreHelper = FirestoreHelper();
+    final firestoreHelper = FirestoreService();
     final user = await firestoreHelper.getUserData(signedInUser.uid);
     if (!user.exists) {
       firestoreHelper.setUserData(

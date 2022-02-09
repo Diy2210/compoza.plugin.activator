@@ -1,19 +1,18 @@
-import 'package:activator/models/EditScreenArguments.dart';
 import 'package:activator/screens/EditServerScreen.dart';
+import 'package:activator/services/DeleteDialogService.dart';
+import 'package:activator/services/FirestoreService.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:activator/localization.dart';
-import 'package:activator/helper/FirestoreHelper.dart';
 import 'package:activator/models/Server.dart';
 import 'package:activator/widgets/server/ServerItem.dart';
 import 'package:flutter_swipe_action_cell/core/cell.dart';
-import 'ServerMenu.dart';
 
 class ServersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirestoreHelper().getServers(),
+      stream: FirestoreService().getServers(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
@@ -45,12 +44,9 @@ class ServersList extends StatelessWidget {
                   icon: Icon(Icons.edit, color: Colors.white),
                   onTap: (CompletionHandler handler) async {
                     await handler(false);
-                    FirestoreHelper.editServer(server);
+                    FirestoreService.editServer(server);
                     await Navigator.of(context).pushReplacementNamed(EditServerScreen.routeName,
-                      arguments: EditScreenArguments(
-                        server: server,
-                        saveHandler: ServerMenu().addNewServer,
-                      ),
+                      arguments: server
                     );
                   },
                 ),
@@ -60,7 +56,8 @@ class ServersList extends StatelessWidget {
                   icon: Icon(Icons.delete, color: Colors.white),
                   onTap: (CompletionHandler handler) async {
                     await handler(false);
-                    FirestoreHelper.deleteServer(server);
+                    DeleteDialogService().showDeleteDialog(context, server);
+                    // FirestoreService.deleteServer(server);
                   },
                 ),
               ],

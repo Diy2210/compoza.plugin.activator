@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:activator/models/Server.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FirestoreHelper {
+class FirestoreService {
   late UserCredential userCredential;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
