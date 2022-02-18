@@ -1,5 +1,6 @@
 import 'package:activator/localization.dart';
 import 'package:activator/models/Server.dart';
+import 'package:activator/screens/AuthScreen.dart';
 import 'package:activator/services/FirestoreService.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class DeleteDialogService {
                 child: Text('OK'.i18n),
                 onPressed: () {
                   FirestoreService.deleteServer(server);
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
                 },
               ),
             ],

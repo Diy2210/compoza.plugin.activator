@@ -1,3 +1,4 @@
+import 'package:activator/screens/ServersScreen.dart';
 import 'package:activator/services/FirestoreService.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart' as validators;
@@ -211,7 +212,8 @@ class _EditServerFormState extends State<EditServerForm> {
                     widget.editType == 'new_server'
                     ? FirestoreService.addServer(widget.server)
                     : FirestoreService.editServer(widget.server);
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
+                    Navigator.of(context).pushReplacementNamed(ServersScreen.routeName);
                   }),
             ),
           ),

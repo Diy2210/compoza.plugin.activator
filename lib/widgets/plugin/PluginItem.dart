@@ -22,6 +22,7 @@ class _PluginItemState extends State<PluginItem> {
         widget.plugin.title,
       ),
       value: widget.plugin.status,
+      activeColor: const Color(0xff008000),
       onChanged: (bool value) {
         ActivatorApi.updatePluginStatus(widget.server, widget.plugin, value);
         setState(() {

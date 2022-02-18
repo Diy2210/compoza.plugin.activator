@@ -5,6 +5,8 @@ import 'dart:convert' as convert;
 import 'package:activator/models/Server.dart';
 
 class ActivatorApi {
+
+  ///Get all plugins
   static Future<List<Plugin>?> getPluginList(Server server) async {
     try {
       var resp = await http.Client().get(
@@ -34,6 +36,7 @@ class ActivatorApi {
     return null;
   }
 
+  ///Update status plugin
   static Future updatePluginStatus(
     Server server,
     Plugin plugin,
